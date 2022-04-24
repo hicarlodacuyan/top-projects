@@ -97,3 +97,38 @@ h3 {
     text-align: right;
     font-weight: bolder;
 }
+
+.ending {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.ending-card {
+    background-color: #3882F6;
+    display: flex;
+    padding: 25px;
+    justify-content: center;
+}
+
+.ending-content {
+    color: #F9FAF8;
+}
+
+.ending-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.ending-button button {
+    flex: 0 1 auto;
+    height: 30px;
+}
+
+.ending-content-title {
+    font-size: 24px;
+    margin: 0px;
+}
