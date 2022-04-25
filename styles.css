@@ -132,44 +132,51 @@ ul {
 }
 /* START OF QUOTE SECTION */
 
+/* START OF ENDING SECTION */
 .ending {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
+    color: #F9FAF8;
+    padding: 75px 200px 75px 200px;
 }
-
-.ending-card {
+.ending-modal {
     background-color: #3882F6;
     display: flex;
-    padding: 25px;
-    justify-content: center;
+    padding: 25px 100px;
+    border-radius: 5px;
 }
-
-.ending-content {
-    color: #F9FAF8;
+.ending-modal-content {
+    flex: 3;
 }
-
-.ending-button {
+.ending-modal-btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    flex: 1;
 }
 
-.ending-button button {
-    flex: 0 1 auto;
-    height: 30px;
+.ending-modal-btn {
+    background-color: #3882F6;
+    border-radius: 5px;
+    border-color: white;
+    padding: 2px 20px;
+    color: #F9FAF8;
+    font-weight: bold;
 }
 
-.ending-content-title {
-    font-size: 24px;
-    margin: 0px;
+.ending-modal-title {
+    font-size: 20px;
+    font-weight: bold;
 }
 
+.ending-modal-text {
+    font-size: 14px;
+}
+/* END OF ENDING SECTION */
+
+/* START OF FOOTER SECTION */
 .footer {
     background-color: #1F2937;
     text-align: center;
     color: #F9FAF8;
     padding: 16px;
 }
+/* END OF FOOTER SECTION */
