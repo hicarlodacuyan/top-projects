@@ -77,31 +77,40 @@ ul {
 }
 /* END OF HERO MAIN */
 
-
-.info {
+/* START OF THE INFORMATION SECTION */
+.information {
+    padding: 25px 200px 50px 200px;
     display: flex;
     flex-direction: column;
-    padding: 0px 250px 0px 250px;
-    margin: 50px 0px 100px 0px;
+    gap: 25px;
 }
 
-.items {
-    display: flex;
-    text-align: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.item {
-    width: 250px;
-}
-
-h3 {
+.information-title {
     text-align: center;
     font-size: 36px;
     font-weight: bolder;
     color: #1F2937;
 }
+
+.information-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.information-items {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 0;
+    gap: 8px;
+}
+
+.information-items-text {
+    text-align: center;
+    font-size: 12px;
+}
+/* END OF THE INFORMATION SECTION*/
 
 .quote {
     padding: 100px 250px 100px 250px;
