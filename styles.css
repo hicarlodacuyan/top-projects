@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 }
 
 /* START OF HEADER */
@@ -112,21 +112,25 @@ ul {
 }
 /* END OF THE INFORMATION SECTION*/
 
+/* START OF QUOTE SECTION */
 .quote {
-    padding: 100px 250px 100px 250px;
     background-color: #E5E7EB;
+    padding: 100px 200px 100px 200px;
 }
 
 .quote-message {
     font-size: 36px;
     color: #1F2937;
-    font-weight: lighter;
+    font-weight: 300;
 }
 
 .quote-author {
     text-align: right;
+    margin-top: 16px;
     font-weight: bolder;
+    font-size: 18px;
 }
+/* START OF QUOTE SECTION */
 
 .ending {
     display: flex;
