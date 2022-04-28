@@ -48,7 +48,7 @@ Make a counter variable for playerScore and computerScore to keep track of score
 Repeat the round based on the rounds parameter using a loop
 Every round's result will be stored to the result variable
 Increment the playerScore or computerScore based on the result variable value
-After five (5) rounds, check if playerScore is greater than computerScore
+After n number of rounds, check if playerScore is greater than computerScore
 If yes, the player won else it's the computer
 */
 
