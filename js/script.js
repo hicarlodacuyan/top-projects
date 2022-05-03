@@ -39,11 +39,23 @@ const playRound = (playerSelection, computerSelection) => {
 	}
 }
 
+<<<<<<< HEAD
 const options = document.querySelectorAll('.options');
 const playerScoreCtr = document.querySelector('.playerScore');
 const computerScoreCtr = document.querySelector('.computerScore');
 let playerScore = 0; 
 let computerScore = 0;
+=======
+/*
+Make a game function that accepts a parameter that tells it how many rounds the game must be played
+Make a counter variable for playerScore and computerScore to keep track of scores
+Repeat the round based on the rounds parameter using a loop
+Every round's result will be stored to the result variable
+Increment the playerScore or computerScore based on the result variable value
+After n number of rounds, check if playerScore is greater than computerScore
+If yes, the player won else it's the computer
+*/
+>>>>>>> 9c3ec32dcfc9b88bf2111b2ce02c997ec6270926
 
 options.forEach((option) => {
 	option.addEventListener('click', () => {
