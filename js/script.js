@@ -3,9 +3,7 @@ Make a weapons variable to hold rock, paper, and scissors
 Choose randomly from the weapons variable
 Return the randomly chosen weapon
 */
-
 const weapons = ['rock', 'paper', 'scissors'];
-
 const computerPlay = () => weapons.at(Math.floor(Math.random() * weapons.length));
 
 /*
@@ -13,7 +11,6 @@ Make a function that accepts two arguments for player and computer selection
 Compare the selection from all possible occurences
 Return the outcome of the turn
 */
-
 const playRound = (playerSelection, computerSelection) => {
     playerSelection.toLowerCase();
     computerSelection.toLowerCase();
@@ -42,44 +39,38 @@ const playRound = (playerSelection, computerSelection) => {
 	}
 }
 
-/*
-Make a game function that accepts a parameter that tells it how many rounds the game must be played
-Make a counter variable for playerScore and computerScore to keep track of scores
-Repeat the round based on the rounds parameter using a loop
-Every round's result will be stored to the result variable
-Increment the playerScore or computerScore based on the result variable value
-After five (5) rounds, check if playerScore is greater than computerScore
-If yes, the player won else it's the computer
-*/
+const options = document.querySelectorAll('.options');
+const playerScoreCtr = document.querySelector('.playerScore');
+const computerScoreCtr = document.querySelector('.computerScore');
+let playerScore = 0; 
+let computerScore = 0;
 
-const game = (rounds) => {
-	let playerScore = 0;
-	let computerScore = 0;
-
-	for (x = 1; x <= rounds; x++) {
-        result = playRound(prompt('Choose your weapons: '), computerPlay());
-
-		switch(result.toLowerCase()) {
-			case 'win':
-			 playerScore += 1;
-			 break;
-			 
-			case 'lose':
-			 computerScore += 1;
-			 break;
-			 
-			default:
-			 break;
+options.forEach((option) => {
+	option.addEventListener('click', () => {
+		if(playRound(rock.id, computerPlay()) === 'Win') {
+			playerScore += 1;
+			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
+		} else if (playRound(rock.id, computerPlay()) === 'Lose') {
+			computerScore += 1;
+			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+		} else {
+			console.log('It\'s a tie!');
 		}
-	}
 
-	console.log(`Results: ${playerScore} - ${computerScore}`);
+		if (playerScore === 5) {
+			alert('Player wins!');
+			playerScore = 0;
+			computerScore = 0;
+			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
+			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+		}
 
-	if (playerScore > computerScore) {
-		return 'Human: You cannot best a human!';
-	} else if (playerScore < computerScore) {
-		return 'Computer evolve into humanoid!';
-	} else {
-        return 'It is a tie';
-    }
-}
+		if (computerScore === 5) {
+			alert('Computer wins!');
+			playerScore = 0;
+			computerScore = 0;
+			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
+			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+		}
+	});
+});
