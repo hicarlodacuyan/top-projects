@@ -1,10 +1,10 @@
 /* 
-Make a weapons variable to hold rock, paper, and scissors
+Make a weapons variable to hold shield, sword, and wand
 Choose randomly from the weapons variable
 Return the randomly chosen weapon
 */
-const weapons = ['rock', 'paper', 'scissors'];
-const computerPlay = () => weapons.at(Math.floor(Math.random() * weapons.length));
+const computerWeapons = ['shield', 'sword', 'wand'];
+const computerPlay = () => computerWeapons.at(Math.floor(Math.random() * computerWeapons.length));
 
 /*
 Make a function that accepts two arguments for player and computer selection
@@ -16,61 +16,83 @@ const playRound = (playerSelection, computerSelection) => {
     computerSelection.toLowerCase();
 
     // I think this logic can be simplify
-    if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+    if (playerSelection === 'wand' && computerSelection === 'wand') {
 		return 'Tie!';
-	} else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+	} else if (playerSelection === 'sword' && computerSelection === 'wand') {
 		return 'Lose';
-	} else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+	} else if (playerSelection === 'shield' && computerSelection === 'wand') {
 		return 'Win';
-	} else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+	} else if (playerSelection === 'wand' && computerSelection === 'sword') {
 		return 'Win';
-	} else if (playerSelection === 'paper' && computerSelection === 'paper') {
+	} else if (playerSelection === 'sword' && computerSelection === 'sword') {
 		return 'Tie';
-	} else if (playerSelection === 'rock' && computerSelection === 'paper') {
+	} else if (playerSelection === 'shield' && computerSelection === 'sword') {
 		return 'Lose';
-	} else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+	} else if (playerSelection === 'wand' && computerSelection === 'shield') {
 		return 'Lose';
-	} else if (playerSelection === 'paper' && computerSelection === 'rock') {
+	} else if (playerSelection === 'sword' && computerSelection === 'shield') {
 		return 'Win';
-	} else if (playerSelection === 'rock' && computerSelection === 'rock') {
+	} else if (playerSelection === 'shield' && computerSelection === 'shield') {
 		return 'Tie';
 	} else {
 		return 'Invalid';
 	}
 }
 
-const options = document.querySelectorAll('.options');
+const resetGame = () => {
+	playerScore = 0;
+	computerScore = 0;
+	playerScoreCtr.textContent = `Player: ${playerScore}`;
+	computerScoreCtr.textContent = `Computer: ${computerScore}`;
+}
+
+const weaponOfChoicePlayer = document.querySelector('.weaponOfChoicePlayer');
+const weaponOfChoiceComputer = document.querySelector('.weaponOfChoiceComputer');
+
+const updateTurn = (playerWeapon, computerWeapon) => {
+	
+}
+
+const weapons = document.querySelectorAll('.weapons');
 const playerScoreCtr = document.querySelector('.playerScore');
 const computerScoreCtr = document.querySelector('.computerScore');
+const result = document.querySelector('.result');
+const resultInfo = document.querySelector('.resultInfo');
 let playerScore = 0; 
 let computerScore = 0;
 
-options.forEach((option) => {
-	option.addEventListener('click', () => {
-		if(playRound(rock.id, computerPlay()) === 'Win') {
+weapons.forEach((option) => {
+	option.addEventListener('click', (e) => {
+
+		let computerTurn = computerPlay();
+
+		if(playRound(e.target.id, computerTurn) === 'Win') {
 			playerScore += 1;
-			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
-		} else if (playRound(rock.id, computerPlay()) === 'Lose') {
+			playerScoreCtr.textContent = `Player: ${playerScore}`;
+			result.textContent = 'You Win!';
+			resultInfo.textContent = `${e.target.id} beats ${computerTurn}!`
+			updateTurn(e.target.id, computerTurn);
+		} else if (playRound(e.target.id, computerTurn) === 'Lose') {
 			computerScore += 1;
-			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+			computerScoreCtr.textContent = `Computer: ${computerScore}`;
+			result.textContent = 'You Lose!';
+			resultInfo.textContent = `${e.target.id} is weak againts ${computerTurn}!`
+			updateTurn(e.target.id, computerTurn);
 		} else {
 			console.log('It\'s a tie!');
+			result.textContent = 'It\'s a tie!';
+			resultInfo.textContent = 'This match is getting intense!';
+			updateTurn(e.target.id, computerTurn);
 		}
 
 		if (playerScore === 5) {
 			alert('Player wins!');
-			playerScore = 0;
-			computerScore = 0;
-			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
-			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+			resetGame();
 		}
 
 		if (computerScore === 5) {
 			alert('Computer wins!');
-			playerScore = 0;
-			computerScore = 0;
-			playerScoreCtr.textContent = `PLAYER: ${playerScore}`;
-			computerScoreCtr.textContent = `COMPUTER: ${computerScore}`;
+			resetGame();
 		}
 	});
 });

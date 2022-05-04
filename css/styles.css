@@ -47,3 +47,97 @@ table {
 	border-spacing: 0;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  height: 100vh;
+  background-color: black;
+}
+
+.header {
+	margin: 20px;
+}
+
+.results {
+	margin: 20px;
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playerTurns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.leftPlayerTurn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rightPlayerTurn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weaponsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+}
+
+.weaponOfChoicePlayer, .weaponOfChoiceComputer {
+	font-size: 100px;
+	font-weight: bolder;
+}
+
+.playerScore {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.computerScore {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.results {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+footer {
+	font-size: 10px;
+}
+
+@font-face {
+	font-family: 'Arcade Classic';
+	src: url(./fonts/ARCADECLASSIC.TTF);
+}
+
+h1, h2, h3 {
+	font-family: 'Arcade Classic';
+}
+
+h1 {
+	font-size: 60px;
+}
+
+h2 {
+	font-size: 40px;
+}
+
+img {
+	width: 150px;
+}

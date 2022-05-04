@@ -9,32 +9,42 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">ROCK PAPER SCISSORS GAME</div>
-
-        <div class="score">
-            <div class="scoreItems">
-                <div>?</div>
-                <div class="playerScore">PLAYER: 0</div>
+        <header class="header">
+            <h1>
+              Shield Sword Spear
+            </h1>
+        </header>
+        
+        <div class="scoreboard">
+          <div class="results">
+            <h2 class="result">Choose your weapon</h2>
+            <p class="resultInfo">First to score 5 points wins the game</p>
+          </div>
+          <div class="playerTurns">
+            <div class="leftPlayerTurn">
+              <div class="weaponOfChoicePlayer">?</div>
+              <p class="playerScore">PLAYER: 0</p>
             </div>
-            <div class="scoreItems">V.S.</div>
-            <div class="scoreItems">
-                <div>?</div>
-                <div class="computerScore">COMPUTER: 0</div>
+            <h3>VS</h3>
+            <div class="rightPlayerTurn">
+              <div class="weaponOfChoiceComputer">?</div>
+              <p class="computerScore">COMPUTER: 0</p>
             </div>
+          </div>
         </div>
-
-        <div class="weapons">
-            <h1>Choose your weapon</h1>
-            <p>First to score 5 points wins the game</p>
-            <img id="rock" class="options" src="./images/icons8-rock-hand-96.png" />
-            <img id="paper" class="options" src="./images/icons8-paper-hand-96.png" />
-            <img id="scissors" class="options" src="./images/icons8-scissors-hand-96.png" />
+        
+        <div class="weaponsContainer">
+          <div class="weaponOptions">
+            <img id="shield" class="weapons" src="./images/shield.png">
+            <img id="sword" class="weapons" src="./images/sword.png">
+            <img id="wand" class="weapons" src="./images/wand.png">
+          </div>
         </div>
-
+        
         <footer>
-            Copyright © The Odin Project 2021
+          <p>Copyright © The Odin Project 2021 | <a href="https://www.freepik.com/vectors/videogame">Videogame vector created by freepik - www.freepik.com</a></p>
         </footer>
-    </div>
+      </div>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
 </html>
