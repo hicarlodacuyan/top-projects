@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+/* Start of Header */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #1F2937;
+    padding: 10px 100px 10px 100px;
+}
+
+.header-logo-text {
+    font-size: 24px;
+    color: #F9FAF8;
+}
+
+.right-links {
+    flex: 1 1 auto;
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+ul {
+    gap: 16px;
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+/* End of Header */
+
+/* Start of Hero Main */
+.hero-main {
+    background-color: #1F2937;
+    display: flex;
+    padding: 75px 100px 75px 100px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hero-main-content {
+    /* background-color: #E5E7EB; */
+    flex: 1;
+}
+
+.hero-main-image-container {
+    /* background-color: aliceblue; */
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.hero-main-text {
+    font-size: 48px;
+    font-weight: bolder;
+    color: #F9FAF8;
+    margin-bottom: 5px;
+}
+
+.hero-secondary-text {
+    font-size: 18px;
+    color: #E5E7EB;
+    margin-bottom: 5px;
+}
+
+.hero-main-button {
+    font-size: 18px;
+    background-color: #3882F6;
+    color: #E5E7EB;
+    padding: 2.5px 15px 2.5px 15px;
+    border-radius: 8px; 
+    border: none;
+    margin-bottom: 5px;
+}
+/* End of Hero Main */
+
+/* Start of Information Section*/
+.information {
+    padding: 25px 200px 50px 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.information-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    color: #1F2937;
+}
+
+.information-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.information-items {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 0;
+    gap: 8px;
+}
+
+.information-items-text {
+    text-align: center;
+    font-size: 12px;
+}
+/* End of Information Section*/
+
+/* Start of Quote Section */
+.quote {
+    background-color: #E5E7EB;
+    padding: 100px 200px 100px 200px;
+}
+
+.quote-message {
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 300;
+}
+
+.quote-author {
+    text-align: right;
+    margin-top: 16px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+/* End of Quote Section */
+
+/* Start of the Ending Section */
+.ending {
+    color: #F9FAF8;
+    padding: 75px 200px 75px 200px;
+}
+.ending-modal {
+    background-color: #3882F6;
+    display: flex;
+    padding: 25px 100px;
+    border-radius: 5px;
+}
+.ending-modal-content {
+    flex: 3;
+}
+.ending-modal-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.ending-modal-btn {
+    background-color: #3882F6;
+    border-radius: 5px;
+    border-color: white;
+    padding: 2px 20px;
+    color: #F9FAF8;
+    font-weight: bold;
+}
+
+.ending-modal-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ending-modal-text {
+    font-size: 14px;
+}
+/* End of the Ending Section */
