@@ -1,58 +1,36 @@
-/* 
-Make a weapons variable to hold shield, sword, and wand
-Choose randomly from the weapons variable
-Return the randomly chosen weapon
-*/
-const computerWeapons = ['shield', 'sword', 'wand'];
-const computerPlay = () => computerWeapons.at(Math.floor(Math.random() * computerWeapons.length));
+function computerPlay(weapons) {
+	return weapons.at(Math.floor(Math.random() * weapons.length));
+}
 
-/*
-Make a function that accepts two arguments for player and computer selection
-Compare the selection from all possible occurences
-Return the outcome of the turn
-*/
-const playRound = (playerSelection, computerSelection) => {
-    playerSelection.toLowerCase();
-    computerSelection.toLowerCase();
-
-    // I think this logic can be simplify
-    if (playerSelection === 'wand' && computerSelection === 'wand') {
-		return 'Tie!';
-	} else if (playerSelection === 'sword' && computerSelection === 'wand') {
-		return 'Lose';
-	} else if (playerSelection === 'shield' && computerSelection === 'wand') {
-		return 'Win';
-	} else if (playerSelection === 'wand' && computerSelection === 'sword') {
-		return 'Win';
-	} else if (playerSelection === 'sword' && computerSelection === 'sword') {
-		return 'Tie';
-	} else if (playerSelection === 'shield' && computerSelection === 'sword') {
-		return 'Lose';
-	} else if (playerSelection === 'wand' && computerSelection === 'shield') {
-		return 'Lose';
-	} else if (playerSelection === 'sword' && computerSelection === 'shield') {
-		return 'Win';
-	} else if (playerSelection === 'shield' && computerSelection === 'shield') {
-		return 'Tie';
-	} else {
-		return 'Invalid';
+function playRound(playerWeapon, computerWeapon) {
+	switch(playerWeapon + computerWeapon) {
+		case 'shieldshield':
+		case 'swordsword':
+		case 'wandwand':
+			return 'Tie';
+			break;
+		case 'shieldwand':
+		case 'wandsword':
+		case 'swordshield':
+			return 'Win';
+			break;
+		case 'swordwand':
+		case 'shieldsword':
+		case 'wandshield':
+			return 'Lose';
+			break;
+		default:
+			return 'Invalid';
+			break;
 	}
 }
 
-const resetGame = () => {
-	playerScore = 0;
-	computerScore = 0;
-	playerScoreCtr.textContent = `Player: ${playerScore}`;
-	computerScoreCtr.textContent = `Computer: ${computerScore}`;
-}
+function updateTurn(playerWeapon, computerWeapon) {
+	const weaponOfChoicePlayer = document.querySelector('.weaponOfChoicePlayer');
+	const weaponOfChoiceComputer = document.querySelector('.weaponOfChoiceComputer');
+	const weaponOfChoicePlayerImg = document.createElement('img');
+	const weaponOfChoiceComputerImg = document.createElement('img');
 
-const weaponOfChoicePlayer = document.querySelector('.weaponOfChoicePlayer');
-const weaponOfChoiceComputer = document.querySelector('.weaponOfChoiceComputer');
-const weaponOfChoicePlayerImg = document.createElement('img');
-const weaponOfChoiceComputerImg = document.createElement('img');
-
-
-const updateTurn = (playerWeapon, computerWeapon) => {
 	weaponOfChoicePlayerImg.setAttribute('src', `./images/${playerWeapon}.png`);
 	weaponOfChoicePlayer.textContent = '';
 	weaponOfChoicePlayer.appendChild(weaponOfChoicePlayerImg);
@@ -60,6 +38,26 @@ const updateTurn = (playerWeapon, computerWeapon) => {
 	weaponOfChoiceComputerImg.setAttribute('src', `./images/${computerWeapon}.png`);
 	weaponOfChoiceComputer.textContent = '';
 	weaponOfChoiceComputer.appendChild(weaponOfChoiceComputerImg);
+}
+
+function resetGame() {
+	playerScore = 0;
+	computerScore = 0;
+	playerScoreCtr.textContent = `Player: ${playerScore}`;
+	computerScoreCtr.textContent = `Computer: ${computerScore}`;
+}
+
+
+function gameWinner(playerScore, computerScore) {
+	if (playerScore === 5) {
+		alert('Player wins!');
+		resetGame();
+	} 
+	
+	if (computerScore === 5) {
+		alert('Computer wins!');
+		resetGame();
+	}
 }
 
 const weapons = document.querySelectorAll('.weapons');
@@ -71,36 +69,30 @@ let playerScore = 0;
 let computerScore = 0;
 
 weapons.forEach((option) => {
-	option.addEventListener('click', (e) => {
-
-		let computerTurn = computerPlay();
-
-		if(playRound(e.target.id, computerTurn) === 'Win') {
-			playerScore += 1;
-			playerScoreCtr.textContent = `Player: ${playerScore}`;
-			result.textContent = 'You Win!';
-			resultInfo.textContent = `${e.target.id} beats ${computerTurn}!`
-			updateTurn(e.target.id, computerTurn);
-		} else if (playRound(e.target.id, computerTurn) === 'Lose') {
-			computerScore += 1;
-			computerScoreCtr.textContent = `Computer: ${computerScore}`;
-			result.textContent = 'You Lose!';
-			resultInfo.textContent = `${e.target.id} is weak againts ${computerTurn}!`
-			updateTurn(e.target.id, computerTurn);
-		} else {
-			result.textContent = 'It\'s a tie!';
-			resultInfo.textContent = 'This match is getting intense!';
-			updateTurn(e.target.id, computerTurn);
+	option.addEventListener('click', function(e) {
+		const computerTurn = computerPlay(['shield', 'sword', 'wand']);
+		switch(playRound(e.target.id, computerTurn)) {
+			case 'Win':
+				playerScore += 1;
+				playerScoreCtr.textContent = `Player: ${playerScore}`;
+				result.textContent = 'You Win!';
+				resultInfo.textContent = `${e.target.id} beats ${computerTurn}!`
+				updateTurn(e.target.id, computerTurn);
+				break;
+			case 'Lose':
+				computerScore += 1;
+				computerScoreCtr.textContent = `Computer: ${computerScore}`;
+				result.textContent = 'You Lose!';
+				resultInfo.textContent = `${e.target.id} is weak againts ${computerTurn}!`
+				updateTurn(e.target.id, computerTurn);
+				break;
+			default:
+				result.textContent = 'It\'s a tie!';
+				resultInfo.textContent = 'This match is getting intense!';
+				updateTurn(e.target.id, computerTurn);
+				break;
 		}
 
-		if (playerScore === 5) {
-			alert('Player wins!');
-			resetGame();
-		}
-
-		if (computerScore === 5) {
-			alert('Computer wins!');
-			resetGame();
-		}
+		gameWinner(playerScore, computerScore);
 	});
 });
