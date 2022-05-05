@@ -141,3 +141,7 @@ h2 {
 img {
 	width: 150px;
 }
+
+.weaponOfChoicePlayer > img,  .weaponOfChoiceComputer > img{
+	width: 100px;
+}
