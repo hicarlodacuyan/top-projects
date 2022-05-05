@@ -48,9 +48,18 @@ const resetGame = () => {
 
 const weaponOfChoicePlayer = document.querySelector('.weaponOfChoicePlayer');
 const weaponOfChoiceComputer = document.querySelector('.weaponOfChoiceComputer');
+const weaponOfChoicePlayerImg = document.createElement('img');
+const weaponOfChoiceComputerImg = document.createElement('img');
+
 
 const updateTurn = (playerWeapon, computerWeapon) => {
-	
+	weaponOfChoicePlayerImg.setAttribute('src', `./images/${playerWeapon}.png`);
+	weaponOfChoicePlayer.textContent = '';
+	weaponOfChoicePlayer.appendChild(weaponOfChoicePlayerImg);
+
+	weaponOfChoiceComputerImg.setAttribute('src', `./images/${computerWeapon}.png`);
+	weaponOfChoiceComputer.textContent = '';
+	weaponOfChoiceComputer.appendChild(weaponOfChoiceComputerImg);
 }
 
 const weapons = document.querySelectorAll('.weapons');
@@ -79,7 +88,6 @@ weapons.forEach((option) => {
 			resultInfo.textContent = `${e.target.id} is weak againts ${computerTurn}!`
 			updateTurn(e.target.id, computerTurn);
 		} else {
-			console.log('It\'s a tie!');
 			result.textContent = 'It\'s a tie!';
 			resultInfo.textContent = 'This match is getting intense!';
 			updateTurn(e.target.id, computerTurn);
