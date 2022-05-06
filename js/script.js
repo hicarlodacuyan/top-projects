@@ -13,8 +13,6 @@ function createCanvas(size) {
         cell.setAttribute('class', 'cell');
         document.querySelector('.canvas').appendChild(cell);
     }
-
-    // console.log(canvas);
 }
 
 createCanvas(32);
