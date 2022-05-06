@@ -1,4 +1,4 @@
-# etch-a-sketch
+# etch-a-sketch (WIP)
 
 A simple sketch pad created with HTML, CSS, and JS
 

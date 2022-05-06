@@ -12,15 +12,15 @@ function createCanvas(size) {
         document.querySelector('.canvas').appendChild(cell);
     }
 
-    console.log(canvas);
+    // console.log(canvas);
 }
 
-createCanvas(20);
+createCanvas(32);
 
 const cells = document.querySelectorAll('.cell');
 
 cells.forEach(function(cell) {
-    cell.addEventListener('mousedown', function(e) {
+    cell.addEventListener('mouseover', function(e) {
         e.target.classList.add('clicked');
     });
 });
