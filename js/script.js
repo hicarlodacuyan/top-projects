@@ -2,6 +2,7 @@ const canvas = document.querySelector('.canvas');
 const clearBtn = document.querySelector('.clearBtn');
 const rainbowBtn = document.querySelector('.colorBtn');
 const blackBtn = document.querySelector('.blackBtn');
+const eraserBtn = document.querySelector('.eraserBtn');
 const slider = document.getElementById('slider');
 const label = document.querySelector('.label');
 const randomColor = ['red', 'blue', 'yellow', 'green', 'violet', 'orange', 'pink'];
@@ -42,6 +43,9 @@ function listen(color) {
                 case 'rainbow':
                     e.target.style.setProperty('background', `${randomColor.at(Math.floor(Math.random() * randomColor.length))}`);
                     break;
+                case 'eraser':
+                    e.target.style.setProperty('background', `white`);
+                    break;
                 default:
                     e.target.style.setProperty('background', `black`);
                     break;
@@ -61,6 +65,10 @@ rainbowBtn.addEventListener('click', function() {
 blackBtn.addEventListener('click', function() {
     listen('black');
 }); 
+
+eraserBtn.addEventListener('click', function() {
+    listen('eraser');
+});
 
 clearBtn.addEventListener('click', function() {
     cells.forEach(function(cell) {
