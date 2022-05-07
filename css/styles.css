@@ -113,3 +113,9 @@ table {
 label {
     font-size: 1px;
 }
+
+.cell {
+    border-style: solid;
+    border-width: 1px; 
+    border-color: #eee;
+}

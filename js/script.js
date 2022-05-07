@@ -5,8 +5,10 @@ const blackBtn = document.querySelector('.blackBtn');
 const eraserBtn = document.querySelector('.eraserBtn');
 const slider = document.getElementById('slider');
 const label = document.querySelector('.label');
-const randomColor = ['red', 'blue', 'yellow', 'green', 'violet', 'orange', 'pink'];
+const randomColor = Math.floor(Math.random()*16777215).toString(16);
 let cells = document.querySelectorAll('.cell');
+
+console.log(randomColor);
 
 function createCanvas(size) {
     label.textContent = `Canvas size: ${slider.value}x${slider.value}`;
@@ -41,7 +43,7 @@ function listen(color) {
                     e.target.style.setProperty('background', `black`);
                     break;
                 case 'rainbow':
-                    e.target.style.setProperty('background', `${randomColor.at(Math.floor(Math.random() * randomColor.length))}`);
+                    e.target.style.setProperty('background', `#${Math.floor(Math.random()*16777215).toString(16)}`);
                     break;
                 case 'eraser':
                     e.target.style.setProperty('background', `white`);
