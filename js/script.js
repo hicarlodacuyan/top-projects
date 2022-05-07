@@ -9,7 +9,7 @@ const randomColor = ['red', 'blue', 'yellow', 'green', 'violet', 'orange', 'pink
 let cells = document.querySelectorAll('.cell');
 
 function createCanvas(size) {
-    label.textContent = `Canvas size: 20x20`;
+    label.textContent = `Canvas size: ${slider.value}x${slider.value}`;
     const canvasDimension = size * size;
     canvas.style.setProperty('grid-template-columns', `repeat(${size}, 1fr)`);
 
@@ -84,5 +84,5 @@ slider.addEventListener('change', function() {
     listen();
 });
 
-createCanvas(20);
+createCanvas(slider.value);
 listen();
