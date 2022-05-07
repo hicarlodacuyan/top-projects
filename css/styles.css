@@ -94,16 +94,12 @@ table {
 }
 
 .actionButtons {
-    background-color: aliceblue;
-
     display: flex;
     flex-wrap: wrap;
     flex: 2;
 }
 
 .slider {
-    background-color: antiquewhite;
-
     display: flex;
     justify-content: space-between;
     flex: 1;
@@ -115,5 +111,5 @@ table {
 }
 
 label {
-    font-size: 16px;
+    font-size: 1px;
 }
