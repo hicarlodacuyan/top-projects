@@ -5,10 +5,7 @@ const blackBtn = document.querySelector('.blackBtn');
 const eraserBtn = document.querySelector('.eraserBtn');
 const slider = document.getElementById('slider');
 const label = document.querySelector('.label');
-const randomColor = Math.floor(Math.random()*16777215).toString(16);
 let cells = document.querySelectorAll('.cell');
-
-console.log(randomColor);
 
 function createCanvas(size) {
     label.textContent = `Canvas size: ${slider.value}x${slider.value}`;
