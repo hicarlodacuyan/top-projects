@@ -8,7 +8,7 @@ const label = document.querySelector('.label');
 let cells = document.querySelectorAll('.cell');
 
 function createCanvas(size) {
-    label.textContent = `Canvas size: ${slider.value}x${slider.value}`;
+    changeLabel(slider.value);
     const canvasDimension = size * size;
     canvas.style.setProperty('grid-template-columns', `repeat(${size}, 1fr)`);
 
@@ -54,7 +54,7 @@ function listen(color) {
 }
 
 function changeLabel(value) {
-    label.textContent = `Canvas size: ${value}x${value}`;
+    label.textContent = `${value}x${value}`;
 }
 
 rainbowBtn.addEventListener('click', function() {
