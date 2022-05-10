@@ -1,4 +1,11 @@
 # top-landing-page
-Create an entire web page from a design The Odin Project provided
+This project is created for the sole purpose of learning and part of the "The Odin Project" [curriculum](https://theodinproject.com/).
 
-https://hicarlodacuyan.github.io/top-landing-page/
+**Live preview:** [here](https://hicarlodacuyan.github.io/top-landing-page/)
+
+### What I learned?
+
+* Semantic HTML and its elements
+* CSS Flexbox
+* GitHub and git
+* Visual Studio Code
