@@ -1,3 +1,3 @@
 # css-exercise-solutions
 
-My own take to css-exercise activities.
+A repository dedicated for my different CSS exercises solution.
