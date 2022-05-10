@@ -1,12 +1,12 @@
 # rock-paper-scissors
+This project is created for the sole purpose of learning and part of the "The Odin Project" [curriculum](https://theodinproject.com/).
 
-Made initial version (V1) of the Rock-Paper-Scissors game
+**Live preview:** [here](https://hicarlodacuyan.github.io/rock-paper-scissors/)
 
-It can be played through console for now by invoking the function game and feeding it a number of how many rounds the game must be played.
+### What I learned?
 
-How to play the game?
-1. Go to *https://hicarlodacuyan.github.io/rock-paper-scissors/*
-2. Open the Developer Tools (F12) of your browser and go to the Console tab
-3. Call the game function and feed it how many rounds the game must be played 
-
-> `game(5);`
+* Semantic HTML and its elements
+* CSS Flexbox
+* JavaScript and the DOM
+* GitHub and git
+* Visual Studio Code
