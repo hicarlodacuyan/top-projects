@@ -1,6 +1,10 @@
-# odin-recipes
-A collection of delicious bread recipes!
+# Odin Recipes
+This project is created for the sole purpose of learning and part of the "The Odin Project" [curriculum] *(https://theodinproject.com/)*
 
-[Click here to see the collection](https://hicarlodacuyan.github.io/odin-recipes/)
+**Live preview:** [here](https://hicarlodacuyan.github.io/odin-recipes/)
 
-*This project is a requirement to finish The Odin Project.*
+### What I learned?
+
+* Semantic HTML and its elements
+* GitHub and git
+* Visual Studio Code
