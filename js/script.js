@@ -1,74 +1,91 @@
-const isNum = document.querySelectorAll('.is-num');
-const largeInput = document.querySelector('.large-input');
 const smallInput = document.querySelector('.small-input');
-const isPlus = document.querySelector('.is-plus');
-const isMinus = document.querySelector('.is-minus');
-const isTimes = document.querySelector('.is-times');
-const isDivide = document.querySelector('.is-divide');
+const largeInput = document.querySelector('.large-input');
+const btnEquals = document.querySelector('.is-equals');
+const btnClear = document.querySelector('.is-clear');
+const btnOperators = document.querySelectorAll('.is-operation');
+const btnNum = document.querySelectorAll('.is-num');
+let currentNum = '',
+    previousNum = '',
+    operation = undefined;
 
-let displayValue = 0;
-let operation;
-let output = 0;
+function updateDisplay() {
+    largeInput.value = currentNum;
 
-isNum.forEach(function(btn) {
+    if (operation != undefined) {
+        smallInput.value = previousNum + operation;
+    } else {
+        smallInput.value = '';
+    }
+}
+
+function appendNumber(number) {
+    currentNum += number;
+}
+
+function chooseOperation(operator) {
+    if (currentNum === '') return;
+    if (previousNum != '') compute();
+
+    operation = operator;
+    previousNum = currentNum;
+    currentNum = '';
+}
+
+function compute() {
+    let total;
+    const prev = parseInt(previousNum);
+    const curr = parseInt(currentNum);
+
+    if (isNaN(prev) || isNaN(curr)) return;
+
+    switch(operation) {
+        case '+':
+            total = prev + curr;
+            break;
+        case '-':
+            total = prev - curr;
+            break;
+        case '×':
+            total = prev * curr;
+            break;
+        case '÷':
+            total = prev / curr;
+            break;
+        default:
+            return '';
+    }
+
+    currentNum = total;
+    previousNum = '';
+    operation = undefined;
+}
+
+function clear() {
+    currentNum = '';
+    previousNum = '';
+    operation = undefined;
+}
+
+btnNum.forEach(function(btn) {
     btn.addEventListener('click', function(e) {
-        if (largeInput.value == 0 && e.target.innerText == 0) {
-            console.log("You can't have 0 as the first number!");
-        } else if (displayValue > 0 && operation != undefined) {
-            smallInput.value = smallInput.value + e.target.innerText;
-            largeInput.value = operate(operation, displayValue, parseInt(e.target.innerText));
-            displayValue = largeInput.value;
-        } else {
-            smallInput.value += e.target.innerText;
-            largeInput.value += e.target.innerText;
-            displayValue = parseInt(largeInput.value);
-        }
+        appendNumber(e.target.textContent);
+        updateDisplay();
     });
 });
 
-function operatorsListener() {
-    isPlus.addEventListener('click', function(e) {
-        operation = add;
-        smallInput.value = smallInput.value + e.target.innerText;
-        displayValue = largeInput.value;
-        largeInput.value = 0;
-
-        console.log(`Small Input Value: ${smallInput.value}`);
-        console.log(`dislayValue: ${displayValue}`)
-        console.log(`operation: ${operation}`)
+btnOperators.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        chooseOperation(e.target.textContent);
+        updateDisplay();
     });
+});
 
-    isMinus.addEventListener('click', function(e) {
-        // console.log(e.target.innerText);
-    });
+btnEquals.addEventListener('click', function() {
+    compute();
+    updateDisplay();
+});
 
-    isTimes.addEventListener('click', function(e) {
-        // console.log(e.target.innerText);
-    });
-
-    isDivide.addEventListener('click', function(e) {
-        // console.log(e.target.innerText);
-    });
-}
-
-function add(a, b) {
-    return a + b;
-}
-  
-function minus(a, b) {
-    return a - b;
-}
-  
-function times(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-function operate(operator, a, b) {
-    return operator(a, b);
-}
-
-operatorsListener();
+btnClear.addEventListener('click', function() {
+    clear();
+    updateDisplay();
+});
