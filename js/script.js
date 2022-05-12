@@ -9,7 +9,7 @@ let currentNum = '',
     operation = undefined;
 
 function updateDisplay() {
-    largeInput.value = currentNum;
+    largeInput.value = currentNum === '' && largeInput.value === 0 ? '' : currentNum;
 
     if (operation != undefined) {
         smallInput.value = previousNum + operation;
@@ -42,7 +42,7 @@ function compute() {
         case '+':
             total = prev + curr;
             break;
-        case '-':
+        case '−':
             total = prev - curr;
             break;
         case '×':
