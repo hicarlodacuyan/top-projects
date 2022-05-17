@@ -19,3 +19,4 @@ This project is created for the sole purpose of learning and part of the "The Od
 * Fix background image to stretch based on sidebar width
 * Add form validation
 * Add tablet view breakpoint
+* Add drop shadow effect on form section
