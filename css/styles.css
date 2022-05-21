@@ -15,11 +15,55 @@
 header {
     border: 1px solid black;
     grid-area: header;
+
+    display: flex;
+    align-items: center;
+
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.header__search {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+}
+
+#searchbox {
+    flex: 1;
+}
+
+.small__profile__img {
+    width: 36px;
 }
 
 nav {
     border: 1px solid black;
     grid-area: nav;
+
+    display: flex;
+    align-items: center;
+
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.large__profile__img {
+    width: 56px;
+}
+
+.nav__welcome {
+    flex: 1;
+}
+
+.nav__welcome > p {
+    margin-bottom: -20px;
+}
+
+.nav__buttons {
+    display: flex;
+    gap: 1rem;
 }
 
 aside {
