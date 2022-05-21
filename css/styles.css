@@ -9,7 +9,7 @@ body {
     font-family: 'Roboto', sans-serif;
 
     display: grid;
-    grid-template: 1fr 2fr 8fr / 0.75fr 2fr 0.75fr;
+    grid-template: 1fr 1fr 8fr / 0.75fr 2fr 0.75fr;
     grid-template-areas: 
                         "aside header header"
                         "aside nav nav"
@@ -17,7 +17,6 @@ body {
 }
 
 header {
-    border: 1px solid black;
     grid-area: header;
 
     display: flex;
@@ -43,7 +42,6 @@ header {
 }
 
 nav {
-    border: 1px solid black;
     grid-area: nav;
 
     display: flex;
@@ -71,10 +69,11 @@ nav {
 }
 
 aside {
-    border: 1px solid black;
     grid-area: aside;
 
     padding: 1rem;
+    background: #1992D4;
+    color: white;
 }
 
 .aside__items {
@@ -83,6 +82,8 @@ aside {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    font-size: large;
 }
 
 .bi {
@@ -90,7 +91,7 @@ aside {
 }
 
 article {
-    border: 1px solid black;
+    background: #E2E8F0;
     grid-area: article;
 
     display: flex;
@@ -108,7 +109,7 @@ article {
 }
 
 .article-item {
-    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 30px;
     box-sizing: border-box;
 
@@ -147,13 +148,17 @@ article {
     letter-spacing: 1.2px;
 }
 
+.card-icons {
+    align-self: flex-end;
+}
+
 .card-btn:hover{
-   color:#02b875;
+   color:#1992D4;
    background: #FFF;
 }
 
 section {
-    border: 1px solid black;
+    background: #E2E8F0;
     grid-area: section;
 
     display: flex;
@@ -163,7 +168,7 @@ section {
 }
 
 .section-item {
-    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 30px;
     box-sizing: border-box;
 
