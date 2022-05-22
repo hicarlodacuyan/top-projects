@@ -24,6 +24,7 @@ function updateDisplay() {
 }
 
 function addBookToLibrary(author, title, numberOfPages) {
+    if (isEmpty(author) || isEmpty(title) || isEmpty(numberOfPages)) return;
     myLibrary.push(new Book(author, title, numberOfPages));
 }
 
@@ -35,6 +36,10 @@ function clearInput() {
     authorInput.value = '';
     titleInput.value = '';
     pageInput.value = '';
+}
+
+function isEmpty(str) {
+    return !str.trim().length;
 }
 
 addButton.addEventListener('click', function() {
