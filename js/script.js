@@ -1,4 +1,5 @@
 let myLibrary = [];
+let generatedHtml = '';
 
 function Book(author, title, numberOfPages) {
     this.author = author;
@@ -14,9 +15,18 @@ function removeBookFromLibrary(index) {
     myLibrary.splice(index, 1);
 }
 
-addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');
-addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');
-addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');
-removeBookFromLibrary(1);
+function updateDisplay() {
+    for (let item of myLibrary) {
+        generatedHtml += `<div class="book">
+                            <div class="author">${item.author}</div>
+                            <div class="title">${item.title}</div>
+                            <div class="pages">${item.numberOfPages}</div>
+                        </div>`;
+    };
 
-console.log(myLibrary);
+    document.querySelector('.container').innerHTML = generatedHtml;
+}
+
+addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');
+addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');
+addBookToLibrary('J. K. Rowling', 'Harry Potter and the Sorcerer\'s Stone', '223');

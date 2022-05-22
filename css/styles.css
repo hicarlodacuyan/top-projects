@@ -1,0 +1,7 @@
+.book {
+    padding: 5px;
+}
+
+.book:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
