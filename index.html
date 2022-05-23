@@ -8,11 +8,44 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div class="container"></div>
-    <input type="text" name="author" id="author">
-    <input type="text" name="title" id="title">
-    <input type="text" name="page" id="page">
-    <button id="add">Add</button>
+    <div class="container">
+        <div class="header">
+          <h1>Libro</h1>
+          <p>A simple library tracking app</p>
+        </div>
+        <div class="main">
+          <div class="book">
+            <span id="add">+</span>
+          </div>
+          <div class="book">
+            <h2 class="title">HTML and CSS</h2>
+            <p class="author">Jon Duckett</p>
+            <p class="pages">250 pages</p>
+          </div>
+          <div class="book">
+            <h2 class="title">Harry Potter and the Sorcerer's Stone</h2>
+            <p class="author">J. K. Rowling</p>
+            <p class="pages">223 pages</p>
+          </div>
+          <div class="book">
+            <h2 class="title">Harry Potter and the Chamber of Secrets</h2>
+            <p class="author">J. K. Rowling</p>
+            <p class="pages">251 pages</p>
+          </div>
+        </div>
+    </div>
+    <div class="bg-modal">
+        <div class="modal-content">
+          <div class="close" id="close">+</div>
+          <label for="title">Book Title</label>
+          <input type="text" name="title" id="title">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author">
+          <label for="page">Number of Pages</label>
+          <input type="text" name="page" id="page">
+          <button id="addBook">Add</button>
+        </div>
+    </div>
     <script src="./js/script.js"></script>
 </body>
 </html>

@@ -3,29 +3,31 @@ let generatedHtml = '';
 const authorInput = document.getElementById('author');
 const titleInput = document.getElementById('title');
 const pageInput = document.getElementById('page');
-const addButton = document.getElementById('add');
+const addBook = document.getElementById('addBook');
+const modalFlex = document.getElementById('add');
+const modalNone = document.getElementById('close');
 
-function Book(author, title, numberOfPages) {
-    this.author = author;
+function Book(title, author, numberOfPages) {
     this.title = title;
+    this.author = author;
     this.numberOfPages = numberOfPages;
 }
 
 function updateDisplay() {
     for(let book of myLibrary) {
         generatedHtml = `<div class="book">
-                            <div class="author">${book.author}</div>
-                            <div class="title">${book.title}</div>
-                            <div class="pages">${book.numberOfPages}</div>
+                            <h2 class="title">${book.title}</h2>
+                            <p class="author">${book.author}</p>
+                            <p class="pages">${book.numberOfPages}</p>
                         </div>`;
     };
 
-    document.querySelector('.container').innerHTML += generatedHtml;
+    document.querySelector('.main').innerHTML += generatedHtml;
 }
 
-function addBookToLibrary(author, title, numberOfPages) {
-    if (isEmpty(author) || isEmpty(title) || isEmpty(numberOfPages)) return;
-    myLibrary.push(new Book(author, title, numberOfPages));
+function addBookToLibrary(title, author, numberOfPages) {
+    if (isEmpty(title) || isEmpty(author) || isEmpty(numberOfPages)) return;
+    myLibrary.push(new Book(title, author, numberOfPages));
 }
 
 function removeBookFromLibrary(index) {
@@ -33,8 +35,8 @@ function removeBookFromLibrary(index) {
 }
 
 function clearInput() {
-    authorInput.value = '';
     titleInput.value = '';
+    authorInput.value = '';
     pageInput.value = '';
 }
 
@@ -42,8 +44,28 @@ function isEmpty(str) {
     return !str.trim().length;
 }
 
-addButton.addEventListener('click', function() {
-    addBookToLibrary(authorInput.value, titleInput.value, pageInput.value);
+function showModal() {
+    if (document.querySelector('.bg-modal').style.display == 'flex') return;
+    document.querySelector('.bg-modal').style.setProperty('display', 'flex');
+}
+
+function hideModal() {
+    if (document.querySelector('.bg-modal').style.display == 'none') return;
+    document.querySelector('.bg-modal').style.setProperty('display', 'none');
+}
+
+// TODO: Fix issue that after adding new book, add button does not work anymore 
+addBook.addEventListener('click', function() {
+    addBookToLibrary(titleInput.value, authorInput.value, pageInput.value);
     updateDisplay();
     clearInput();
+});
+
+modalFlex.addEventListener('click', function() {
+  console.log(`Hello, World!`);
+  showModal();
+});
+
+modalNone.addEventListener('click', function() {
+  hideModal();
 });

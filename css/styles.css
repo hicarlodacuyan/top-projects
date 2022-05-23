@@ -1,7 +1,106 @@
-.book {
-    padding: 5px;
+body {
+    padding: 0;
+    margin: 0;
 }
 
-.book:not(:last-child) {
+.container {
+    background: #eee;
+    height: 100vh;
+    padding: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    text-align: center;
     border-bottom: 1px solid #ccc;
-}
+  }
+  
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  p {
+    font-size: 1rem;
+    padding: 0;
+    margin-top: 0;
+  }
+  
+  .main {
+    flex: 1;
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, clamp(200px, 50%, 225px));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .book {
+    background: yellow;
+    padding: 1rem;
+    height: 250px;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .book > span {
+    font-size: 14rem;
+    cursor: pointer;
+  }
+  
+  .pages {
+    font-size: 0.75rem;
+    font-style: italic;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    width: 300px;
+    height: auto;
+    background: #eee;
+    border-radius: 4px;
+    
+    display: flex;
+    flex-direction: column;
+    
+    padding: 1rem;
+  }
+  
+  input {
+    margin-bottom: 1rem;
+  }
+  
+  .close {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
