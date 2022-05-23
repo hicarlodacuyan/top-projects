@@ -28,7 +28,6 @@ function updateDisplay() {
 }
 
 function addBookToLibrary(title, author, numberOfPages) {
-    if (title == '' && author == '' && numberOfPages == '') return;
     myLibrary.push(new Book(title, author, numberOfPages));
 }
 
@@ -53,9 +52,11 @@ function hideModal() {
 }
 
 addBook.addEventListener('click', function() {
+    if (titleInput.value == '' && authorInput.value == '' && pageInput.value == '') return;
     addBookToLibrary(titleInput.value, authorInput.value, pageInput.value);
     updateDisplay();
     clearInput();
+    hideModal();
 });
 
 modalFlex.addEventListener('click', function() {
