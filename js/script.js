@@ -21,12 +21,14 @@ function updateDisplay() {
                             <p class="pages">${book.numberOfPages}</p>
                         </div>`;
     };
-
-    document.querySelector('.main').innerHTML += generatedHtml;
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = generatedHtml;
+    const book = wrapper.firstChild; 
+    document.querySelector('.main').prepend(book);
 }
 
 function addBookToLibrary(title, author, numberOfPages) {
-    if (isEmpty(title) || isEmpty(author) || isEmpty(numberOfPages)) return;
+    if (title == '' && author == '' && numberOfPages == '') return;
     myLibrary.push(new Book(title, author, numberOfPages));
 }
 
@@ -40,10 +42,6 @@ function clearInput() {
     pageInput.value = '';
 }
 
-function isEmpty(str) {
-    return !str.trim().length;
-}
-
 function showModal() {
     if (document.querySelector('.bg-modal').style.display == 'flex') return;
     document.querySelector('.bg-modal').style.setProperty('display', 'flex');
@@ -54,7 +52,6 @@ function hideModal() {
     document.querySelector('.bg-modal').style.setProperty('display', 'none');
 }
 
-// TODO: Fix issue that after adding new book, add button does not work anymore 
 addBook.addEventListener('click', function() {
     addBookToLibrary(titleInput.value, authorInput.value, pageInput.value);
     updateDisplay();
@@ -62,7 +59,6 @@ addBook.addEventListener('click', function() {
 });
 
 modalFlex.addEventListener('click', function() {
-  console.log(`Hello, World!`);
   showModal();
 });
 
