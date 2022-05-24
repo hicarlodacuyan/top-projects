@@ -39,8 +39,8 @@ p {
   flex: 1;
   
   display: grid;
-  grid-template-columns: repeat(auto-fit, clamp(175px, 50%, 200px));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, clamp(125px, 50%, 150px));
+  gap: 0.5rem;
   justify-content: center;
   padding: 1rem;
 }
@@ -105,8 +105,8 @@ input {
 }
 
 .floating-btn {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: black;
   border-radius: 50%;
   color: #fff;
