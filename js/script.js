@@ -14,8 +14,9 @@ function Book(title, author, numberOfPages) {
 }
 
 function updateDisplay() {
-    for(let book of myLibrary) {
-        generatedHtml = `<div class="book">
+    for(let [i, book] of myLibrary.entries()) {
+        generatedHtml = `<div id="book${i}" class="book">
+                            <div class="remove-book" onclick="removeBookFromLibrary(${i})">&times;</div>
                             <h2 class="title">${book.title}</h2>
                             <p class="author">${book.author}</p>
                             <p class="pages">${book.numberOfPages}</p>
@@ -33,6 +34,7 @@ function addBookToLibrary(title, author, numberOfPages) {
 
 function removeBookFromLibrary(index) {
     myLibrary.splice(index, 1);
+    document.getElementById(`book${index}`).remove();
 }
 
 function clearInput() {
@@ -55,12 +57,14 @@ addBook.addEventListener('click', function() {
     updateDisplay();
     clearInput();
     hideModal();
+    console.log(myLibrary);
 });
 
 modalFlex.addEventListener('click', function() {
-  showModal();
+    showModal();
 });
 
 modalNone.addEventListener('click', function() {
-  hideModal();
+    clearInput();
+    hideModal();
 });
