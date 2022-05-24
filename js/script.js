@@ -33,7 +33,7 @@ function addBookToLibrary(title, author, numberOfPages) {
 }
 
 function removeBookFromLibrary(index) {
-    myLibrary.splice(index, 1);
+    myLibrary.length === 1 ?  myLibrary.pop() : myLibrary.splice(index, 1);
     document.getElementById(`book${index}`).remove();
 }
 
@@ -57,7 +57,6 @@ addBook.addEventListener('click', function() {
     updateDisplay();
     clearInput();
     hideModal();
-    console.log(myLibrary);
 });
 
 modalFlex.addEventListener('click', function() {
