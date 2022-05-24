@@ -42,17 +42,15 @@ function clearInput() {
 }
 
 function showModal() {
-    if (document.querySelector('.bg-modal').style.display == 'flex') return;
     document.querySelector('.bg-modal').style.setProperty('display', 'flex');
 }
 
 function hideModal() {
-    if (document.querySelector('.bg-modal').style.display == 'none') return;
     document.querySelector('.bg-modal').style.setProperty('display', 'none');
 }
 
 addBook.addEventListener('click', function() {
-    if (titleInput.value == '' && authorInput.value == '' && pageInput.value == '') return;
+    if (titleInput.value == '' || authorInput.value == '' || pageInput.value == '') return;
     addBookToLibrary(titleInput.value, authorInput.value, pageInput.value);
     updateDisplay();
     clearInput();

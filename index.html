@@ -23,13 +23,16 @@
             <span class="close" id="close">&times;</span>
             Add Book
           </div>
-          <label for="title">Book Title</label>
-          <input type="text" name="title" id="title">
-          <label for="author">Author</label>
-          <input type="text" name="author" id="author">
-          <label for="page">Number of Pages</label>
-          <input type="text" name="page" id="page">
-          <button class="addBook" id="addBook">Add</button>
+          <form action="#">
+            <label for="title">Book Title</label>
+            <input type="text" name="title" id="title" required>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+            <label for="page">Number of Pages</label>
+            <input type="text" name="page" id="page" required>
+            <hr />
+            <button class="addBook" id="addBook">ADD</button>
+          </form>
         </div>
     </div>
     <button class="material-icons floating-btn" id="add">add</button>
