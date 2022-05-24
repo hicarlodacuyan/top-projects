@@ -27,6 +27,7 @@ h2 {
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  margin-top: 1rem;
 }
 
 p {
@@ -50,6 +51,7 @@ p {
   height: 200px;
   padding: 1rem;
   text-align: center;
+  position: relative;
   
   display: flex;
   flex-direction: column;
@@ -58,6 +60,13 @@ p {
 }
 
 .book > span {
+  cursor: pointer;
+}
+
+.remove-book {
+  position: absolute;
+  top: 0%;
+  right: 5%;
   cursor: pointer;
 }
 
