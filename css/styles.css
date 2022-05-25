@@ -169,3 +169,7 @@ hr {
   transition: background 0.25s;
   padding-right: 0px;
 }
+
+.toggle {
+  height: auto;
+}

@@ -11,6 +11,15 @@ function Book(title, author, numberOfPages) {
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
+    this.readStatus = false;
+}
+
+Book.prototype.changeReadStatus = function() {
+    if(this.readStatus === false) {
+        this.readStatus = true;
+    } else {
+        this.readStatus = false;
+    }
 }
 
 function updateDisplay() {
@@ -20,7 +29,9 @@ function updateDisplay() {
                             <h2 class="title">${book.title}</h2>
                             <p class="author">${book.author}</p>
                             <p class="pages">${book.numberOfPages}</p>
+                            <button class="toggle" role="switch" aria-checked="false" onclick="toggleReadStatus(${i})">&#10003;</button>
                         </div>`;
+        console.log(myLibrary[i].readStatus);
     };
     const wrapper = document.createElement('div');
     wrapper.innerHTML = generatedHtml;
@@ -49,6 +60,11 @@ function showModal() {
 
 function hideModal() {
     document.querySelector('.bg-modal').style.setProperty('display', 'none');
+}
+
+function toggleReadStatus (index, element) {
+    myLibrary[index].changeReadStatus();
+    console.log(myLibrary[index].readStatus);
 }
 
 addBook.addEventListener('click', function() {
