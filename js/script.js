@@ -29,7 +29,7 @@ function updateDisplay() {
                             <h2 class="title">${book.title}</h2>
                             <p class="author">${book.author}</p>
                             <p class="pages">${book.numberOfPages}</p>
-                            <button id="toggle${i}" class="toggle" role="switch" aria-checked="false" onclick="toggleReadStatus(${i})">&#10003;</button>
+                            <button id="toggle${i}" class="toggle" onclick="toggleReadStatus(${i})">&#10003;</button>
                         </div>`;
     };
     const wrapper = document.createElement('div');
