@@ -29,9 +29,8 @@ function updateDisplay() {
                             <h2 class="title">${book.title}</h2>
                             <p class="author">${book.author}</p>
                             <p class="pages">${book.numberOfPages}</p>
-                            <button class="toggle" role="switch" aria-checked="false" onclick="toggleReadStatus(${i})">&#10003;</button>
+                            <button id="toggle${i}" class="toggle" role="switch" aria-checked="false" onclick="toggleReadStatus(${i})">&#10003;</button>
                         </div>`;
-        console.log(myLibrary[i].readStatus);
     };
     const wrapper = document.createElement('div');
     wrapper.innerHTML = generatedHtml;
@@ -62,9 +61,17 @@ function hideModal() {
     document.querySelector('.bg-modal').style.setProperty('display', 'none');
 }
 
-function toggleReadStatus (index, element) {
+function toggleReadStatus (index) {
     myLibrary[index].changeReadStatus();
-    console.log(myLibrary[index].readStatus);
+    if(myLibrary[index].readStatus === true) {
+        document.getElementById(`book${index}`).style.background = 'gray';
+        document.getElementById(`toggle${index}`).style.color = 'green';
+        document.getElementById(`toggle${index}`).style.fontWeight = 'bolder';
+    } else {
+        document.getElementById(`book${index}`).style.background = 'yellow';
+        document.getElementById(`toggle${index}`).style.color = 'black';
+        document.getElementById(`toggle${index}`).style.fontWeight = '400';
+    }
 }
 
 addBook.addEventListener('click', function() {
