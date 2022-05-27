@@ -7,20 +7,20 @@ const addBook = document.getElementById('addBook');
 const modalFlex = document.getElementById('add');
 const modalNone = document.getElementById('close');
 
-function Book(title, author, numberOfPages) {
-    this.title = title;
-    this.author = author;
-    this.numberOfPages = numberOfPages;
-    this.readStatus = false;
-}
+const bookFactory = (title, author, numberOfPages) => {
+    let readStatus = false;
+    const changeReadStatus = () => {
+        if (readStatus === false) {
+            readStatus = true;
+        } else {
+            readStatus = false;
+        }
+    };
 
-Book.prototype.changeReadStatus = function() {
-    if(this.readStatus === false) {
-        this.readStatus = true;
-    } else {
-        this.readStatus = false;
-    }
-}
+    const showReadStatus = () => readStatus;
+
+    return {title, author, numberOfPages, changeReadStatus, showReadStatus};
+};
 
 function updateDisplay() {
     for(let [i, book] of myLibrary.entries()) {
@@ -39,7 +39,7 @@ function updateDisplay() {
 }
 
 function addBookToLibrary(title, author, numberOfPages) {
-    myLibrary.push(new Book(title, author, numberOfPages));
+    myLibrary.push(bookFactory(title, author, numberOfPages));
 }
 
 function removeBookFromLibrary(index) {
@@ -63,7 +63,7 @@ function hideModal() {
 
 function toggleReadStatus (index) {
     myLibrary[index].changeReadStatus();
-    if(myLibrary[index].readStatus === true) {
+    if(myLibrary[index].showReadStatus() === true) {
         document.getElementById(`book${index}`).style.background = 'gray';
         document.getElementById(`toggle${index}`).style.color = 'green';
         document.getElementById(`toggle${index}`).style.fontWeight = 'bolder';
