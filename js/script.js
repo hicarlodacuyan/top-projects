@@ -1,12 +1,8 @@
-const xBtn = document.getElementById('btn_x');
-const oBtn = document.getElementById('btn_o');
-const resetBtn = document.getElementById('btn_reset');
-
 const gameboard = (() => {
     let state = [null, null, null,
                  null, null, null,
                  null, null, null];
-    let turn = 0;
+    let turn = 1;
 
     const getState = () => state;
     const getTurn = () => turn;
@@ -23,7 +19,7 @@ const gameboard = (() => {
 })();
 
 const Player = () => {
-    let playerMarker = '';
+    let playerMarker;
     const score = 0;
     const setPlayerMarker = (marker) => {
         marker == 'x' ? playerMarker = 'x' : playerMarker = 'o';
@@ -35,12 +31,14 @@ const Player = () => {
     return {getPlayerMarker, setPlayerMarker, getScore, setScore};
 };
 
+const xBtn = document.getElementById('btn_x');
+const oBtn = document.getElementById('btn_o');
+const resetBtn = document.getElementById('btn_reset');
+const cells = document.querySelectorAll('.gameboard_cell');
 const human = Player();
 const cpu = Player();
 
 const playRound = () => {
-    gameboard.setTurn();
-    
     if (gameboard.getTurn() >= 9) {
         // TODO: Display to the DOM, the game is tie
         // Show restart button
@@ -48,32 +46,48 @@ const playRound = () => {
     }
     // Checks if current turn is odd
     if (gameboard.getTurn() % 2 == 1) {
-        console.log('Player 1 turn');
+        console.log(`I'm in Player 1`);
+        cells.forEach((cell) => {
+            cell.addEventListener('click', (e) => {
+                appendTurn(e.target, human.getPlayerMarker());
+            });
+        });
     } else {
-        console.log('Player 2 turn');
+        console.log(`I'm in Player 2`);
+        cells.forEach((cell) => {
+            cell.addEventListener('click', (e) => {
+                appendTurn(e.target, cpu.getPlayerMarker());
+            });
+        });
     }
-
-    console.log(`Turn: ${gameboard.getTurn()}, Human: ${human.getPlayerMarker()}, CPU: ${cpu.getPlayerMarker()}`);
 };
 
+const appendTurn = (target, marker) => {
+    gameboard.setState(target.dataset.index, marker);
+    gameboard.setTurn();
+    console.log(gameboard.getState());
+    console.log(`Turn: ${gameboard.getTurn()}`);
+    playRound();
+}
+
 xBtn.addEventListener('click', (e) => {
-    if (human.getPlayerMarker() === '' && cpu.getPlayerMarker() === '') {
+    if (human.getPlayerMarker() === undefined && cpu.getPlayerMarker() === undefined) {
         human.setPlayerMarker('x');
-        cpu.setPlayerMarker('o')
+        cpu.setPlayerMarker('o');
     }
 
-    if (gameboard.getTurn() == 0) {
+    if (gameboard.getTurn() == 1) {
         playRound();
     }
 });
 
 oBtn.addEventListener('click', (e) => {
-    if (human.getPlayerMarker() === '' && cpu.getPlayerMarker() === '') {
+    if (human.getPlayerMarker() === undefined && cpu.getPlayerMarker() === undefined) {
         human.setPlayerMarker('o');
-        cpu.setPlayerMarker('x')
+        cpu.setPlayerMarker('x');
     }
 
-    if (gameboard.getTurn() == 0) {
+    if (gameboard.getTurn() == 1) {
         playRound();
     }
 });
