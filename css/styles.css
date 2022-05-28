@@ -4,4 +4,49 @@
 
 body {
     background: #192A32;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: grid;
+    gap: 1rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action_btns {
+}
+
+.gameboard {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard_cell {
+    background: #192A32;;
+    border: 1px solid white;
+    padding: 1rem;
+    color: #eee;
+    font-size: 22px;
+}
+
+.indicators {
+    display: flex;
+    gap: 1rem;
+}
+
+.indicators_item {
+    background: #192A32;;
+    border: 1px solid white;
+    padding: 1rem;
+    color: #eee;
 }
