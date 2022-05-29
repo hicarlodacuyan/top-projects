@@ -12,18 +12,18 @@
         
         <div class="actions">
             <div class="action_btns">
-                <button id="btn_x">x</button>
-                <button id="btn_o">o</button>
+                <button id="btn_x">X</button>
+                <button id="btn_o">O</button>
             </div>
-            <div class="action_btns">&times; TURN</div>
+            <div class="action_btns curr_turn">X TURN</div>
             <button id="btn_reset" class="action_btns">
                 <span>&#x21bb;</span>
             </button>
         </div>
 
         <div class="gameboard">
-            <div data-index="0" class="gameboard_cell"></div>
-            <div data-index="1" class="gameboard_cell"></div>
+            <div data-index="0" class="gameboard_cell"><span class="xSymbol">+</span></div>
+            <div data-index="1" class="gameboard_cell"><span class="oSymbol"></span></div>
             <div data-index="2" class="gameboard_cell"></div>
             <div data-index="3" class="gameboard_cell"></div>
             <div data-index="4" class="gameboard_cell"></div>
@@ -34,17 +34,17 @@
         </div>
 
         <div class="indicators">
-            <div class="indicators_item">
-                <p>&times; (YOU)</p>
-                <h3>0</h3>
+            <div class="indicators_item human">
+                <p class="labels">X (YOU)</p>
+                <p class="scores">0</p>
             </div>
-            <div class="indicators_item">
-                <p>TIES</p>
-                <h3>0</h3>
+            <div class="indicators_item ties">
+                <p class="labels">TIES</p>
+                <p class="scores">0</p>
             </div>
-            <div class="indicators_item">
-                <p>&#9900; (CPU)</p>
-                <h3>0</h3>
+            <div class="indicators_item cpu">
+                <p class="labels">O (CPU)</p>
+                <p class="scores">0</p>
             </div>
         </div>
     </div>

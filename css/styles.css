@@ -4,6 +4,7 @@
 
 body {
     background: #192A32;
+    font-family: Helvetica, Arial, sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -20,7 +21,52 @@ body {
     justify-content: space-between;
 }
 
-.action_btns {
+#btn_x {
+    color: #31C4BE;
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#btn_o {
+    color: #F2B238;
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#btn_reset {
+    color: #0D2027;
+    font-size: 24px;
+    font-weight: bolder;
+    cursor: pointer;
+    background: #A8BEC9;
+    border: none;
+    border-radius: 5px;
+}
+
+.curr_turn {
+    color: #eee;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #1F3540;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #0D2027;
+    width: 100px;
 }
 
 .gameboard {
@@ -32,16 +78,42 @@ body {
 }
 
 .gameboard_cell {
-    background: #192A32;;
-    border: 1px solid white;
-    padding: 1rem;
-    color: #eee;
-    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #1F3540;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #0D2027;
+    height: 100px;
+    width: 100px;
+}
+
+.oSymbol {
+    width: 50px;
+      height: 50px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      border: #F2B238 12px solid;
+}
+
+.xSymbol {
+    font-size: 100px;
+    font-weight: bolder;
+    color: #31C4BE;
+    transform: rotate(45deg);
 }
 
 .indicators {
     display: flex;
     gap: 1rem;
+    justify-content: space-between;
 }
 
 .indicators_item {
@@ -49,4 +121,49 @@ body {
     border: 1px solid white;
     padding: 1rem;
     color: #eee;
+    width: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #1F3540;
+    border: none;
+    border-radius: 15px;
+    width: 100px;
+}
+
+p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.labels {
+    font-size: 10px;
+}
+
+.scores {
+    font-weight: bolder;
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.human {
+    color: #0D2027;
+    background: #31C4BE;
+}
+
+.ties {
+    color: #0D2027;
+    background: #A8BEC9;
+}
+
+.cpu {
+    color: #0D2027;
+    background: #F2B238;
 }
