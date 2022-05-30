@@ -12,49 +12,45 @@
     <div class="container">
         <div class="actions">
             <div class="actions__markers">
-                <button class="action__btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                <button class="action__btn"><i class="fa-regular fa-circle"></i></button>
+                <button id="btn_xmark" class="action__btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                <button id="btn_circle" class="action__btn"><i class="fa-regular fa-circle"></i></button>
             </div>
-            <div class="current__turn">
+            <div id="label_current_turn" class="current__turn">
                 <i class="fa-solid fa-xmark fa-xl"></i>
                 TURN
             </div>
-            <button class="actions__refresh action__btn">
+            <button id="btn_refresh" class="actions__refresh action__btn">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
             </button>
         </div>
 
         <div class="gameboard">
-            <div class="gameboard__cell">
-                <i class="fa-solid fa-xmark fa-xl"></i>
-            </div>
-            <div class="gameboard__cell">
-                <i class="fa-regular fa-circle"></i>
-            </div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
-            <div class="gameboard__cell"></div>
+            <div data-index="0" class="gameboard__cell"></div>
+            <div data-index="1" class="gameboard__cell"></div>
+            <div data-index="2" class="gameboard__cell"></div>
+            <div data-index="3" class="gameboard__cell"></div>
+            <div data-index="4" class="gameboard__cell"></div>
+            <div data-index="5" class="gameboard__cell"></div>
+            <div data-index="6" class="gameboard__cell"></div>
+            <div data-index="7" class="gameboard__cell"></div>
+            <div data-index="8" class="gameboard__cell"></div>
         </div>
 
         <div class="indicators">
             <div class="indicators__items human">
-                <p class="labels">X (YOU)</p>
-                <p class="scores">0</p>
+                <p id="label_human_marker" class="labels">X (YOU)</p>
+                <p id="label_human_score" class="scores">0</p>
             </div>
             <div class="indicators__items tie">
                 <p class="labels">TIES</p>
-                <p class="scores">0</p>
+                <p id="label_tie_score" class="scores">0</p>
             </div>
             <div class="indicators__items cpu">
-                <p class="labels">O (CPU)</p>
-                <p class="scores">0</p>
+                <p id="label_bot_marker" class="labels">O (CPU)</p>
+                <p id="label_bot_score" class="scores">0</p>
             </div>
         </div>
-        
+
     </div>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
