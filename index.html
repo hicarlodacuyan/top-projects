@@ -6,47 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
-        
         <div class="actions">
-            <div class="action_btns">
-                <button id="btn_x">X</button>
-                <button id="btn_o">O</button>
+            <div class="actions__markers">
+                <button class="action__btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                <button class="action__btn"><i class="fa-regular fa-circle"></i></button>
             </div>
-            <div class="action_btns curr_turn">X TURN</div>
-            <button id="btn_reset" class="action_btns">
-                <span>&#x21bb;</span>
+            <div class="current__turn">
+                <i class="fa-solid fa-xmark fa-xl"></i>
+                TURN
+            </div>
+            <button class="actions__refresh action__btn">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
             </button>
         </div>
 
         <div class="gameboard">
-            <div data-index="0" class="gameboard_cell"><span class="xSymbol">+</span></div>
-            <div data-index="1" class="gameboard_cell"><span class="oSymbol"></span></div>
-            <div data-index="2" class="gameboard_cell"></div>
-            <div data-index="3" class="gameboard_cell"></div>
-            <div data-index="4" class="gameboard_cell"></div>
-            <div data-index="5" class="gameboard_cell"></div>
-            <div data-index="6" class="gameboard_cell"></div>
-            <div data-index="7" class="gameboard_cell"></div>
-            <div data-index="8" class="gameboard_cell"></div>
+            <div class="gameboard__cell">
+                <i class="fa-solid fa-xmark fa-xl"></i>
+            </div>
+            <div class="gameboard__cell">
+                <i class="fa-regular fa-circle"></i>
+            </div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
+            <div class="gameboard__cell"></div>
         </div>
 
         <div class="indicators">
-            <div class="indicators_item human">
+            <div class="indicators__items human">
                 <p class="labels">X (YOU)</p>
                 <p class="scores">0</p>
             </div>
-            <div class="indicators_item ties">
+            <div class="indicators__items tie">
                 <p class="labels">TIES</p>
                 <p class="scores">0</p>
             </div>
-            <div class="indicators_item cpu">
+            <div class="indicators__items cpu">
                 <p class="labels">O (CPU)</p>
                 <p class="scores">0</p>
             </div>
         </div>
+        
     </div>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
