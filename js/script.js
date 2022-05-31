@@ -142,6 +142,7 @@ btnCells.forEach(cell => {
                     labelTieScore.textContent = `${gameboard.getTie()}`;
                     gameboard.reset();
                     displayController.updateBoard();
+                    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
                 }
                 break;
             case false:
@@ -163,6 +164,7 @@ btnCells.forEach(cell => {
                     labelTieScore.textContent = `${gameboard.getTie()}`;
                     gameboard.reset();
                     displayController.updateBoard();
+                    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
                 }
                 break;
         }
