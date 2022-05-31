@@ -1,6 +1,5 @@
-const btnXMark = document.getElementById('btn_xmark');
-const btnCircle = document.getElementById('btn_circle');
 const btnRefresh = document.getElementById('btn_refresh');
+const btnMarkers = document.querySelectorAll('.actions__markers');
 const btnCells = document.querySelectorAll('.gameboard__cell');
 const labelCurrentTurn = document.getElementById('label_current_turn');
 const labelHumanMarker = document.getElementById('label_human_marker');
@@ -14,6 +13,7 @@ const gameboard = (() => {
                  null, null, null,
                  null, null, null];
     let turn = 1;
+    let tie = 0;
 
     const getState = () => state;
     const setState = (index, marker) => {
@@ -21,30 +21,24 @@ const gameboard = (() => {
     };
 
     const getTurn = () => turn;
-    const setTurn = () => {
-        turn++;
+    const setTurn = (reset) => {
+        reset === true ? turn = 0 : turn++;
     };
 
-    const update = () => {
-        btnCells.forEach(element => {
-            switch(state[element.dataset.index]) {
-                case 'X':
-                    element.innerHTML = `<i class="fa-solid fa-xmark fa-xl"></i>`;
-                    break;
-                case 'O':
-                    element.innerHTML = `<i class="fa-regular fa-circle"></i>`;
-                    break;
-                default:
-                    element.innerHTML = ``;
-            }
-        });
+    const getTie = () => tie;
+    const setTie = () => {
+        tie++;
+    };
+    const resetTie = () => {
+        tie = 0;
     };
 
     const reset = () => {
         state = [null, null, null,
                  null, null, null,
                  null, null, null];
-    }
+        turn = 1;
+    };
 
     const gameOver = () => {
         return isWinner(0, 1, 2) 
@@ -56,7 +50,7 @@ const gameboard = (() => {
         ||  isWinner(0, 4, 8) 
         ||  isWinner(6, 4, 2)
         ||  isTie();   
-    }
+    };
 
     const isWinner = (p1, p2, p3) => {
         const c1 = state[p1];
@@ -69,45 +63,117 @@ const gameboard = (() => {
         if (c1 != c3) return false;
         
         return true;
-    }
+    };
 
     const isTie = () => {
         for (let i = 0; i < state.length; i++) {
             if (state[i] === null) return false;
         }
         return 'Tie';
-    }
+    };
 
-    return {getState, setState, getTurn, setTurn, update, reset, gameOver};
+    return {getState, setState, getTurn, setTurn, reset, gameOver, getTie, setTie, resetTie};
 })();
 
-const isThereWinner = (pos) => {
-    switch (gameboard.gameOver()) {
-        case true:
-            alert(`There's a winner!`);
-            break;
-        case false:
-            if (gameboard.getState()[pos] !== null) return;
-            gameboard.getTurn() % 2 === 1 ? gameboard.setState(pos, 'X') : gameboard.setState(pos, 'O');
-            gameboard.setTurn();
-            gameboard.update();
-            break;
-        default:
-            alert(`It's a tie!`);
-            break;
-    }
+const displayController = (() => {
+    
+    const updateBoard = () => {
+        btnCells.forEach(element => {
+            switch(gameboard.getState()[element.dataset.index]) {
+                case 'X':
+                    element.innerHTML = `<i class="fa-solid fa-xmark fa-xl"></i>`;
+                    break;
+                case 'O':
+                    element.innerHTML = `<i class="fa-regular fa-circle"></i>`;
+                    break;
+                default:
+                    element.innerHTML = ``;
+            }
+        });
+    };
+
+    return {updateBoard};
+})();
+
+const Player = () => {
+    let score = 0;
+    let marker;
+
+    const getScore = () => score;
+    const setScore = () => { score++; }
+
+    const getMarker = () => marker;
+    const setMarker = (selection) => {
+        marker = selection;
+    };
+
+    const reset = () => {
+        score = 0;
+    };
+
+    return {getScore, setScore, getMarker, setMarker, reset};
 };
 
-btnCells.forEach(element => {
-    element.addEventListener('click', (e) => {
-        let pos = e.target.dataset.index;
-        if (e.target.childNodes.length !== 0) return;
-        isThereWinner(pos);
-        console.log(gameboard.getState());
+const human = Player();
+const cpu = Player();
+
+human.setMarker('X');
+cpu.setMarker('O');
+
+btnCells.forEach(cell => {
+    cell.addEventListener('click', (e) => {
+        switch(gameboard.getTurn() % 2 === 1) {
+            case true:
+                gameboard.setState(e.target.dataset.index, human.getMarker());
+                gameboard.setTurn();
+                displayController.updateBoard();
+                if (gameboard.gameOver() === true) {
+                    labelCurrentTurn.innerHTML = `You won!`;
+                    human.setScore();
+                    labelHumanScore.textContent = `${human.getScore()}`;
+                    gameboard.reset();
+                    displayController.updateBoard();
+                }
+
+                if (gameboard.gameOver() === 'Tie') {
+                    labelCurrentTurn.innerHTML = `Tie!`;
+                    gameboard.setTie();
+                    labelTieScore.textContent = `${gameboard.getTie()}`;
+                    gameboard.reset();
+                    displayController.updateBoard();
+                }
+                break;
+            case false:
+                gameboard.setState(e.target.dataset.index, cpu.getMarker());
+                gameboard.setTurn();
+                displayController.updateBoard();
+                if (gameboard.gameOver() === true) {
+                    labelCurrentTurn.innerHTML = `You lose!`;
+                    cpu.setScore();
+                    labelBotScore.textContent = `${cpu.getScore()}`;
+                    gameboard.reset();
+                    displayController.updateBoard();
+                }
+
+                if (gameboard.gameOver() === 'Tie') {
+                    labelCurrentTurn.innerHTML = `Tie!`;
+                    gameboard.setTie();
+                    labelTieScore.textContent = `${gameboard.getTie()}`;
+                    gameboard.reset();
+                    displayController.updateBoard();
+                }
+                break;
+        }
     });
 });
 
 btnRefresh.addEventListener('click', () => {
     gameboard.reset();
-    gameboard.update();
+    gameboard.resetTie();
+    human.reset();
+    cpu.reset();
+    labelHumanScore.textContent = `${human.getScore()}`;
+    labelBotScore.textContent = `${cpu.getScore()}`;
+    labelTieScore.textContent = `${gameboard.getTie()}`;
+    displayController.updateBoard();
 });
