@@ -181,4 +181,5 @@ btnRefresh.addEventListener('click', () => {
     labelBotScore.textContent = `${cpu.getScore()}`;
     labelTieScore.textContent = `${gameboard.getTie()}`;
     displayController.updateBoard();
+    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
 });
