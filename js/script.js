@@ -122,6 +122,7 @@ cpu.setMarker('O');
 
 btnCells.forEach(cell => {
     cell.addEventListener('click', (e) => {
+        if (e.target.childNodes.length !== 0) return;
         switch(gameboard.getTurn() % 2 === 1) {
             case true:
                 gameboard.setState(e.target.dataset.index, human.getMarker());

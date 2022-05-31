@@ -67,10 +67,12 @@
  
  .fa-xmark {
    color: var(--primary-color-1);
+   pointer-events: none;
  }
  
  .fa-circle {
    color: var(--primary-color-2);
+   pointer-events: none;
  }
  
  .fa-arrow-rotate-right {
