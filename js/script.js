@@ -127,6 +127,7 @@ btnCells.forEach(cell => {
                 gameboard.setState(e.target.dataset.index, human.getMarker());
                 gameboard.setTurn();
                 displayController.updateBoard();
+                labelCurrentTurn.innerHTML = `${cpu.getMarker()} TURN`;
                 if (gameboard.gameOver() === true) {
                     labelCurrentTurn.innerHTML = `You won!`;
                     human.setScore();
@@ -147,6 +148,7 @@ btnCells.forEach(cell => {
                 gameboard.setState(e.target.dataset.index, cpu.getMarker());
                 gameboard.setTurn();
                 displayController.updateBoard();
+                labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
                 if (gameboard.gameOver() === true) {
                     labelCurrentTurn.innerHTML = `You lose!`;
                     cpu.setScore();
