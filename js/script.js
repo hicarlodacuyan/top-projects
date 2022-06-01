@@ -287,12 +287,6 @@ btnRefresh.addEventListener('click', () => {
     cpu.resetScore();
     displayController.updateLabels();
     displayController.updateBoard();
-    // menu.style.display = "flex";
-    // container.style.display = "none";
-    // btnXMark.style.background = "none";
-    // btnCircle.style.background = "none";
-    // btnXMarkIcon.style.color = "var(--accent-color)";
-    // btnCircleIcon.style.color = "var(--accent-color)";
 });
 
 btnPlayersMode.addEventListener('click', () => {
