@@ -9,6 +9,7 @@ const labelBotScore = document.getElementById('label_bot_score');
 const labelTieScore = document.getElementById('label_tie_score');
 
 const gameboard = (() => {
+    
     let state = [null, null, null,
                  null, null, null,
                  null, null, null];
@@ -76,7 +77,7 @@ const gameboard = (() => {
 })();
 
 const displayController = (() => {
-    
+
     const updateBoard = () => {
         btnCells.forEach(element => {
             switch(gameboard.getState()[element.dataset.index]) {
@@ -92,7 +93,61 @@ const displayController = (() => {
         });
     };
 
-    return {updateBoard};
+    const updateLabels = () => {
+        labelHumanScore.textContent = `${human.getScore()}`;
+        labelBotScore.textContent = `${cpu.getScore()}`;
+        labelTieScore.textContent = `${gameboard.getTie()}`;
+        labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
+    };
+
+    const boardOutcome = (result) => {
+        if (result === true && gameboard.gameOver() === true) {
+            human.setScore();
+            labelHumanScore.textContent = `${human.getScore()}`;
+            labelCurrentTurn.innerHTML = `You won!`;
+            gameboard.reset();
+            displayController.updateBoard();
+        }
+
+        if (result === false && gameboard.gameOver() === true) {
+            cpu.setScore();
+            labelCurrentTurn.innerHTML = `You lose!`;
+            labelBotScore.textContent = `${cpu.getScore()}`;
+            gameboard.reset();
+            displayController.updateBoard();
+        }
+
+        if (gameboard.gameOver() === 'Tie') {
+            gameboard.setTie();
+            labelCurrentTurn.innerHTML = `Tie!`;
+            labelTieScore.textContent = `${gameboard.getTie()}`;
+            labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
+            gameboard.reset();
+            displayController.updateBoard();
+        }
+    };
+
+    const boardLogic = (e) => {
+        switch(gameboard.getTurn() % 2 === 1) {
+            case true:
+                gameboard.setState(e.target.dataset.index, human.getMarker());
+                gameboard.setTurn();
+                displayController.updateBoard();
+                labelCurrentTurn.innerHTML = `${cpu.getMarker()} TURN`;
+                boardOutcome(true);
+                break;
+
+            case false:
+                gameboard.setState(e.target.dataset.index, cpu.getMarker());
+                gameboard.setTurn();
+                displayController.updateBoard();
+                labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
+                boardOutcome(false);
+                break;
+        }
+    };
+
+    return {updateBoard, updateLabels, boardLogic};
 })();
 
 const Player = () => {
@@ -123,52 +178,7 @@ cpu.setMarker('O');
 btnCells.forEach(cell => {
     cell.addEventListener('click', (e) => {
         if (e.target.childNodes.length !== 0) return;
-        switch(gameboard.getTurn() % 2 === 1) {
-            case true:
-                gameboard.setState(e.target.dataset.index, human.getMarker());
-                gameboard.setTurn();
-                displayController.updateBoard();
-                labelCurrentTurn.innerHTML = `${cpu.getMarker()} TURN`;
-                if (gameboard.gameOver() === true) {
-                    labelCurrentTurn.innerHTML = `You won!`;
-                    human.setScore();
-                    labelHumanScore.textContent = `${human.getScore()}`;
-                    gameboard.reset();
-                    displayController.updateBoard();
-                }
-
-                if (gameboard.gameOver() === 'Tie') {
-                    labelCurrentTurn.innerHTML = `Tie!`;
-                    gameboard.setTie();
-                    labelTieScore.textContent = `${gameboard.getTie()}`;
-                    gameboard.reset();
-                    displayController.updateBoard();
-                    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
-                }
-                break;
-            case false:
-                gameboard.setState(e.target.dataset.index, cpu.getMarker());
-                gameboard.setTurn();
-                displayController.updateBoard();
-                labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
-                if (gameboard.gameOver() === true) {
-                    labelCurrentTurn.innerHTML = `You lose!`;
-                    cpu.setScore();
-                    labelBotScore.textContent = `${cpu.getScore()}`;
-                    gameboard.reset();
-                    displayController.updateBoard();
-                }
-
-                if (gameboard.gameOver() === 'Tie') {
-                    labelCurrentTurn.innerHTML = `Tie!`;
-                    gameboard.setTie();
-                    labelTieScore.textContent = `${gameboard.getTie()}`;
-                    gameboard.reset();
-                    displayController.updateBoard();
-                    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
-                }
-                break;
-        }
+        displayController.boardLogic(e);
     });
 });
 
@@ -177,9 +187,6 @@ btnRefresh.addEventListener('click', () => {
     gameboard.resetTie();
     human.reset();
     cpu.reset();
-    labelHumanScore.textContent = `${human.getScore()}`;
-    labelBotScore.textContent = `${cpu.getScore()}`;
-    labelTieScore.textContent = `${gameboard.getTie()}`;
+    displayController.updateLabels();
     displayController.updateBoard();
-    labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
 });
