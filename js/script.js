@@ -7,6 +7,11 @@ const labelBotMarker = document.getElementById('label_bot_marker');
 const labelHumanScore = document.getElementById('label_human_score');
 const labelBotScore = document.getElementById('label_bot_score');
 const labelTieScore = document.getElementById('label_tie_score');
+const btnPlayersMode = document.getElementById('btn_players_mode');
+const container = document.querySelector('.container');
+const menu = document.querySelector('.menu');
+const btnXMark = document.getElementById('btn_xmark');
+const btnCircle = document.getElementById('btn_circle');
 
 const gameboard = (() => {
     
@@ -96,8 +101,8 @@ const displayController = (() => {
     const updateLabels = () => {
         labelHumanScore.textContent = `${human.getScore()}`;
         labelBotScore.textContent = `${cpu.getScore()}`;
-        labelHumanMarker.textContent = `${human.getMarker()} (YOU)`;
-        labelBotMarker.textContent = `${cpu.getMarker()} (CPU)`;
+        labelHumanMarker.textContent = `${human.getMarker()} (PLAYER 1)`;
+        labelBotMarker.textContent = `${cpu.getMarker()} (PLAYER 2)`;
         labelTieScore.textContent = `${gameboard.getTie()}`;
         labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
     };
@@ -106,14 +111,14 @@ const displayController = (() => {
         if (result === true && gameboard.gameOver() === true) {
             human.setScore();
             labelHumanScore.textContent = `${human.getScore()}`;
-            labelCurrentTurn.innerHTML = `You won!`;
+            labelCurrentTurn.innerHTML = `${human.getMarker()} WON!`;
             gameboard.reset();
             displayController.updateBoard();
         }
 
         if (result === false && gameboard.gameOver() === true) {
             cpu.setScore();
-            labelCurrentTurn.innerHTML = `You lose!`;
+            labelCurrentTurn.innerHTML = `${cpu.getMarker()} WON!`;
             labelBotScore.textContent = `${cpu.getScore()}`;
             gameboard.reset();
             displayController.updateBoard();
@@ -177,7 +182,16 @@ const cpu = Player();
 
 btnMarkers.forEach(marker => {
     marker.addEventListener('click', (e) => {
-        if (human.getMarker() !== '' && cpu.getMarker() !== '') return alert(`You have already chosen your marker!`);
+        
+        if (e.target.id === 'btn_xmark') {
+            btnXMark.style.background = "var(--accent-color)";
+            btnCircle.style.background = "none";
+        }
+
+        if (e.target.id === 'btn_circle') {
+            btnXMark.style.background = "none";
+            btnCircle.style.background = "var(--accent-color)"
+        }
 
         if (human.getMarker() === '' && e.target.id === 'btn_xmark') {
             human.setMarker('X');
@@ -210,4 +224,14 @@ btnRefresh.addEventListener('click', () => {
     cpu.reset();
     displayController.updateLabels();
     displayController.updateBoard();
+    menu.style.display = "flex";
+    container.style.display = "none";
+    btnXMark.style.background = "none";
+    btnCircle.style.background = "none"
+});
+
+btnPlayersMode.addEventListener('click', () => {
+    if (human.getMarker() === '' && cpu.getMarker() === '') return alert(`You need to choose your marker first!`);
+    menu.style.display = "none";
+    container.style.display = "grid";
 });

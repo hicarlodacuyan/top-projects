@@ -12,8 +12,8 @@
     <div class="container">
         <div class="actions">
             <div class="actions__markers">
-                <button id="btn_xmark" class="action__btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                <button id="btn_circle" class="action__btn"><i class="fa-regular fa-circle"></i></button>
+                <button class="game__btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                <button class="game__btn"><i class="fa-regular fa-circle"></i></button>
             </div>
             <div id="label_current_turn" class="current__turn">
                 ? TURN
@@ -37,7 +37,7 @@
 
         <div class="indicators">
             <div class="indicators__items human">
-                <p id="label_human_marker" class="labels">(YOU)</p>
+                <p id="label_human_marker" class="labels">(PLAYER 1)</p>
                 <p id="label_human_score" class="scores">0</p>
             </div>
             <div class="indicators__items tie">
@@ -45,12 +45,28 @@
                 <p id="label_tie_score" class="scores">0</p>
             </div>
             <div class="indicators__items cpu">
-                <p id="label_bot_marker" class="labels">(CPU)</p>
+                <p id="label_bot_marker" class="labels">(PLAYER 2)</p>
                 <p id="label_bot_score" class="scores">0</p>
             </div>
         </div>
     </div>
-    
+
+    <div class="menu">
+        <div class="game__logos">
+            <div class="game__logo"><i class="fa-solid fa-xmark fa-xl"></i></div>
+            <div class="game__logo"><i class="fa-regular fa-circle"></i></div>
+        </div>
+        <div class="menu__markers">
+            <div class="pick__player1">PICK PLAYER 1'S MARK</div>
+            <div class="menu__marker">
+                <button id="btn_xmark" class="action__btn btn_xmark"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                <button id="btn_circle" class="action__btn btn_circle"><i class="fa-regular fa-circle"></i></button>
+            </div>
+            <div class="menu__note">REMEMBER: PLAYER 1 GOES FIRST</div>
+        </div>
+        <button class="vs__cpu" disabled>PLAYER VS CPU <em>(WIP)</em></button>
+        <button id="btn_players_mode" class="vs__player2">PLAYER VS PLAYER</button>
+    </div>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
 </html>

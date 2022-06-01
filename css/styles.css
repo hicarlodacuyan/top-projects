@@ -35,7 +35,7 @@
  }
  
  .container {
-   display: grid;
+   display: none;
    gap: 1rem;
  }
  
@@ -51,6 +51,12 @@
    padding: 0;
    cursor: pointer;
    background-color: transparent;
+ }
+
+ .game__btn {
+  border: none;
+  padding: 0;
+  background-color: transparent;
  }
 
  .actions__refresh {
@@ -155,3 +161,85 @@
  .labels {
    font-size: var(--label-fs);
  }
+
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 300px;
+}
+
+.game__logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.game__logo {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.menu__markers {
+  font-size: var(--label-fs);
+  background: var(--secondary-bg);
+  padding: var(--main-padding);
+  text-align: center;
+  color: var(--secondary-font-color);
+  border-radius: var(--secondary-radius);
+  box-shadow: 0 5px #0D2027;
+}
+
+.menu__marker {
+  display: flex;
+  background: var(--main-bg);
+  padding: var(--secondary-padding);
+  margin: 1rem 0;
+}
+
+.btn_xmark {
+  flex: 1;
+  padding: var(--secondary-padding) 0;
+  font-size: 1.5rem;
+}
+
+.btn_circle {
+  flex: 1;
+  padding: var(--secondary-padding) 0;
+  font-size: 1.5rem;
+}
+
+.menu__note {
+  font-size: 0.6rem;
+  color: #A8BEC9;
+}
+
+.vs__cpu {
+  font-size: var(--secondary-fs);
+  background: var(--primary-color-2);
+  padding: var(--main-padding);
+  text-align: center;
+  color: var(--main-font-color);
+  font-weight: bolder;
+  border-radius: var(--secondary-radius);
+  box-shadow: 0 5px #C88D1E;
+  border: none;
+}
+
+.vs__player2 {
+  font-size: var(--secondary-fs);
+  background: var(--primary-color-1);
+  padding: var(--main-padding);
+  text-align: center;
+  color: var(--main-font-color);
+  font-weight: bolder;
+  border-radius: var(--secondary-radius);
+  box-shadow: 0 5px #247D7C;
+  border: none;
+  cursor: pointer;
+}
