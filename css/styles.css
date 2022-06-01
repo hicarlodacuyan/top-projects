@@ -52,6 +52,13 @@
    cursor: pointer;
    background-color: transparent;
  }
+
+ .actions__refresh {
+   border: none;
+   padding: 0;
+   cursor: pointer;
+   background-color: transparent;
+ }
  
  .current__turn {
    font-size: var(--secondary-fs);

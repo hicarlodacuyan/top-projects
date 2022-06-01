@@ -1,5 +1,5 @@
 const btnRefresh = document.getElementById('btn_refresh');
-const btnMarkers = document.querySelectorAll('.actions__markers');
+const btnMarkers = document.querySelectorAll('.action__btn');
 const btnCells = document.querySelectorAll('.gameboard__cell');
 const labelCurrentTurn = document.getElementById('label_current_turn');
 const labelHumanMarker = document.getElementById('label_human_marker');
@@ -96,6 +96,8 @@ const displayController = (() => {
     const updateLabels = () => {
         labelHumanScore.textContent = `${human.getScore()}`;
         labelBotScore.textContent = `${cpu.getScore()}`;
+        labelHumanMarker.textContent = `${human.getMarker()} (YOU)`;
+        labelBotMarker.textContent = `${cpu.getMarker()} (CPU)`;
         labelTieScore.textContent = `${gameboard.getTie()}`;
         labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
     };
@@ -152,7 +154,7 @@ const displayController = (() => {
 
 const Player = () => {
     let score = 0;
-    let marker;
+    let marker = '';
 
     const getScore = () => score;
     const setScore = () => { score++; }
@@ -164,6 +166,7 @@ const Player = () => {
 
     const reset = () => {
         score = 0;
+        marker = '';
     };
 
     return {getScore, setScore, getMarker, setMarker, reset};
@@ -172,11 +175,29 @@ const Player = () => {
 const human = Player();
 const cpu = Player();
 
-human.setMarker('X');
-cpu.setMarker('O');
+btnMarkers.forEach(marker => {
+    marker.addEventListener('click', (e) => {
+        if (human.getMarker() !== '' && cpu.getMarker() !== '') return alert(`You have already chosen your marker!`);
+
+        if (human.getMarker() === '' && e.target.id === 'btn_xmark') {
+            human.setMarker('X');
+            cpu.setMarker('O');
+            displayController.updateLabels();
+            return;
+        }
+
+        if (human.getMarker() === '' && e.target.id === 'btn_circle') {
+            human.setMarker('O');
+            cpu.setMarker('X');
+            displayController.updateLabels();
+            return;
+        }
+    });
+});
 
 btnCells.forEach(cell => {
     cell.addEventListener('click', (e) => {
+        if (human.getMarker() === '' && cpu.getMarker() === '') return alert(`You need to choose your marker first!`);
         if (e.target.childNodes.length !== 0) return;
         displayController.boardLogic(e);
     });
