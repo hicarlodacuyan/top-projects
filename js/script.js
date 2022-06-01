@@ -12,6 +12,8 @@ const container = document.querySelector('.container');
 const menu = document.querySelector('.menu');
 const btnXMark = document.getElementById('btn_xmark');
 const btnCircle = document.getElementById('btn_circle');
+const btnXMarkIcon = document.querySelector('.btn__xmark_icon');
+const btnCircleIcon = document.querySelector('.btn__circle_icon');
 
 const gameboard = (() => {
     
@@ -186,11 +188,15 @@ btnMarkers.forEach(marker => {
         if (e.target.id === 'btn_xmark') {
             btnXMark.style.background = "var(--accent-color)";
             btnCircle.style.background = "none";
+            btnXMarkIcon.style.color = "var(--main-bg)";
+            btnCircleIcon.style.color = "var(--accent-color)";
         }
 
         if (e.target.id === 'btn_circle') {
             btnXMark.style.background = "none";
             btnCircle.style.background = "var(--accent-color)"
+            btnXMarkIcon.style.color = "var(--accent-color)";
+            btnCircleIcon.style.color = "var(--main-bg)";
         }
 
         if (human.getMarker() === '' && e.target.id === 'btn_xmark') {
@@ -227,7 +233,9 @@ btnRefresh.addEventListener('click', () => {
     menu.style.display = "flex";
     container.style.display = "none";
     btnXMark.style.background = "none";
-    btnCircle.style.background = "none"
+    btnCircle.style.background = "none";
+    btnXMarkIcon.style.color = "var(--accent-color)";
+    btnCircleIcon.style.color = "var(--accent-color)";
 });
 
 btnPlayersMode.addEventListener('click', () => {
