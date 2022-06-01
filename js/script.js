@@ -14,6 +14,12 @@ const btnXMark = document.getElementById('btn_xmark');
 const btnCircle = document.getElementById('btn_circle');
 const btnXMarkIcon = document.querySelector('.btn__xmark_icon');
 const btnCircleIcon = document.querySelector('.btn__circle_icon');
+const results = document.querySelector('.results');
+const winner = document.querySelector('.winner');
+const playerWinner = document.querySelector('.player__winner');
+const btnQuit = document.querySelector('.quit');
+const btnNextRound = document.querySelector('.next__round');
+
 
 const gameboard = (() => {
     
@@ -109,21 +115,67 @@ const displayController = (() => {
         labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
     };
 
+    const continueGame = () => {
+        results.style.display = "flex";
+
+        btnQuit.addEventListener('click', () => {
+            results.style.display = "none";
+            gameboard.reset();
+            gameboard.resetTie();
+            human.resetScore();
+            cpu.resetScore();
+            human.resetMarker();
+            cpu.resetMarker();
+            displayController.updateLabels();
+            displayController.updateBoard();
+            menu.style.display = "flex";
+            container.style.display = "none";
+            btnXMark.style.background = "none";
+            btnCircle.style.background = "none";
+            btnXMarkIcon.style.color = "var(--accent-color)";
+            btnCircleIcon.style.color = "var(--accent-color)";
+        });
+
+        btnNextRound.addEventListener('click', () => {
+            results.style.display = "none";
+            gameboard.reset();
+            displayController.updateBoard();
+        });
+    };
+
     const boardOutcome = (result) => {
         if (result === true && gameboard.gameOver() === true) {
             human.setScore();
             labelHumanScore.textContent = `${human.getScore()}`;
             labelCurrentTurn.innerHTML = `${human.getMarker()} WON!`;
-            gameboard.reset();
-            displayController.updateBoard();
+            winner.innerHTML = `${human.getMarker()} WON!`;
+            if (human.getMarker() === 'X') {
+                playerWinner.innerHTML = `<i class="fa-solid fa-xmark fa-xl"></i> TAKES THE ROUND`;
+                playerWinner.style.color = 'var(--primary-color-1)';
+            }
+
+            if (human.getMarker() === 'O') {
+                playerWinner.innerHTML = `<i class="fa-regular fa-circle"></i> TAKES THE ROUND`;
+                playerWinner.style.color = 'var(--primary-color-2)';
+            }
+            continueGame();
         }
 
         if (result === false && gameboard.gameOver() === true) {
             cpu.setScore();
             labelCurrentTurn.innerHTML = `${cpu.getMarker()} WON!`;
             labelBotScore.textContent = `${cpu.getScore()}`;
-            gameboard.reset();
-            displayController.updateBoard();
+            winner.innerHTML = `${cpu.getMarker()} WON!`;
+            if (cpu.getMarker() === 'X') {
+                playerWinner.innerHTML = `<i class="fa-solid fa-xmark fa-xl"></i> TAKES THE ROUND`;
+                playerWinner.style.color = "var(--primary-color-1)";
+            }
+
+            if (cpu.getMarker() === 'O') {
+                playerWinner.innerHTML = `<i class="fa-regular fa-circle"></i> TAKES THE ROUND`;
+                playerWinner.style.color = "var(--primary-color-2)";
+            }
+            continueGame();
         }
 
         if (gameboard.gameOver() === 'Tie') {
@@ -131,8 +183,10 @@ const displayController = (() => {
             labelCurrentTurn.innerHTML = `Tie!`;
             labelTieScore.textContent = `${gameboard.getTie()}`;
             labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
-            gameboard.reset();
-            displayController.updateBoard();
+            winner.innerHTML = `Tie!`;
+            playerWinner.innerHTML = `WHAT A CLOSE ROUND!`;
+            playerWinner.style.color = "var(--accent-color)";
+            continueGame();
         }
     };
 
@@ -171,12 +225,15 @@ const Player = () => {
         marker = selection;
     };
 
-    const reset = () => {
+    const resetScore = () => {
         score = 0;
+    };
+
+    const resetMarker = () => {
         marker = '';
     };
 
-    return {getScore, setScore, getMarker, setMarker, reset};
+    return {getScore, setScore, getMarker, setMarker, resetScore, resetMarker};
 };
 
 const human = Player();
@@ -226,16 +283,16 @@ btnCells.forEach(cell => {
 btnRefresh.addEventListener('click', () => {
     gameboard.reset();
     gameboard.resetTie();
-    human.reset();
-    cpu.reset();
+    human.resetScore();
+    cpu.resetScore();
     displayController.updateLabels();
     displayController.updateBoard();
-    menu.style.display = "flex";
-    container.style.display = "none";
-    btnXMark.style.background = "none";
-    btnCircle.style.background = "none";
-    btnXMarkIcon.style.color = "var(--accent-color)";
-    btnCircleIcon.style.color = "var(--accent-color)";
+    // menu.style.display = "flex";
+    // container.style.display = "none";
+    // btnXMark.style.background = "none";
+    // btnCircle.style.background = "none";
+    // btnXMarkIcon.style.color = "var(--accent-color)";
+    // btnCircleIcon.style.color = "var(--accent-color)";
 });
 
 btnPlayersMode.addEventListener('click', () => {
