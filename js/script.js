@@ -147,7 +147,7 @@ const displayController = (() => {
         if (result === true && gameboard.gameOver() === true) {
             human.setScore();
             labelHumanScore.textContent = `${human.getScore()}`;
-            labelCurrentTurn.innerHTML = `${human.getMarker()} WON!`;
+            labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
             winner.innerHTML = `${human.getMarker()} WON!`;
             if (human.getMarker() === 'X') {
                 playerWinner.innerHTML = `<i class="fa-solid fa-xmark fa-xl"></i> TAKES THE ROUND`;
@@ -163,7 +163,7 @@ const displayController = (() => {
 
         if (result === false && gameboard.gameOver() === true) {
             cpu.setScore();
-            labelCurrentTurn.innerHTML = `${cpu.getMarker()} WON!`;
+            labelCurrentTurn.innerHTML = `${human.getMarker()} TURN`;
             labelBotScore.textContent = `${cpu.getScore()}`;
             winner.innerHTML = `${cpu.getMarker()} WON!`;
             if (cpu.getMarker() === 'X') {
