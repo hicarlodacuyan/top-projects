@@ -6,4 +6,35 @@ $secondary-font-color: #D9DADC;
 
 body {
   background: $primary-body-color;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#content {
+  .article__container {
+    background: $secondary-body-color;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
+    img {
+      height: 200px;
+      width: 200px;
+    }
+  
+    .content__container {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+  
+      h1 {
+        font-size: 14px;
+      }
+    }
+  }
 }
