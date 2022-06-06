@@ -1,27 +1,24 @@
 import './main.scss';
 import '@csstools/normalize.css';
-import ArticleImage from './ArticleImage';
+import Man from './assets/man.png';
+import json5 from './assets/data/articles.json5';
 
 function component() {
-    const element = document.createElement('div');
-    element.classList.add('article__container');
-
-    const contentContainer = document.createElement('div');
-    contentContainer.classList.add('content__container');
-
-    const articleHeading = document.createElement('h1');
-    articleHeading.innerHTML = 'Shift the overall look and feel by adding these wonderful touches to furniture in your home';
-
-    const articlePara = document.createElement('p');
-    articlePara.innerHTML = `Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I've got some simple tips to help you make any room feel complete.`;
-
-    contentContainer.appendChild(articleHeading);
-    contentContainer.appendChild(articlePara);
-
-    element.appendChild(ArticleImage());
-    element.appendChild(contentContainer);
-
-    return element;
+    return `<div class="article__container">
+                <img src="${json5.article_1.img}" />
+                <div class="content__container">
+                    <h1>${json5.article_1.title}</h1>
+                    <p>${json5.article_1.content}</p>
+                    <div class="content__author">
+                        <img src="${Man}" />
+                        <div class="author__info">
+                            <h2>${json5.article_1.author}</h2>
+                            <p>${json5.article_1.date}</p>
+                        </div>
+                        <button id="next">Next</button>
+                    </div>
+                </div>
+            </div>`;
 }
 
-document.getElementById('content').appendChild(component());
+document.getElementById('content').innerHTML = component();
