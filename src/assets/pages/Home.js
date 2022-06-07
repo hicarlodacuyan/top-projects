@@ -1,6 +1,7 @@
 const Home = () => {
     const main = document.createElement('div');
     main.classList.add('main');
+    main.classList.add('home');
 
     const keys = document.createElement('img');
     keys.src = '../src/assets/images/keys.jpg';

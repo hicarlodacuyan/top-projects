@@ -3,6 +3,8 @@ import '@csstools/normalize.css';
 import LogoContainer from './assets/components/Logo';
 import NavigationContainer from './assets/components/Navigation';
 import Home from './assets/pages/Home';
+import About from './assets/pages/About';
+import Contact from './assets/pages/Contact';
 
 const container = document.getElementById('content');
 
@@ -18,11 +20,9 @@ container.appendChild(init().NavigationContainer());
 container.appendChild(Home());
 
 document.getElementById('home').addEventListener('click', () => {
-    /* TODO: Check if Home module is already loaded 
-                If yes, simply return
-            If no, render Home module    
-    */
-   console.log('Home');
+   if(document.querySelector('.home')) return;
+
+   container.appendChild(Home());
 });
 
 document.getElementById('about').addEventListener('click', () => {
