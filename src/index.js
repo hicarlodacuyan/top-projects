@@ -1,24 +1,42 @@
 import './main.scss';
 import '@csstools/normalize.css';
-import Man from './assets/man.png';
-import json5 from './assets/data/articles.json5';
+import LogoContainer from './assets/components/Logo';
+import NavigationContainer from './assets/components/Navigation';
+import Home from './assets/pages/Home';
 
-function component() {
-    return `<div class="article__container">
-                <img src="${json5.article_1.img}" />
-                <div class="content__container">
-                    <h1>${json5.article_1.title}</h1>
-                    <p>${json5.article_1.content}</p>
-                    <div class="content__author">
-                        <img src="${Man}" />
-                        <div class="author__info">
-                            <h2>${json5.article_1.author}</h2>
-                            <p>${json5.article_1.date}</p>
-                        </div>
-                        <button id="next">Next</button>
-                    </div>
-                </div>
-            </div>`;
-}
+const container = document.getElementById('content');
 
-document.getElementById('content').innerHTML = component();
+const init = () => {
+    LogoContainer();
+    NavigationContainer();
+
+    return {LogoContainer, NavigationContainer};
+};
+
+container.appendChild(init().LogoContainer());
+container.appendChild(init().NavigationContainer());
+container.appendChild(Home());
+
+document.getElementById('home').addEventListener('click', () => {
+    /* TODO: Check if Home module is already loaded 
+                If yes, simply return
+            If no, render Home module    
+    */
+   console.log('Home');
+});
+
+document.getElementById('about').addEventListener('click', () => {
+    /* TODO: Check if About module is already loaded 
+                If yes, simply return
+            If no, render About module    
+    */
+    console.log('About');
+});
+
+document.getElementById('contact').addEventListener('click', () => {
+    /* TODO: Check if Contact module is already loaded 
+                If yes, simply return
+            If no, render Contact module    
+    */
+    console.log('Contact');
+});

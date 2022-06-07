@@ -1,63 +1,67 @@
-// Colors
-$primary-body-color: #EDF2F8;
-$primary-font-color: #757E8A;
-$secondary-body-color: #FFFFFF;
-$secondary-font-color: #D9DADC;
-
 body {
-  background: $primary-body-color;
-  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.15rem;
+  background: #EFEFEF;
+  font-size: 80%;
+  height: 100vh;
 }
 
 #content {
-  .article__container {
-    background: $secondary-body-color;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: 1fr 2fr;
-    gap: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  
-    img {
-      width: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 940px;
+  min-width: 720px;
+  margin: 10px auto 10px auto;
+  padding: 20px;
+  border: 4px double #000000;
+  background: #FFFFFF;
+}
+
+.logo {
+  width: 150px;
+  margin: 10px auto 25px auto;
+}
+
+.navigation {
+  width: 570px;
+  padding: 15px;
+  margin: 0px auto 0px auto;
+  border-top: 2px solid #000000;
+  border-bottom: 1px solid #000000;
+  text-align: center;
+  list-style-type: disc;
+
+  li {
+    display: inline;
+    margin: 0px 3px;
+
+    a {
+      color: #000000;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 6px 18px 5px 18px;
     }
-  
-    .content__container {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-  
-      h1 {
-        font-size: 14px;
-      }
 
-      .content__author {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          height: 40px;
-          width: 40px;
-        }
-
-        .author__info {
-          flex: 1;
-          padding: 1rem;
-
-          h2 {
-            font-size: 12px;
-          }
-
-          p {
-            font-size: 10px;
-          }
-        }
-      }
+    a:hover {
+      color: #CC3333;
+      background: #FFFFFF;
     }
   }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 600px;
+  margin-top: 1rem;
 }
