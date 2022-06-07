@@ -20,23 +20,22 @@ container.appendChild(init().NavigationContainer());
 container.appendChild(Home());
 
 document.getElementById('home').addEventListener('click', () => {
-   if(document.querySelector('.home')) return;
+    if(document.querySelector('.home')) return;
 
-   container.appendChild(Home());
+    container.removeChild(container.lastChild);
+    container.appendChild(Home());
 });
 
 document.getElementById('about').addEventListener('click', () => {
-    /* TODO: Check if About module is already loaded 
-                If yes, simply return
-            If no, render About module    
-    */
-    console.log('About');
+    if(document.querySelector('.about')) return;
+
+    container.removeChild(container.lastChild);
+    container.appendChild(About());
 });
 
 document.getElementById('contact').addEventListener('click', () => {
-    /* TODO: Check if Contact module is already loaded 
-                If yes, simply return
-            If no, render Contact module    
-    */
-    console.log('Contact');
+    if(document.querySelector('.contact')) return;
+    
+    container.removeChild(container.lastChild);
+    container.appendChild(Contact());
 });
