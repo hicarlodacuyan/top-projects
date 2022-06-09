@@ -18,6 +18,10 @@ export default class Project {
         this.todos.splice(item, 1);
     }
 
+    clearCompleted() {
+        this.todos = this.todos.filter(item => item.currStatus !== 'completed');
+    }
+
     changeStatus(item) {
         this.todos[item].currStatus === 'active' ? this.todos[item].currStatus = 'completed' : this.todos[item].currStatus = 'active';
     }
