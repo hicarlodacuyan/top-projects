@@ -1,10 +1,9 @@
 import './main.scss';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Project from './utils/Projects';
 import Render from './utils/render';
 
 
-const logicFlow = () => {
+const init = () => {
     const container = document.getElementById('content');
     container.appendChild(Render().Input());
 
@@ -19,4 +18,4 @@ const logicFlow = () => {
 };
 
 
-logicFlow();
+init();
