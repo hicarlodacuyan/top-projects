@@ -8,6 +8,8 @@ export default class Project {
     }
 
     add(item) {
+        if (this.todoExists(this.todos, item) === true) return; 
+
         this.todos.push({
             item,
             currStatus: 'active' 
@@ -28,5 +30,11 @@ export default class Project {
 
     getStatus(item) {
         return this.todos[item].currStatus;
+    }
+
+    todoExists(todos, newItem) {
+        return todos.some(todo => {
+            return todo.item === newItem;
+        });
     }
 }
