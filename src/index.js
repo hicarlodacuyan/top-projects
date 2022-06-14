@@ -1,7 +1,7 @@
 import './main.scss';
 import Project from './utils/Projects';
 import Render from './utils/render';
-import appendTodo from './components/appendTodo';
+import appendTodo from './utils/appendTodo';
 
 
 const init = () => {
@@ -18,6 +18,7 @@ const init = () => {
         toDoList.innerHTML = '';
         myPersonalTasks.add(formInput.value);
         appendTodo(myPersonalTasks.get(), toDoList);
+        formInput.value = '';
     });
 };
 
