@@ -8,6 +8,7 @@ export default class Project {
     }
 
     add(item) {
+        if (item === '') return;
         if (this.todoExists(this.todos, item) === true) return; 
 
         this.todos.push({
