@@ -6,7 +6,7 @@ import appendTodo from './utils/appendTodo';
 
 const init = () => {
     const container = document.getElementById('content');
-    const toDoList = document.createElement('ul');
+    const toDoList = document.createElement('div');
     container.appendChild(Render().Input());
     container.appendChild(toDoList);
 
@@ -19,6 +19,8 @@ const init = () => {
         myPersonalTasks.add(formInput.value);
         appendTodo(myPersonalTasks.get(), toDoList);
         formInput.value = '';
+
+        console.log(myPersonalTasks.get());
     });
 };
 
