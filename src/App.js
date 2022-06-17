@@ -1,8 +1,12 @@
 import Header from "./assets/components/Header";
+import Input from "./assets/components/Input";
 
 function App() {
     return `
-        ${Header()}
+        <div class="app__container">
+            ${Header()}
+            ${Input()}
+        </div>
     `;
 }
 
