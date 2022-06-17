@@ -1,1 +1,32 @@
 @import "bootstrap/scss/bootstrap";
+
+#root {
+    height: 100vh;
+    background-image: url("./assets/images/bg-desktop-light.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.app__heading {
+    display: flex;
+    height: 100px;
+    width: 500px;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+        flex: 1;
+        margin: 0;
+        padding: 0;
+        color: hsl(0, 0%, 98%);
+    } 
+
+    .icon_mode {
+        width: 25px;
+        height: 25px;
+    }
+}
