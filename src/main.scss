@@ -44,13 +44,23 @@ html {
 
 .app__input {
     display: flex;
-
+    height: 50px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
     .input_btn {
-        
+        border: none;
+        width: 50px;
+        font-size: 1.75em;
+        text-align: center;
+        line-height: 0px;
     }
 
     .input {
         flex: 1;
+        border: none;
+        padding: 10px;
     }
 }
 
