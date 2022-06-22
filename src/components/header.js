@@ -1,6 +1,6 @@
 const header = (() => {
 
-    const render = () => {
+    const init = () => {
 
         const container = document.createElement('section');
         container.classList.add('greeting');
@@ -14,7 +14,7 @@ const header = (() => {
         return container;
     };
 
-    return { render };
+    return { init };
 })();
 
-export default header.render();
+export { header }

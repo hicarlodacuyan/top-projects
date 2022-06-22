@@ -1,6 +1,6 @@
 const todoForm = (() => {
 
-    const render = () => {
+    const init = () => {
 
         const container = document.createElement('section');
         container.classList.add('create-todo');
@@ -34,8 +34,8 @@ const todoForm = (() => {
         return container;
     };
 
-    return { render };
+    return { init };
 
 })();
 
-export default todoForm.render();
+export { todoForm };

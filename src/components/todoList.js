@@ -1,8 +1,9 @@
 import observable from "../lib/Observable";
 
 const todoList = (() => {
+    let items = [];
 
-    const render = () => {
+    const init = () => {
 
         const container = document.createElement('section');
         container.classList.add('todo-list');
@@ -20,20 +21,80 @@ const todoList = (() => {
         return container;
     };
 
-    return { render };
+    return { init, items };
 })();
 
-const handleItemAdded = () => {
-    observable.notify('itemAdded', itemAdded);
+const handleFormSubmit = event => {
+    event.preventDefault();
+    let input = document.getElementById('content');
+    let newItem = input.value;
+    input.value = '';
+
+    observable.notify('itemAdded', newItem);
 };
 
 const itemAdded = item => {
-    let items = [];
-    items.push(item);
+    todoList.items.push({
+        item,
+        status: false
+    });
 
-    observable.notify('itemsUpdated', items);
+    updateList();
 };
 
-observable.subscribe(itemAdded);
+const updateList = () => {
+    let container = document.getElementById('todo-list');
 
-export { todoList, handleItemAdded };
+    while(container.firstChild) {
+        container.removeChild(container.lastChild);
+    }
+
+    todoList.items.forEach(item => {
+        let todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+
+        let label = document.createElement('label');
+
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+
+        let bubble = document.createElement('span');
+        bubble.classList.add('bubble');
+
+        let todoContent = document.createElement('div');
+        todoContent.classList.add('todo-content');
+
+        let inputText = document.createElement('input');
+        inputText.type = 'text';
+        inputText.value = `${item.item}`;
+
+        let actions = document.createElement('div');
+        actions.classList.add('actions');
+
+        let editBtn = document.createElement('button');
+        editBtn.classList.add('edit');
+        editBtn.textContent = 'Edit';
+
+        let deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete');
+        deleteBtn.textContent = 'Delete';
+
+        label.appendChild(checkbox);
+        label.appendChild(bubble);
+
+        todoContent.appendChild(inputText);
+
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+        
+        todoItem.appendChild(label);
+        todoItem.appendChild(todoContent);
+        todoItem.appendChild(actions);
+
+        container.appendChild(todoItem);
+    });
+};
+
+observable.subscribe('itemAdded', itemAdded);
+
+export { todoList, handleFormSubmit };
