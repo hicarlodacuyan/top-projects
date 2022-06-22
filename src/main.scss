@@ -14,6 +14,11 @@
     font-family: 'montserrat', sans-serif;
 }
 
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
 input:not([type="radio"]):not([type="checkbox"]), button {
     appearance: none;
     border: none;
@@ -49,6 +54,9 @@ h4 {
 }
 
 .create-todo {
+    display: flex;
+    flex-direction: column;
+
     input[type="text"] {
         display: block;
         width: 100%;
@@ -81,58 +89,63 @@ h4 {
 
 
 .todo-list {
+    display: flex;
+    flex-direction: column;
+
     .list {
         margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .todo-item {
             display: flex;
             align-items: center;
+            gap: 1rem;
             background-color: #fff;
             padding: 1rem;
             border-bottom: 1px solid #d3d3d3;
             box-shadow: var(--shadow);
 
-            label {
-                display: block;
-                margin-right: 1rem;
-                cursor: pointer;
-            }
+            // label {
+            //     margin-right: 1rem;
+            //     cursor: pointer;
+            // }
 
             .todo-content {
-                flex: 1;
-                
-                input {
-                    color: var(--dark);
-                    font-size: 1.125rem;
-                }
+                flex: 1;    
+                // input {
+                //     color: var(--dark);
+                //     font-size: 1.125rem;
+                // }
             }
 
             .actions {
                 display: flex;
                 align-items: center;
-
-                button {
-                    display: block;
-                    padding: 0.5rem;
-                    border-radius: 0.25rem;
-                    color: #fff;
-                    cursor: pointer;
-                    transition: 0.2s ease-in-out;
-                }
-
-                button:hover {
-                    opacity: 0.75;
-                }
-
-                .edit {
-                    margin-right: 0.5rem;
-                    background-color: var(--primary);
-                }
-
-                .delete {
-                    background-color: var(--danger);
-                }
+                gap: 1rem;
             }
+                // button {
+                //     padding: 0.5rem;
+                //     border-radius: 0.25rem;
+                //     color: #fff;
+                //     cursor: pointer;
+                //     transition: 0.2s ease-in-out;
+                // }
+
+            //     button:hover {
+            //         opacity: 0.75;
+            //     }
+
+            //     .edit {
+            //         margin-right: 0.5rem;
+            //         background-color: var(--primary);
+            //     }
+
+            //     .delete {
+            //         background-color: var(--danger);
+            //     }
+            // }
         }
     }
 
@@ -153,7 +166,6 @@ h4 {
 
     .bubble::after {
         content: "";
-        display: block;
         opacity: 0;
         width: 0;
         height: 0;
