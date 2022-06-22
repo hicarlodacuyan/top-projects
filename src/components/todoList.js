@@ -23,4 +23,17 @@ const todoList = (() => {
     return { render };
 })();
 
-export default todoList.render();
+const handleItemAdded = () => {
+    observable.notify('itemAdded', itemAdded);
+};
+
+const itemAdded = item => {
+    let items = [];
+    items.push(item);
+
+    observable.notify('itemsUpdated', items);
+};
+
+observable.subscribe(itemAdded);
+
+export { todoList, handleItemAdded };
