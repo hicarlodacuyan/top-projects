@@ -92,6 +92,15 @@ h4 {
     display: flex;
     flex-direction: column;
 
+    .done {
+        .todo-content {
+            input {
+                text-decoration: line-through;
+                color: gray !important;
+            }
+        } 
+    }
+
     .list {
         margin: 1rem 0;
         display: flex;
@@ -183,11 +192,3 @@ h4 {
     }
 }
 
-.done {
-    .todo-content {
-        input {
-            text-decoration: line-through;
-            color: var(--grey);
-        }
-    } 
-}
