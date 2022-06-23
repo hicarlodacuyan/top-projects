@@ -21,18 +21,61 @@ const todoList = (() => {
         return container;
     };
 
-    return { init, items };
+    const updateList = () => {
+        let container = document.getElementById('todo-list');
+    
+        while(container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+    
+        todoList.items.forEach(item => {
+            let todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+    
+            let label = document.createElement('label');
+    
+            let checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+    
+            let bubble = document.createElement('span');
+            bubble.classList.add('bubble');
+    
+            let todoContent = document.createElement('div');
+            todoContent.classList.add('todo-content');
+    
+            let inputText = document.createElement('input');
+            inputText.type = 'text';
+            inputText.value = `${item.item}`;
+    
+            let actions = document.createElement('div');
+            actions.classList.add('actions');
+    
+            let editBtn = document.createElement('button');
+            editBtn.classList.add('edit');
+            editBtn.textContent = 'Edit';
+    
+            let deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('delete');
+            deleteBtn.textContent = 'Delete';
+    
+            label.appendChild(checkbox);
+            label.appendChild(bubble);
+    
+            todoContent.appendChild(inputText);
+    
+            actions.appendChild(editBtn);
+            actions.appendChild(deleteBtn);
+            
+            todoItem.appendChild(label);
+            todoItem.appendChild(todoContent);
+            todoItem.appendChild(actions);
+    
+            container.appendChild(todoItem);
+        });
+    };
+
+    return { init, updateList, items };
 })();
-
-const handleFormSubmit = event => {
-    event.preventDefault();
-    let input = document.getElementById('content');
-    let newItem = input.value;
-    if(newItem === '') return;
-    input.value = '';
-
-    observable.notify('itemAdded', newItem);
-};
 
 const itemAdded = item => {
     todoList.items.push({
@@ -40,62 +83,9 @@ const itemAdded = item => {
         status: false
     });
 
-    updateList();
-};
-
-const updateList = () => {
-    let container = document.getElementById('todo-list');
-
-    while(container.firstChild) {
-        container.removeChild(container.lastChild);
-    }
-
-    todoList.items.forEach(item => {
-        let todoItem = document.createElement('div');
-        todoItem.classList.add('todo-item');
-
-        let label = document.createElement('label');
-
-        let checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-
-        let bubble = document.createElement('span');
-        bubble.classList.add('bubble');
-
-        let todoContent = document.createElement('div');
-        todoContent.classList.add('todo-content');
-
-        let inputText = document.createElement('input');
-        inputText.type = 'text';
-        inputText.value = `${item.item}`;
-
-        let actions = document.createElement('div');
-        actions.classList.add('actions');
-
-        let editBtn = document.createElement('button');
-        editBtn.classList.add('edit');
-        editBtn.textContent = 'Edit';
-
-        let deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('delete');
-        deleteBtn.textContent = 'Delete';
-
-        label.appendChild(checkbox);
-        label.appendChild(bubble);
-
-        todoContent.appendChild(inputText);
-
-        actions.appendChild(editBtn);
-        actions.appendChild(deleteBtn);
-        
-        todoItem.appendChild(label);
-        todoItem.appendChild(todoContent);
-        todoItem.appendChild(actions);
-
-        container.appendChild(todoItem);
-    });
+    todoList.updateList();
 };
 
 observable.subscribe('itemAdded', itemAdded);
 
-export { todoList, handleFormSubmit };
+export { todoList };
