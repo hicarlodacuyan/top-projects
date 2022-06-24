@@ -1,14 +1,20 @@
 class Observable {
     constructor() {
-        this.observers = [];
+        this.observers = {};
     }
 
     subscribe(event, fn) {
-        this.observers.push(fn);
+        if(!this.observers.hasOwnProperty(event)) {
+            this.observers[event] = [];
+        }
+
+        this.observers[event].push(fn);
     }
 
     notify(event, data) {
-        this.observers.forEach(observer => observer(data));
+        if(!this.observers.hasOwnProperty(event)) return [];
+
+        this.observers[event].map(fn => fn(data));
     }
 }
 

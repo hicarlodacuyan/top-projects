@@ -1,4 +1,5 @@
 import observable from "../lib/Observable";
+import { handleItemDeleted } from "../lib/handleItemDeleted";
 
 const todoList = (() => {
     let items = [];
@@ -28,7 +29,7 @@ const todoList = (() => {
             container.removeChild(container.lastChild);
         }
     
-        todoList.items.forEach(item => {
+        todoList.items.forEach((item, index) => {
             let todoItem = document.createElement('div');
             todoItem.classList.add('todo-item');
     
@@ -57,6 +58,7 @@ const todoList = (() => {
             let deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete');
             deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', () => handleItemDeleted(index));
     
             label.appendChild(checkbox);
             label.appendChild(bubble);
@@ -86,6 +88,12 @@ const itemAdded = item => {
     todoList.updateList();
 };
 
+const itemDeleted = index => {
+    todoList.items.splice(index, 1);
+    todoList.updateList();
+};
+
 observable.subscribe('itemAdded', itemAdded);
+observable.subscribe('itemDeleted', itemDeleted);
 
 export { todoList };

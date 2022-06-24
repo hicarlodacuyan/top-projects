@@ -1,3 +1,5 @@
+import { handleFormSubmit } from "../lib/handleFormSubmit";
+
 const todoForm = (() => {
 
     const init = () => {
@@ -23,6 +25,7 @@ const todoForm = (() => {
         const inputSubmit = document.createElement('input');
         inputSubmit.type = 'submit';
         inputSubmit.value = 'Add todo';
+        inputSubmit.addEventListener('click', handleFormSubmit);
 
         todoForm.appendChild(h4);
         todoForm.appendChild(inputText);
