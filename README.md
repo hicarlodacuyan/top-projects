@@ -6,7 +6,9 @@ This project is created for the sole purpose of learning and part of the "The Od
 ### What I learned?
 
 * OOP Principles
+* Observer Pattern
 * ES6 Modules
+* SASS
 * Webpack
 * GitHub and git
 * Visual Studio Code
