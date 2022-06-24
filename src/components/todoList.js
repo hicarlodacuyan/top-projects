@@ -4,7 +4,8 @@ import { handleInputChange } from "../lib/handleInputChange";
 import { handleChangeStatus } from "../lib/handleChangeStatus";
 
 const todoList = (() => {
-    let items = [];
+    const LOCAL_STORAGE_LIST_KEY = 'todo.items';
+    let items = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 
     const init = () => {
 
@@ -92,7 +93,16 @@ const todoList = (() => {
         });
     };
 
-    return { init, updateList, items };
+    const saveList = () => {
+        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(items));
+    };
+
+    const saveAndRender = () => {
+        updateList();
+        saveList();
+    };
+    
+    return { init, updateList, saveAndRender, items };
 })();
 
 const itemAdded = item => {
@@ -101,12 +111,12 @@ const itemAdded = item => {
         status: false
     });
 
-    todoList.updateList();
+    todoList.saveAndRender();
 };
 
 const itemDeleted = index => {
     todoList.items.splice(index, 1);
-    todoList.updateList();
+    todoList.saveAndRender();
 };
 
 const itemEdited = todo => {
@@ -114,7 +124,7 @@ const itemEdited = todo => {
     let newItemValue = todo.newInputValue;
 
     todoList.items[editedItemIndex].item = newItemValue;
-    todoList.updateList();
+    todoList.saveAndRender();
 };
 
 const itemChangeStatus = todo => {
@@ -122,7 +132,7 @@ const itemChangeStatus = todo => {
     let newItemStatus = todo.status;
 
     todoList.items[editedItemIndex].status = newItemStatus;
-    todoList.updateList();
+    todoList.saveAndRender();
 };
 
 observable.subscribe('itemAdded', itemAdded);
