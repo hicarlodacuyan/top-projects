@@ -1,5 +1,6 @@
 import observable from "../lib/Observable";
 import { handleItemDeleted } from "../lib/handleItemDeleted";
+import { handleInputChange } from "../lib/handleInputChange";
 
 const todoList = (() => {
     let items = [];
@@ -47,6 +48,9 @@ const todoList = (() => {
             let inputText = document.createElement('input');
             inputText.type = 'text';
             inputText.value = `${item.item}`;
+            inputText.addEventListener('change', ev => {
+                handleInputChange(ev, index);
+            });
     
             let actions = document.createElement('div');
             actions.classList.add('actions');
@@ -54,6 +58,9 @@ const todoList = (() => {
             let editBtn = document.createElement('button');
             editBtn.classList.add('edit');
             editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => {
+                inputText.focus();
+            });
     
             let deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete');
@@ -93,7 +100,16 @@ const itemDeleted = index => {
     todoList.updateList();
 };
 
+const itemEdited = todo => {
+    let editedItemIndex = todo.index;
+    let newItemValue = todo.newInputValue;
+
+    todoList.items[editedItemIndex].item = newItemValue;
+    todoList.updateList();
+};
+
 observable.subscribe('itemAdded', itemAdded);
 observable.subscribe('itemDeleted', itemDeleted);
+observable.subscribe('itemEdited', itemEdited);
 
 export { todoList };
