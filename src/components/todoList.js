@@ -1,6 +1,7 @@
 import observable from "../lib/Observable";
 import { handleItemDeleted } from "../lib/handleItemDeleted";
 import { handleInputChange } from "../lib/handleInputChange";
+import { handleChangeStatus } from "../lib/handleChangeStatus";
 
 const todoList = (() => {
     let items = [];
@@ -32,12 +33,20 @@ const todoList = (() => {
     
         todoList.items.forEach((item, index) => {
             let todoItem = document.createElement('div');
-            todoItem.classList.add('todo-item');
-    
+            if(item.status === false) {
+                todoItem.classList.add('todo-item');
+            } else {
+                todoItem.classList.add('todo-item', 'done');
+            }
+            
             let label = document.createElement('label');
     
             let checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
+            checkbox.checked = item.status;
+            checkbox.addEventListener('change', ev => {
+                handleChangeStatus(ev, index);
+            });
     
             let bubble = document.createElement('span');
             bubble.classList.add('bubble');
@@ -108,8 +117,17 @@ const itemEdited = todo => {
     todoList.updateList();
 };
 
+const itemChangeStatus = todo => {
+    let editedItemIndex = todo.index;
+    let newItemStatus = todo.status;
+
+    todoList.items[editedItemIndex].status = newItemStatus;
+    todoList.updateList();
+};
+
 observable.subscribe('itemAdded', itemAdded);
 observable.subscribe('itemDeleted', itemDeleted);
 observable.subscribe('itemEdited', itemEdited);
+observable.subscribe('itemStatusChange', itemChangeStatus);
 
 export { todoList };
