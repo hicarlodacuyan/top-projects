@@ -2,6 +2,7 @@ import observable from "../lib/Observable";
 import { handleItemDeleted } from "../lib/handleItemDeleted";
 import { handleInputChange } from "../lib/handleInputChange";
 import { handleChangeStatus } from "../lib/handleChangeStatus";
+import { handleClearCompletedItems } from "../lib/handleClearCompletedItems";
 
 const todoList = (() => {
     const LOCAL_STORAGE_LIST_KEY = 'todo.items';
@@ -12,14 +13,29 @@ const todoList = (() => {
         const container = document.createElement('section');
         container.classList.add('todo-list');
 
+        const listHeading = document.createElement('div');
+        listHeading.classList.add('list-heading');
+
         const h3 = document.createElement('h3');
         h3.textContent = 'TODO LIST';
+
+        const itemCounter = document.createElement('p');
+        itemCounter.id = 'item-counter';
+        itemCounter.textContent = `${items.length} items left`;
+
+        const clearCompletedBtn = document.createElement('button');
+        clearCompletedBtn.textContent = 'Clear Completed';
+        clearCompletedBtn.addEventListener('click', () => handleClearCompletedItems(todoList.items));
 
         const list = document.createElement('div');
         list.classList.add('list');
         list.id = 'todo-list';
 
-        container.appendChild(h3);
+        listHeading.appendChild(h3);
+        listHeading.appendChild(itemCounter);
+        listHeading.appendChild(clearCompletedBtn);
+
+        container.appendChild(listHeading);
         container.appendChild(list);
 
         return container;
@@ -93,12 +109,17 @@ const todoList = (() => {
         });
     };
 
+    const updateCounter = () => {
+        document.getElementById('item-counter').textContent = `${items.length} items left`;
+    };
+
     const saveList = () => {
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(items));
     };
 
     const saveAndRender = () => {
         updateList();
+        updateCounter();
         saveList();
     };
     
@@ -135,9 +156,15 @@ const itemChangeStatus = todo => {
     todoList.saveAndRender();
 };
 
+const clearCompletedItems = filteredTodo => {
+    // todoList.items = filteredTodo;
+    // todoList.saveAndRender();
+}
+
 observable.subscribe('itemAdded', itemAdded);
 observable.subscribe('itemDeleted', itemDeleted);
 observable.subscribe('itemEdited', itemEdited);
 observable.subscribe('itemStatusChange', itemChangeStatus);
+observable.subscribe('clearCompletedItems', clearCompletedItems);
 
 export { todoList };

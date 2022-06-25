@@ -43,7 +43,6 @@ h3 {
     color: var(--dark);
     font-size: 1rem;
     font-weight: 400;
-    margin-bottom: 0.5rem;
 }
 
 h4 {
@@ -91,6 +90,25 @@ h4 {
 .todo-list {
     display: flex;
     flex-direction: column;
+
+    .list-heading {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+
+        h3 {
+            flex: 1;
+        }
+
+        p {
+            
+        }
+
+        button {
+            cursor: pointer;
+        }
+    }
 
     .done {
         .todo-content {
