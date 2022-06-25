@@ -21,7 +21,6 @@ const todoList = (() => {
 
         const itemCounter = document.createElement('p');
         itemCounter.id = 'item-counter';
-        itemCounter.textContent = `${items.length} items left`;
 
         const clearCompletedBtn = document.createElement('button');
         clearCompletedBtn.textContent = 'Clear Completed';
@@ -110,11 +109,12 @@ const todoList = (() => {
     };
 
     const updateCounter = () => {
-        document.getElementById('item-counter').textContent = `${items.length} items left`;
+        const itemsCounter = document.getElementById('item-counter')
+        itemsCounter.textContent = `${todoList.items.length} items left`;
     };
 
     const saveList = () => {
-        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(items));
+        localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(todoList.items));
     };
 
     const saveAndRender = () => {
@@ -157,8 +157,8 @@ const itemChangeStatus = todo => {
 };
 
 const clearCompletedItems = filteredTodo => {
-    // todoList.items = filteredTodo;
-    // todoList.saveAndRender();
+    todoList.items = filteredTodo;
+    todoList.saveAndRender();
 }
 
 observable.subscribe('itemAdded', itemAdded);
