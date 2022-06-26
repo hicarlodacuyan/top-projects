@@ -6,8 +6,13 @@ const App = () => {
     const app = document.createElement('div');
     app.classList.add('app');
 
-    app.appendChild(header.init());
-    app.appendChild(todoForm.init());
+    const hero = document.createElement('div');
+    hero.classList.add('hero');
+
+    hero.appendChild(header.init());
+    hero.appendChild(todoForm.init());
+
+    app.appendChild(hero);
     app.appendChild(todoList.init());
 
     return app;
