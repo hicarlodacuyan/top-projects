@@ -109,7 +109,7 @@ const todoList = (() => {
     };
 
     const updateCounter = () => {
-        const itemsCounter = document.getElementById('item-counter')
+        const itemsCounter = document.getElementById('item-counter');
         itemsCounter.textContent = `${todoList.items.length} items left`;
     };
 
@@ -161,10 +161,18 @@ const clearCompletedItems = filteredTodo => {
     todoList.saveAndRender();
 }
 
+const countUpdateChangeStatus = () => {
+    const itemsCounter = document.getElementById('item-counter');
+    let ongoingItemsLength = todoList.items.filter(item => item.status === false).length;
+
+    itemsCounter.textContent = `${ongoingItemsLength} items left`;
+};
+
 observable.subscribe('itemAdded', itemAdded);
 observable.subscribe('itemDeleted', itemDeleted);
 observable.subscribe('itemEdited', itemEdited);
 observable.subscribe('itemStatusChange', itemChangeStatus);
 observable.subscribe('clearCompletedItems', clearCompletedItems);
+observable.subscribe('itemStatusChange', countUpdateChangeStatus);
 
 export { todoList };
