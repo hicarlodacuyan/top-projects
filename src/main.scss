@@ -210,3 +210,19 @@ h4 {
     }
 }
 
+@media (min-width: 1200px) {
+    body {
+      display: flex;
+      justify-content: center;
+
+      #root {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+
+        .app {
+            width: 40%;
+        }
+      }
+    }
+}
