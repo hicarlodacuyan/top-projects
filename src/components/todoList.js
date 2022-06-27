@@ -72,6 +72,7 @@ const todoList = (() => {
     
             let inputText = document.createElement('input');
             inputText.type = 'text';
+            inputText.disabled = 'disabled';
             inputText.value = `${item.item}`;
             inputText.addEventListener('change', ev => {
                 handleInputChange(ev, index);
@@ -84,6 +85,7 @@ const todoList = (() => {
             editBtn.classList.add('edit');
             editBtn.textContent = 'Edit';
             editBtn.addEventListener('click', () => {
+                inputText.disabled = false;
                 inputText.focus();
             });
     
