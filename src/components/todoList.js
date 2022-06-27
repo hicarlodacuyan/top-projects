@@ -175,4 +175,4 @@ observable.subscribe('itemStatusChange', itemChangeStatus);
 observable.subscribe('clearCompletedItems', clearCompletedItems);
 observable.subscribe('itemStatusChange', countUpdateChangeStatus);
 
-export { todoList };
+export { todoList, countUpdateChangeStatus };
