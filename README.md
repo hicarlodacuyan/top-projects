@@ -7,6 +7,7 @@ This project is created for the sole purpose of learning and part of the "The Od
 
 * OOP Principles
 * Observer Pattern
+* localStorage API
 * ES6 Modules
 * SASS
 * Webpack
