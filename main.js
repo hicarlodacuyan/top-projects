@@ -2,6 +2,7 @@ const img = document.querySelector('img');
 const btn = document.querySelector('button');
 const searchBox = document.querySelector('input');
 
+// Converted async code from a regular promise syntax to async/await
 const getNewGif = async (query) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=12PiUjNAbWGBbK6bsVjQGYvITaSunyqR&s=${query}`, {mode: 'cors'});
     const gifData = await response.json();
