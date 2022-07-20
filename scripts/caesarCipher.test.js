@@ -15,3 +15,7 @@ test("abcdefghijklmnopqrstuvwxyz", () => {
 test("attack at dawn", () => {
   expect(caesarCipher("attack at dawn", 5)).toBe("fyyfhp fy ifbs");
 });
+
+test("attack at dawn", () => {
+  expect(caesarCipher("fyyfhp fy ifbs", -5)).toBe("attack at dawn");
+});

@@ -6,24 +6,18 @@ export default function caesarCipher(string, offset) {
     Convert the string param to iterable array 
     Transform each character to a number(with the given param offset modulo of 26)
   */
-  [...string].forEach((char) => {
-    const newChar = (charToNum(char) + offset) % 26;
-    convertedString.push(newChar);
-  });
+  [...string].forEach((char) =>
+    convertedString.push(mod(charToNum(char) + offset, 26))
+  );
 
   /* 
     Check each number:
       If it's not a number, push an empty space
       Else simply push it to the resulting array
   */
-  convertedString.forEach((num) => {
-    if (isNaN(num)) {
-      result.push(" ");
-      return;
-    }
-
-    result.push(numToChar(num));
-  });
+  convertedString.forEach((num) =>
+    isNaN(num) ? result.push(" ") : result.push(numToChar(num))
+  );
 
   // Join resulting array
   return result.join("");
@@ -93,4 +87,8 @@ function numToChar(num) {
   };
 
   return numCharPairs[num];
+}
+
+function mod(n, m) {
+  return ((n % m) + m) % m;
 }
