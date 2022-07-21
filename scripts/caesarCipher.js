@@ -1,6 +1,4 @@
 export default function caesarCipher(string, offset) {
-  let result = [];
-
   /* 
     1. Convert the string param to iterable array 
     2. Map each character to a number(with the given param offset modulo of 26)
