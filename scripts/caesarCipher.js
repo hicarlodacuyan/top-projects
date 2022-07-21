@@ -1,26 +1,21 @@
 export default function caesarCipher(string, offset) {
-  let convertedString = [];
   let result = [];
 
   /* 
-    Convert the string param to iterable array 
-    Transform each character to a number(with the given param offset modulo of 26)
+    1. Convert the string param to iterable array 
+    2. Map each character to a number(with the given param offset modulo of 26)
+    3. Check each number: If current number isNaN, concat a space
+       Else, simply concat the current number
+    4. Join the resulting array to a single string
   */
-  [...string].forEach((char) =>
-    convertedString.push(mod(charToNum(char) + offset, 26))
-  );
-
-  /* 
-    Check each number:
-      If it's not a number, push an empty space
-      Else simply push it to the resulting array
-  */
-  convertedString.forEach((num) =>
-    isNaN(num) ? result.push(" ") : result.push(numToChar(num))
-  );
-
-  // Join resulting array
-  return result.join("");
+  return [...string]
+    .map((char) => mod(charToNum(char) + offset, 26))
+    .reduce(
+      (prev, curr) =>
+        isNaN(curr) ? prev.concat(" ") : prev.concat(numToChar(curr)),
+      []
+    )
+    .join("");
 }
 
 function charToNum(char) {
