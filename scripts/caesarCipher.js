@@ -1,22 +1,27 @@
 export default function caesarCipher(string, offset) {
-  /* 
-    1. Convert the string param to iterable array 
-    2. Map each character to a number(with the given param offset modulo of 26)
-    3. Check each number: If current number isNaN, concat a space
-       Else, simply concat the current number
-    4. Join the resulting array to a single string
-  */
-  return [...string]
-    .map((char) => mod(charToNum(char) + offset, 26))
-    .reduce(
-      (prev, curr) =>
-        isNaN(curr) ? prev.concat(" ") : prev.concat(numToChar(curr)),
-      []
-    )
-    .join("");
+  // 1. Convert the string param to iterable array
+  return (
+    [...string]
+
+      // 2. Map each character to a number(with the given param offset modulo of 26)
+      .map((char) => modulo(charToNumber(char) + offset, 26))
+
+      /* 3. Check each number: If current number isNaN, concat a space
+          Else, simply concat the current number */
+      .reduce(
+        (previousNumber, currentNumber) =>
+          isNaN(currentNumber)
+            ? previousNumber.concat(" ")
+            : previousNumber.concat(numberToChar(currentNumber)),
+        []
+      )
+
+      // Join the resulting array to a single string
+      .join("")
+  );
 }
 
-function charToNum(char) {
+function charToNumber(char) {
   const charNumPairs = {
     a: 0,
     b: 1,
@@ -49,7 +54,7 @@ function charToNum(char) {
   return charNumPairs[char];
 }
 
-function numToChar(num) {
+function numberToChar(num) {
   const numCharPairs = {
     0: "a",
     1: "b",
@@ -82,6 +87,6 @@ function numToChar(num) {
   return numCharPairs[num];
 }
 
-function mod(n, m) {
+function modulo(n, m) {
   return ((n % m) + m) % m;
 }
