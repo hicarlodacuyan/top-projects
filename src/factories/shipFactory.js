@@ -1,4 +1,4 @@
-const shipFactory = (model, length) => {
+const shipFactory = (length) => {
   const state = new Array(length);
 
   const hit = (pos) => {
