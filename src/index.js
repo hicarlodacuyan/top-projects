@@ -1,11 +1,13 @@
 import "./style.css";
 import shipFactory from "./factories/shipFactory";
+import gameboardFactory from "./factories/gameboardFactory";
+
+const playerBoard = gameboardFactory();
 
 const carrier = shipFactory(5);
-carrier.hit(0);
-carrier.hit(1);
-carrier.hit(2);
-carrier.hit(3);
 
-console.log(carrier);
-console.log(carrier.isSunk());
+playerBoard.placeShip(0, 0, carrier);
+console.log(playerBoard.board);
+
+playerBoard.receiveAttack(0, 0);
+console.log(playerBoard.board);
