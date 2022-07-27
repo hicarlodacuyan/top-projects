@@ -1,5 +1,5 @@
 const shipFactory = (length) => {
-  const state = new Array(length);
+  const state = Array(length).fill(0);
 
   const hit = (pos) => {
     if (state[pos] === 1) return;
@@ -7,7 +7,7 @@ const shipFactory = (length) => {
     return (state[pos] = 1);
   };
 
-  const isSunk = () => !state.includes(undefined);
+  const isSunk = () => !state.includes(0);
 
   return { state, length, hit, isSunk };
 };
