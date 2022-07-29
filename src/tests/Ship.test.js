@@ -31,14 +31,14 @@ test("destroyed ship return status is type of boolean", () => {
   expect(typeof boat.noMoreShip() === "boolean").toBe(true);
 });
 
-test("ship must return coords where it has been placed on the board", () => {
+test("ship must return true if it has been placed on the given coords", () => {
   const boat1 = new Ship([new Coordinate(0, 0), new Coordinate(0, 1)], "boat1");
   const coord = new Coordinate(0, 0);
 
   expect(boat1.hasCoordinates(coord)).toBe(true);
 });
 
-test("found ship return status is type of boolean", () => {
+test("placed ship return status is type of boolean", () => {
   const boat2 = new Ship([new Coordinate(0, 0), new Coordinate(0, 1)], "boat2");
   const coord = new Coordinate(0, 0);
 
