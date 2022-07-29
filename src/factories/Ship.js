@@ -11,11 +11,11 @@ export default class Ship {
 
   /**
    * Registers that the ship has been hit
-   * @param {Object} theCoord
+   * @param {Object} atCoord
    */
-  shipHit(theCoord) {
+  isHit(atCoord) {
     this.coords.forEach((coord, index) => {
-      if (coord.equals(theCoord)) {
+      if (coord.equals(atCoord)) {
         this.coords.splice(index, 1);
       }
     });
@@ -25,18 +25,18 @@ export default class Ship {
    * Checks if there are any parts left of this ship
    * @returns true if there are no more coordinates - hence the ship is destroyed
    */
-  noMoreShip() {
+  hasSunk() {
     return this.coords.length === 0;
   }
 
   /**
    * Tests whether this ship is placed on these coordinates
-   * @param {Object} theCoord to test
+   * @param {Object} atCoord to test
    * @returns true if ship is on these coordinates, false if not
    */
-  hasCoordinates(theCoord) {
+  hasCoordinates(atCoord) {
     return this.coords.some((coord) => {
-      return coord.equals(theCoord);
+      return coord.equals(atCoord);
     });
   }
 }

@@ -16,19 +16,19 @@ test("ship length is type of number", () => {
 });
 
 test("ship must remove coords where it has been hit", () => {
-  boat.shipHit(new Coordinate(0, 0));
+  boat.isHit(new Coordinate(0, 0));
 
   expect(boat.coords.length).toBe(1);
 });
 
 test("ship must return true if it is destroyed", () => {
-  boat.shipHit(new Coordinate(0, 1));
+  boat.isHit(new Coordinate(0, 1));
 
-  expect(boat.noMoreShip()).toBe(true);
+  expect(boat.hasSunk()).toBe(true);
 });
 
 test("destroyed ship return status is type of boolean", () => {
-  expect(typeof boat.noMoreShip() === "boolean").toBe(true);
+  expect(typeof boat.hasSunk() === "boolean").toBe(true);
 });
 
 test("ship must return true if it has been placed on the given coords", () => {
