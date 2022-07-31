@@ -1,5 +1,6 @@
 export default class Board {
     constructor(size) {
+        // Size of board grid
         this.size = size;
 
         /**
@@ -47,5 +48,26 @@ export default class Board {
         });
         
         return true;
+    }
+
+    /**
+     * Places a ship on the board
+     * @param {Object} theShip object
+     */
+    placeShip(theShip) {
+        [...theShip.coords].forEach((coord) => {
+            const x = coord.getX();
+            const y = coord.getY();
+
+            // If ship is already in this field
+            if (this.fieldStatus[x][y] !== 0) {
+                throw new Error("Field is already occupied");
+            }
+
+            // Set fields to not empty, not hit
+            this.fieldStatus[x][y] = 2;
+        });
+
+        this.fleet.push(theShip);
     }
 }
