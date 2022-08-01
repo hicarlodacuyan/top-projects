@@ -39,4 +39,12 @@ export default class Ship {
       return coord.equals(atCoord);
     });
   }
+
+  /**
+   * Get the name of the ship
+   * @returns the value of the name variable
+   */
+  getName() {
+    return this.name;
+  }
 }
