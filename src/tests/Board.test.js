@@ -51,3 +51,30 @@ test("board return 1 if shot is place on empty field", () => {
 test("board return 3 if shot is place on field with ship but not hit yet", () => {
   expect(playerBoard.placeShot(new Coordinate(0, 1))).toBe(3);
 });
+
+test("board return name of the ship that has been destroyed", () => {
+  const aiBoard = new Board(10);
+  const destroyer = new Ship(
+    [new Coordinate(0, 0), new Coordinate(0, 1)],
+    "destroyer"
+  );
+
+  aiBoard.placeShip(destroyer);
+  aiBoard.placeShot(new Coordinate(0, 0));
+  aiBoard.placeShot(new Coordinate(0, 1));
+
+  expect(aiBoard.getFleetStatus()).toBe("destroyer");
+});
+
+test("board return empty string if no ship has been destroyed", () => {
+  const aiBoard = new Board(10);
+  const destroyer = new Ship(
+    [new Coordinate(0, 0), new Coordinate(0, 1)],
+    "destroyer"
+  );
+
+  aiBoard.placeShip(destroyer);
+  aiBoard.placeShot(new Coordinate(0, 0));
+
+  expect(aiBoard.getFleetStatus()).toBe("");
+});

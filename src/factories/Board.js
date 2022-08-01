@@ -94,22 +94,37 @@ export default class Board {
     const x = theCoord.getX();
     const y = theCoord.getY();
 
-    // If this field has been hit before, throw exception
-    if (this.fieldStatus[x][y] === 1 || this.fieldStatus[x][y] === 3) {
-      throw new Error("Field has already been hit");
-    } else if (this.fieldStatus[x][y] === 0) {
+    if (this.fieldStatus[x][y] === 0) {
       this.fieldStatus[x][y] = 1;
       return this.fieldStatus[x][y];
-    } else {
-      this.fieldStatus[x][y] = 3;
-
-      // We have a successful shot,
-      // and the ship must remember that it has been hit
-      this.fleet.forEach((ship) => {
-        if (ship.hasCoordinates(theCoord)) ship.isHit(theCoord);
-      });
-
-      return this.fieldStatus[x][y];
     }
+
+    if (this.fieldStatus[x][y] === 1 || this.fieldStatus[x][y] === 3) {
+      throw new Error("Field has already been hit");
+    }
+
+    this.fieldStatus[x][y] = 3;
+
+    // We have a successful shot, and the ship must remember that it has been hit
+    this.fleet.forEach((ship) => {
+      if (ship.hasCoordinates(theCoord)) ship.isHit(theCoord);
+    });
+
+    return this.fieldStatus[x][y];
+  }
+
+  /**
+   * Gets the name of a ship if it was destroyed and remove it from fleet
+   * This method must be called after every shot
+   * @returns the name of the ship that has been destroyed (if hasSunk return true),
+   * Or an empty string is ship was not destroyed
+   */
+  getFleetStatus() {
+    const destroyedShip = this.fleet.find((ship) => ship.hasSunk());
+    const index = this.fleet.indexOf(destroyedShip);
+
+    if (index > -1) this.fleet.splice(index, 1);
+
+    return destroyedShip === undefined ? "" : destroyedShip.getName();
   }
 }
