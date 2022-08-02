@@ -127,4 +127,14 @@ export default class Board {
 
     return destroyedShip === undefined ? "" : destroyedShip.getName();
   }
+
+  /**
+   * Game is over if fleet array is empty
+   * @returns true if game is over, false if not
+   */
+  isGameOver() {
+    if (this.fleet.length === 0) return true;
+
+    return false;
+  }
 }

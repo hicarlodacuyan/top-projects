@@ -78,3 +78,19 @@ test("board return empty string if no ship has been destroyed", () => {
 
   expect(aiBoard.getFleetStatus()).toBe("");
 });
+
+test("board return true if game is over", () => {
+  const gameOverBoard = new Board(10);
+  const destroyer = new Ship(
+    [new Coordinate(0, 0), new Coordinate(0, 1)],
+    "destroyer"
+  );
+
+  gameOverBoard.placeShip(destroyer);
+  gameOverBoard.placeShot(new Coordinate(0, 0));
+  gameOverBoard.getFleetStatus();
+  gameOverBoard.placeShot(new Coordinate(0, 1));
+  gameOverBoard.getFleetStatus();
+
+  expect(gameOverBoard.isGameOver()).toBe(true);
+});
