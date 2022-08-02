@@ -94,3 +94,17 @@ test("board return true if game is over", () => {
 
   expect(gameOverBoard.isGameOver()).toBe(true);
 });
+
+test("board return false if game is not over", () => {
+  const gameOverBoard = new Board(10);
+  const destroyer = new Ship(
+    [new Coordinate(0, 0), new Coordinate(0, 1)],
+    "destroyer"
+  );
+
+  gameOverBoard.placeShip(destroyer);
+  gameOverBoard.placeShot(new Coordinate(0, 0));
+  gameOverBoard.getFleetStatus();
+
+  expect(gameOverBoard.isGameOver()).toBe(false);
+});
