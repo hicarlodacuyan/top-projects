@@ -83,6 +83,7 @@ body {
   flex-direction: column;
 }
 
+/* Header Styling */
 .primary-header {
   background-color: var(--clr-light-gray);
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -111,6 +112,11 @@ body {
   font-weight: bold;
 }
 
+.author > a {
+  color: inherit;
+}
+
+/* Game Styling */
 .game {
   flex: 1;
 
@@ -195,6 +201,10 @@ body {
 .board-cell {
   height: 100%;
   width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .board-player-1 > .board-cell {
@@ -232,4 +242,69 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
   color: var(--clr-dark-gray);
+}
+
+.ship-front {
+  height: 100%;
+  background-color: var(--clr-light-gray);
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship-body {
+  background-color: var(--clr-light-gray);
+  height: 100%;
+
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ship-back {
+  background-color: var(--clr-light-gray);
+  height: 100%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hit {
+  height: 50%;
+  width: 50%;
+  background-color: var(--clr-red);
+  border-radius: 50%;
+}
+
+.occupied-not-hit {
+  height: 40%;
+  width: 40%;
+  background-color: var(--clr-gray);
+  border-radius: 50%;
+}
+
+.hit-missed-player-1 {
+  height: 50%;
+  width: 50%;
+  background-color: var(--clr-blue);
+  border-radius: 50%;
+}
+
+.hit-missed-player-2 {
+  height: 50%;
+  width: 50%;
+  background-color: var(--clr-gray);
+  border-radius: 50%;
 }
