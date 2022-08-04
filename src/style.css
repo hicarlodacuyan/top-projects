@@ -86,7 +86,7 @@ body {
 /* Header Styling */
 .primary-header {
   background-color: var(--clr-light-gray);
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 3rem 0.5rem 3rem;
 }
 
 .container {
@@ -153,6 +153,8 @@ body {
 }
 
 .board-container {
+  flex: 1;
+
   display: grid;
   grid-template-areas:
     "blank labels-char labels-char"
@@ -174,6 +176,9 @@ body {
   font-size: 1rem;
   text-align: center;
   color: var(--clr-dark-gray);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .labels-char {
@@ -189,6 +194,15 @@ body {
 .labels-char > p {
   flex: 1;
   text-align: center;
+}
+
+.labels-num > p {
+  flex: 1;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .board {
