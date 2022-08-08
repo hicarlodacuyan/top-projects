@@ -212,7 +212,7 @@ body {
   grid-template-columns: repeat(10, 1fr);
 }
 
-.board-cell {
+.board-cell-1 {
   height: 100%;
   width: 100%;
 
@@ -221,12 +221,21 @@ body {
   align-items: center;
 }
 
-.board-player-1 > .board-cell {
+.board-cell-2 {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-player-1 > .board-cell-1 {
   background-color: var(--clr-light-blue);
   border: 1px solid white;
 }
 
-.board-player-2 > .board-cell {
+.board-player-2 > .board-cell-2 {
   background-color: var(--clr-light-gray);
   border: 1px solid white;
 }
