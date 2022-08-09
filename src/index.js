@@ -60,12 +60,8 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
 
       if (AIBoard.isGameOver()) {
-        setTimeout(() => {
-          return alert(`Game Over! You won!`);
-        }, 100);
-
-        return;
-      }
+        return setTimeout(() => alert(`Game Over! You won!`), 100);
+      } 
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
       setTimeout(() => {
@@ -77,33 +73,34 @@ function handlePlayerTurn() {
 
 // AI Player Game Controller
 function handleOpponentTurn() {
-  const coords = new Coordinate(randomNumber(0, 9), randomNumber(0, 9));
+  let coords = new Coordinate(randomNumber(0, 9), randomNumber(0, 9));
 
-  if (!playerBoard.canPlaceShot(coords)) {
-    /**
-     * If placing a shot at random coords failed,
-     * recursively call the function until a shot has made.
-     */
-    console.log(`Can't place shot there! Trying again.`);
-    handleOpponentTurn();
+  /**
+   * If the shot is valid, place the shot.
+   * Else, generate a new coords while shot is invalid and try again.
+   */
+  if (playerBoard.canPlaceShot(coords)) {
+    playerBoard.placeShot(coords);
+    playerBoard.getFleetStatus();
   } else {
-    try {
-      playerBoard.placeShot(coords);
-      playerBoard.getFleetStatus();
+    let invalidShot = true;
 
-      render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
-      render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
-    } catch (err) {
-      console.log(err);
+    while (invalidShot) {
+      coords = new Coordinate(randomNumber(0, 9), randomNumber(0, 9));
+
+      if (playerBoard.canPlaceShot(coords)) {
+        playerBoard.placeShot(coords);
+        playerBoard.getFleetStatus();
+        invalidShot = false;
+      }
     }
   }
 
-  if (playerBoard.isGameOver()) {
-    setTimeout(() => {
-      return alert("Game Over! AI won.");
-    }, 100);
+  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
+  render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
 
-    return;
+  if (playerBoard.isGameOver()) {
+    return setTimeout(() => alert(`Game Over! Opponent won!`), 100);
   }
 
   // Pass the current turn to Human Player Game Controller
