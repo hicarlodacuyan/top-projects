@@ -1,9 +1,9 @@
 export default function boardComponent(theBoard, player) {
-  return theBoard.fieldStatus
-    .map((row, coordX) =>
-      row
-        .map((col, coordY) => {
-          if (theBoard.getFieldStatus(coordX, coordY) === 1) {
+  return theBoard.fieldStatus.map((row, coordX) =>
+      row.map((col, coordY) => {
+          const status = theBoard.getFieldStatus(coordX, coordY);
+
+          if (status === 1) {
             return `
               <div class="board-cell-${player}">
                 <div class="hit-missed-player-1"></div>
@@ -11,7 +11,7 @@ export default function boardComponent(theBoard, player) {
             `;
           }
 
-          if (theBoard.getFieldStatus(coordX, coordY) === 2) {
+          if (status === 2) {
             return `
               <div class="board-cell-${player}">
                 <div class="ship-body">
@@ -21,7 +21,7 @@ export default function boardComponent(theBoard, player) {
             `;
           }
 
-          if (theBoard.getFieldStatus(coordX, coordY) === 3) {
+          if (status === 3) {
             return `
               <div class="board-cell-${player}">
                 <div class="ship-body">
