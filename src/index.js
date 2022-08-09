@@ -60,7 +60,11 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
 
       if (AIBoard.isGameOver()) {
-        return alert(`Game Over! You won!`);
+        setTimeout(() => {
+          return alert(`Game Over! You won!`);
+        }, 100);
+
+        return;
       }
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
@@ -95,7 +99,11 @@ function handleOpponentTurn() {
   }
 
   if (playerBoard.isGameOver()) {
-    return alert("Game Over! AI won.");
+    setTimeout(() => {
+      return alert("Game Over! AI won.");
+    }, 100);
+
+    return;
   }
 
   // Pass the current turn to Human Player Game Controller
