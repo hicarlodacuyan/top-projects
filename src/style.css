@@ -242,6 +242,10 @@ body {
   cursor: crosshair;
 }
 
+.board-player-2  .occupied-not-hit {
+  background-color: var(--clr-light-gray);
+}
+
 .shipyard {
   display: flex;
   gap: 1rem;

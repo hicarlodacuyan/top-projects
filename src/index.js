@@ -9,11 +9,11 @@ import randomNumber from "./lib/randomNumber";
 
 // Initialization of Human Player Board and Ships
 const playerBoard = new Board(10);
-const cruiser     = new Ship([new Coordinate(0, 0), new Coordinate(0, 1)], "cruiser");
-const submarine   = new Ship([new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2)], "submarine");
-const destroyer   = new Ship([new Coordinate(4, 0), new Coordinate(4, 1), new Coordinate(4, 2)], "destroyer");
-const battleship  = new Ship([new Coordinate(6, 0), new Coordinate(6, 1), new Coordinate(6, 2), new Coordinate(6, 3)], "battleship");
-const carrier     = new Ship([new Coordinate(8, 0), new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4)], "carrier");
+const cruiser     = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+const submarine   = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+const destroyer   = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+const battleship  = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+const carrier     = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
 
 // Place initial Ships to Human Player Board
 playerBoard.placeShip(cruiser);
@@ -27,11 +27,11 @@ render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1")
 
 // Initialization of AI Player Board and Ships
 const AIBoard     = new Board(10);
-const cruiser2    = new Ship([new Coordinate(0, 0), new Coordinate(0, 1)], "cruiser");
-const submarine2  = new Ship([new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2)], "submarine");
-const destroyer2  = new Ship([new Coordinate(4, 0), new Coordinate(4, 1), new Coordinate(4, 2)], "destroyer");
-const battleship2 = new Ship([new Coordinate(6, 0), new Coordinate(6, 1), new Coordinate(6, 2), new Coordinate(6, 3)], "battleship");
-const carrier2    = new Ship([new Coordinate(8, 0), new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4)], "carrier");
+const cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+const submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+const destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+const battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+const carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
 
 // Place initial Ships to AI Player Board
 AIBoard.placeShip(cruiser2);
@@ -60,8 +60,7 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
 
       if (AIBoard.isGameOver()) {
-        console.log(`Game Over! You won!`);
-        return;
+        return alert(`Game Over! You won!`);
       }
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
@@ -96,8 +95,7 @@ function handleOpponentTurn() {
   }
 
   if (playerBoard.isGameOver()) {
-    console.log("Game Over! AI won.");
-    return;
+    return alert("Game Over! AI won.");
   }
 
   // Pass the current turn to Human Player Game Controller
