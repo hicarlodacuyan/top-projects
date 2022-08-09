@@ -1,10 +1,11 @@
 import "./style.css";
-import render from "./lib/render";
 import Board from "./factories/Board";
 import Ship from "./factories/Ship";
 import Coordinate from "./factories/Coordinate";
+import render from "./lib/render";
 import boardComponent from "./components/boardComponent";
 import randomNumber from "./lib/randomNumber";
+import shipyardComponent from "./components/shipyardComponent";
 
 const playerBoard = new Board(10);
 const cruiser = new Ship(
@@ -97,13 +98,19 @@ function handlePlayerTurn() {
 
       AIBoard.placeShot(new Coordinate(coords[0], coords[1]));
       AIBoard.getFleetStatus();
+
       render(
         boardComponent(AIBoard, 2),
         document.querySelector(".board-player-2")
       );
 
+      render(
+        shipyardComponent(AIBoard.fleet),
+        document.querySelector(".ships-2")
+      );
+
       if (AIBoard.isGameOver()) {
-        alert(`Game Over! You won!`);
+        console.log(`Game Over! You won!`);
         return;
       }
 
@@ -129,13 +136,18 @@ function handleOpponentTurn() {
         boardComponent(playerBoard, 1),
         document.querySelector(".board-player-1")
       );
+
+      render(
+        shipyardComponent(playerBoard.fleet),
+        document.querySelector(".ships-1")
+      );
     } catch (err) {
       console.log(err);
     }
   }
 
   if (playerBoard.isGameOver()) {
-    alert("Game Over! AI won.");
+    console.log("Game Over! AI won.");
     return;
   }
 
@@ -143,3 +155,10 @@ function handleOpponentTurn() {
 }
 
 handlePlayerTurn();
+
+render(
+  shipyardComponent(playerBoard.fleet),
+  document.querySelector(".ships-1")
+);
+
+render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));

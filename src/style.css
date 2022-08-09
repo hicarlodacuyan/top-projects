@@ -233,11 +233,13 @@ body {
 .board-player-1 > .board-cell-1 {
   background-color: var(--clr-light-blue);
   border: 1px solid white;
+  cursor: crosshair;
 }
 
 .board-player-2 > .board-cell-2 {
   background-color: var(--clr-light-gray);
   border: 1px solid white;
+  cursor: crosshair;
 }
 
 .shipyard {
@@ -264,6 +266,7 @@ body {
 
   font-size: 0.8rem;
   font-weight: bold;
+  text-transform: capitalize;
   color: var(--clr-dark-gray);
 }
 
