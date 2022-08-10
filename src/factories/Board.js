@@ -39,7 +39,7 @@ export default class Board {
       const x = coord.getX();
       const y = coord.getY();
 
-      if (x >= this.size || y >= this.size) return false;
+      if (x >= this.size || y >= this.size) throw new Error(`Out of covered area`);
 
       // If ship is already in this field
       if (this.fieldStatus[x][y] !== 0) return false;
