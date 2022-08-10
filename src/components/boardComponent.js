@@ -5,7 +5,7 @@ export default function boardComponent(theBoard, player) {
 
           if (status === 1) {
             return `
-              <div class="board-cell-${player}">
+              <div class="board-cell-${player}" data-coordx="${coordX}" data-coordy="${coordY}">
                 <div class="hit-missed-player-1"></div>
               </div>
             `;
@@ -13,7 +13,7 @@ export default function boardComponent(theBoard, player) {
 
           if (status === 2) {
             return `
-              <div class="board-cell-${player}">
+              <div class="board-cell-${player}" data-coordx="${coordX}" data-coordy="${coordY}">
                 <div class="ship-body">
                   <div class="occupied-not-hit"></div>
                 </div>
@@ -23,7 +23,7 @@ export default function boardComponent(theBoard, player) {
 
           if (status === 3) {
             return `
-              <div class="board-cell-${player}">
+              <div class="board-cell-${player}" data-coordx="${coordX}" data-coordy="${coordY}">
                 <div class="ship-body">
                   <div class="hit"></div>
                 </div>
@@ -31,7 +31,7 @@ export default function boardComponent(theBoard, player) {
             `;
           }
 
-          return `<div class="board-cell-${player}"></div>`;
+          return `<div class="board-cell-${player}" data-coordx="${coordX}" data-coordy="${coordY}"></div>`;
         })
         .join("")
     )

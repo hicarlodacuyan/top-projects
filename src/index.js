@@ -9,21 +9,81 @@ import randomNumber from "./lib/randomNumber";
 
 // Initialization of Human Player Board and Ships
 const playerBoard = new Board(10);
-const cruiser     = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
-const submarine   = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
-const destroyer   = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
-const battleship  = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
-const carrier     = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
+// const cruiser     = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+// const submarine   = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+// const destroyer   = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+// const battleship  = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+// const carrier     = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
 
-// Place initial Ships to Human Player Board
-playerBoard.placeShip(cruiser);
-playerBoard.placeShip(submarine);
-playerBoard.placeShip(destroyer);
-playerBoard.placeShip(battleship);
-playerBoard.placeShip(carrier);
+// // Place initial Ships to Human Player Board
+// playerBoard.placeShip(cruiser);
+// playerBoard.placeShip(submarine);
+// playerBoard.placeShip(destroyer);
+// playerBoard.placeShip(battleship);
+// playerBoard.placeShip(carrier);
 
 // Render to the DOM the initial Human Player Board State
 render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
+render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
+
+const carrierElement = document.querySelector(".carrier");
+
+carrierElement.addEventListener("dragstart", dragStart);
+
+function dragStart(e) {
+  console.log('drag starts...');
+  
+  e.dataTransfer.setData("text/plain", e.target.id);
+
+  setTimeout(() => {
+    e.target.classList.add('hide');
+  }, 0);
+}
+
+const cells = document.querySelectorAll(".board-cell-1");
+
+cells.forEach(cell => {
+  cell.addEventListener('dragenter', dragEnter)
+  cell.addEventListener('dragover', dragOver);
+  cell.addEventListener('dragleave', dragLeave);
+  cell.addEventListener('drop', drop);
+});
+
+function dragEnter(e) {
+  e.preventDefault();
+  e.target.classList.add('drag-over');
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.target.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+  e.target.classList.remove('drag-over');
+}
+
+function drop(e) {
+  e.target.classList.remove('drag-over');
+
+  const id = e.dataTransfer.getData('text/plain');
+  const draggable = document.getElementById(id);
+
+  const shipCoords = [];
+  let coordX = parseInt(e.target.dataset.coordx);
+  let coordY = parseInt(e.target.dataset.coordy);
+  
+  for (let i = 0; i < 5; i++) {
+    shipCoords.push(new Coordinate(coordX, coordY + i));
+  }
+
+  console.log(shipCoords);
+
+  const carrier = new Ship(shipCoords, "carrier");
+  playerBoard.placeShip(carrier);
+  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
+  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
+}
 
 // Initialization of AI Player Board and Ships
 const AIBoard     = new Board(10);

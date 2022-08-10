@@ -120,7 +120,8 @@ body {
 .game {
   flex: 1;
 
-  display: flex;
+  /* display: flex; */
+  display: none;
 }
 
 .player {
@@ -337,4 +338,33 @@ body {
   width: 50%;
   background-color: var(--clr-gray);
   border-radius: 50%;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.board-player-1-menu > .board-cell-1 {
+  background-color: var(--clr-light-blue);
+  border: 1px solid white;
+}
+
+.ship {
+  background-color: var(--clr-dark-gray);
+}
+
+.carrier {
+  width: 130px;
+  height: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.drag-over {
+  border: dashed 3px red;
 }
