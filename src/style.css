@@ -78,6 +78,7 @@ picture {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--clr-light-gray);
 
   display: flex;
   flex-direction: column;
@@ -85,7 +86,7 @@ body {
 
 /* Header Styling */
 .primary-header {
-  background-color: var(--clr-light-gray);
+  background-color: var(--clr-white);
   padding: 0.5rem 3rem 0.5rem 3rem;
 }
 
@@ -127,16 +128,34 @@ body {
   align-items: center;
 }
 
-.player {
-  
+@media screen and (max-width: 767px) {
+  .game {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
 
+.player {
   padding: 1.5rem 3rem 1.5rem 3rem;
+  background-color: var(--clr-white);
 
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
   width: 400px;
+}
+
+.player_1 {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.player_2{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .player_1 > h2 {
@@ -358,6 +377,8 @@ body {
 .menu-container > .player_1 {
   flex: none;
   width: 400px;
+
+  border-radius: 5px;
 }
 
 .board-player-1-menu > .board-cell-1 {
@@ -410,4 +431,19 @@ body {
 .cruiser {
   width: 50px;
   height: 25px;
+}
+
+.drag-over {
+  border: 1px solid var(--clr-red);
+}
+
+.draggable-indicator {
+  border-left: 2px solid var(--clr-red);
+  cursor: grab;
+}
+
+.footnote {
+  color: var(--clr-dark-gray);
+  font-size: 0.75rem;
+  font-style: italic;
 }

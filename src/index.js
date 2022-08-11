@@ -16,22 +16,11 @@ render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-m
 
 const menuContainer = document.querySelector(".menu-container");
 const gameContainer = document.querySelector(".game");
+const ships = document.querySelectorAll('.ship');
 
-const carrierElement = document.querySelector(".carrier");
-const battleshipElement = document.querySelector(".battleship");
-const destroyerElement = document.querySelector(".destroyer");
-const submarineElement = document.querySelector(".submarine");
-const cruiserElement = document.querySelector(".cruiser");
-
-carrierElement.addEventListener("dragstart", dragStart);
-battleshipElement.addEventListener("dragstart", dragStart);
-destroyerElement.addEventListener("dragstart", dragStart);
-submarineElement.addEventListener("dragstart", dragStart);
-cruiserElement.addEventListener("dragstart", dragStart);
+ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
 
 function dragStart(e) {
-  console.log('drag starts...');
-  
   e.dataTransfer.setData("text/plain", e.target.id);
 }
 
@@ -46,21 +35,18 @@ cells.forEach(cell => {
 
 function dragEnter(e) {
   e.preventDefault();
-  e.target.classList.add('drag-over');
 }
 
 function dragOver(e) {
   e.preventDefault();
-  e.target.classList.add('drag-over');
+  e.target.style.border = "1px solid red";
 }
 
 function dragLeave(e) {
-  e.target.classList.remove('drag-over');
+  e.target.style.border = "1px solid white";
 }
 
 function drop(e) {
-  e.target.classList.remove('drag-over');
-
   const id = e.dataTransfer.getData('text/plain');
   const draggable = document.getElementById(id);
 
@@ -73,7 +59,6 @@ function drop(e) {
     shipCoords.push(new Coordinate(coordX, coordY + i));
   }
 
-  console.log(shipCoords);
   const ship = new Ship(shipCoords, `${id}`);
   
   if (playerBoard.canPlaceShip(ship)) {
