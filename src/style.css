@@ -94,8 +94,9 @@ body {
 
 /* Header Styling */
 .primary-header {
-  background-color: var(--clr-white);
+  width: 100%;
   padding: 0.5rem 3rem 0.5rem 3rem;
+  background-color: var(--clr-light-gray);
 }
 
 .container {
@@ -132,19 +133,15 @@ body {
 
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   border: 20px solid transparent;
   border-radius: 20px;
   border-image: linear-gradient(45deg, var(--clr-dark-gray), var(--clr-gray)) 1;
 }
 
-@media screen and (max-width: 767px) {
-  .game {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+.players {
+  display: flex;
 }
 
 .player {
@@ -154,7 +151,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 400px;
+  width: 100%;
 }
 
 /* .player_1 {
@@ -380,9 +377,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   border: 20px solid;
   border-image: linear-gradient(45deg, var(--clr-dark-gray), var(--clr-gray)) 1;
+}
+
+.menu-container > .player {
+  padding: 0.75rem 1.5rem;
+
+  /* border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
+}
+
+.menu-container > .primary-header {
+  padding: 0.75rem 1.5rem;
+}
+
+.menu-container > .primary-header > .container > .title {
+  font-size: 1rem;
+}
+
+.menu-container > .primary-header > .container > .subtitle {
+  font-size: 0.6rem;
 }
 
 .menu-container > .player_1 {
@@ -458,4 +475,70 @@ body {
   color: var(--clr-dark-gray);
   font-size: 0.75rem;
   font-style: italic;
+}
+
+/* Mobile Layout */
+@media screen and (max-width: 767px) {
+  body {
+    display: block;
+  }
+
+  .primary-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .title {
+    font-size: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.5rem;
+  }
+
+  .game {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+
+    border: 10px solid transparent;
+    border-radius: 10px;
+    border-image: linear-gradient(45deg, var(--clr-dark-gray), var(--clr-gray)) 1;
+  }
+
+  .players {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .player {
+    padding: 1rem;
+  }
+
+  .player_1 {
+    flex: 1;
+  }
+
+  .player_2 {
+    flex: 2;
+  }
+
+  .board-container {
+    min-width: auto;
+    min-height: auto;
+  }
+
+  .menu-container > .player_1 {
+    width: 100%;
+  }
+
+  .menu-container > .primary-header > .container > .title {
+    font-size: 0.75rem;
+  }
+  
+  .menu-container > .primary-header > .container > .subtitle {
+    font-size: 0.5rem;
+  }
 }
