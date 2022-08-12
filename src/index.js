@@ -43,18 +43,15 @@ ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
 
 function drop(e) {
   const id = e.dataTransfer.getData("text/plain");
+  const ship = new Ship([], `${id}`);
   const draggable = document.getElementById(id);
-
-  let shipCoords = [];
+  const shipLength = draggable.dataset.shiplength;
   let coordX = parseInt(e.target.dataset.coordx);
   let coordY = parseInt(e.target.dataset.coordy);
-  let shipLength = draggable.dataset.shiplength;
 
   for (let i = 0; i < shipLength; i++) {
-    shipCoords.push(new Coordinate(coordX, coordY + i));
+    ship.coords.push(new Coordinate(coordX, coordY + i));
   }
-  
-  const ship = new Ship(shipCoords, `${id}`);
   
   if (playerBoard.canPlaceShip(ship)) {
     playerBoard.placeShip(ship);
@@ -66,7 +63,6 @@ function drop(e) {
     gameContainer.style.display = "flex";
   }
 
-  shipCoords = [];
   render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
   render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
   render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
@@ -100,7 +96,7 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
 
       if (AIBoard.isGameOver()) {
-        return setTimeout(() => alert(`Game Over! You won!`), 100);
+        return setTimeout(() => alert(`Game Over! You won!`), 500);
       } 
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
@@ -140,7 +136,7 @@ function handleOpponentTurn() {
   render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
 
   if (playerBoard.isGameOver()) {
-    return setTimeout(() => alert(`Game Over! Opponent won!`), 100);
+    return setTimeout(() => alert(`Game Over! Opponent won!`), 500);
   }
 
   // Pass the current turn to Human Player Game Controller
