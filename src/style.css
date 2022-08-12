@@ -275,6 +275,10 @@ body {
   cursor: crosshair;
 }
 
+.board-player-2 > .board-cell-2:hover {
+  filter: blur(1rem);
+}
+
 .board-player-2  .occupied-not-hit {
   background-color: var(--clr-light-gray);
 }
