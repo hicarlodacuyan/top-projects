@@ -11,6 +11,11 @@ import { dragStart, dragEnter, dragOver, dragLeave } from "./lib/drag";
 const ships = document.querySelectorAll(".ship");
 const gameContainer = document.querySelector(".game");
 const menuContainer = document.querySelector(".menu-container");
+const playerMenuContainer = document.querySelector(".board-player-1-menu");
+const playerBoardContainer = document.querySelector(".board-player-1");
+const playerShipsContainer = document.querySelector(".ships-1");
+const aiBoardContainer = document.querySelector(".board-player-2");
+const aiShipsContainer = document.querySelector(".ships-2");
 
 // Initialization of Human Player Board
 const playerBoard = new Board(10);
@@ -31,11 +36,11 @@ AIBoard.placeShip(battleship2);
 AIBoard.placeShip(carrier2);
 
 // Render to the DOM the initial Human Player Board State for Menu
-render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
+render(boardComponent(playerBoard, 1), playerMenuContainer);
 
 // Render to the DOM the initial AI Player Board and Ships State
-render(boardComponent(AIBoard, 2), document.querySelector(".board-player-2"));
-render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
+render(boardComponent(AIBoard, 2), aiBoardContainer);
+render(shipyardComponent(AIBoard.fleet), aiShipsContainer);
 
 // Attach event listeners to the Human Player Fields and Ships for drag/drop functionality
 fieldsAddEventListener();
@@ -63,9 +68,9 @@ function drop(e) {
     gameContainer.style.display = "flex";
   }
 
-  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
-  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
-  render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
+  render(boardComponent(playerBoard, 1), playerMenuContainer);
+  render(boardComponent(playerBoard, 1), playerBoardContainer);
+  render(shipyardComponent(playerBoard.fleet), playerShipsContainer);
 
   fieldsAddEventListener();
 }
@@ -92,8 +97,8 @@ function handlePlayerTurn() {
       AIBoard.placeShot(new Coordinate(coords[0], coords[1]));
       AIBoard.getFleetStatus();
 
-      render(boardComponent(AIBoard, 2), document.querySelector(".board-player-2"));
-      render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
+      render(boardComponent(AIBoard, 2), aiBoardContainer);
+      render(shipyardComponent(AIBoard.fleet), aiShipsContainer);
 
       if (AIBoard.isGameOver()) {
         return setTimeout(() => alert(`Game Over! You won!`), 500);
@@ -132,8 +137,8 @@ function handleOpponentTurn() {
     }
   }
 
-  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
-  render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
+  render(boardComponent(playerBoard, 1), playerBoardContainer);
+  render(shipyardComponent(playerBoard.fleet), playerShipsContainer);
 
   if (playerBoard.isGameOver()) {
     return setTimeout(() => alert(`Game Over! Opponent won!`), 500);
