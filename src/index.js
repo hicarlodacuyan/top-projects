@@ -37,9 +37,8 @@ render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-m
 render(boardComponent(AIBoard, 2), document.querySelector(".board-player-2"));
 render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
 
-// Attach event listeners to the Human Player Fields for drag/drop functionality
-attachFieldListener();
-
+// Attach event listeners to the Human Player Fields and Ships for drag/drop functionality
+fieldsAddEventListener();
 ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
 
 function drop(e) {
@@ -72,10 +71,10 @@ function drop(e) {
   render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
   render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
 
-  attachFieldListener();
+  fieldsAddEventListener();
 }
 
-function attachFieldListener() {
+function fieldsAddEventListener() {
   document.querySelectorAll(".board-cell-1").forEach(cell => {
     cell.addEventListener("dragenter", dragEnter)
     cell.addEventListener("dragover", dragOver);
