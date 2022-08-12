@@ -18,6 +18,10 @@ const menuContainer = document.querySelector(".menu-container");
 const gameContainer = document.querySelector(".game");
 const ships = document.querySelectorAll('.ship');
 
+// 0 - horizontal
+// 1 - vertical
+let orientation = 0;
+
 ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
 
 function dragStart(e) {
@@ -55,10 +59,16 @@ function drop(e) {
   let coordY = parseInt(e.target.dataset.coordy);
   let shipLength = draggable.dataset.shiplength;
 
-  for (let i = 0; i < shipLength; i++) {
-    shipCoords.push(new Coordinate(coordX, coordY + i));
+  if (orientation === 0) {
+    for (let i = 0; i < shipLength; i++) {
+      shipCoords.push(new Coordinate(coordX, coordY + i));
+    }
+  } else {
+    for (let i = 0; i < shipLength; i++) {
+      shipCoords.push(new Coordinate(coordX + i, coordY));
+    }
   }
-
+  
   const ship = new Ship(shipCoords, `${id}`);
   
   if (playerBoard.canPlaceShip(ship)) {
