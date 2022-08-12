@@ -6,95 +6,14 @@ import boardComponent from "./components/boardComponent";
 import shipyardComponent from "./components/shipyardComponent";
 import render from "./lib/render";
 import randomNumber from "./lib/randomNumber";
+import { dragStart, dragEnter, dragOver, dragLeave } from "./lib/drag";
 
-// Initialization of Human Player Board and Ships
-const playerBoard = new Board(10);
-
-// Render to the DOM the initial Human Player Board State
-render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
-render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
-
-const menuContainer = document.querySelector(".menu-container");
+const ships = document.querySelectorAll(".ship");
 const gameContainer = document.querySelector(".game");
-const ships = document.querySelectorAll('.ship');
+const menuContainer = document.querySelector(".menu-container");
 
-// 0 - horizontal
-// 1 - vertical
-let orientation = 0;
-
-ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
-
-function dragStart(e) {
-  e.dataTransfer.setData("text/plain", e.target.id);
-}
-
-const cells = document.querySelectorAll(".board-cell-1");
-
-cells.forEach(cell => {
-  cell.addEventListener('dragenter', dragEnter)
-  cell.addEventListener('dragover', dragOver);
-  cell.addEventListener('dragleave', dragLeave);
-  cell.addEventListener('drop', drop);
-});
-
-function dragEnter(e) {
-  e.preventDefault();
-}
-
-function dragOver(e) {
-  e.preventDefault();
-  e.target.style.border = "1px solid red";
-}
-
-function dragLeave(e) {
-  e.target.style.border = "1px solid white";
-}
-
-function drop(e) {
-  const id = e.dataTransfer.getData('text/plain');
-  const draggable = document.getElementById(id);
-
-  let shipCoords = [];
-  let coordX = parseInt(e.target.dataset.coordx);
-  let coordY = parseInt(e.target.dataset.coordy);
-  let shipLength = draggable.dataset.shiplength;
-
-  if (orientation === 0) {
-    for (let i = 0; i < shipLength; i++) {
-      shipCoords.push(new Coordinate(coordX, coordY + i));
-    }
-  } else {
-    for (let i = 0; i < shipLength; i++) {
-      shipCoords.push(new Coordinate(coordX + i, coordY));
-    }
-  }
-  
-  const ship = new Ship(shipCoords, `${id}`);
-  
-  if (playerBoard.canPlaceShip(ship)) {
-    playerBoard.placeShip(ship);
-    draggable.style.display = "none";
-  } else {
-    return;
-  }
-
-  if (playerBoard.fleet.length === 5) {
-    menuContainer.style.display = "none";
-    gameContainer.style.display = "flex";
-  }
-
-  shipCoords = [];
-  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
-  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
-  render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
-
-  document.querySelectorAll(".board-cell-1").forEach(cell => {
-    cell.addEventListener('dragenter', dragEnter)
-    cell.addEventListener('dragover', dragOver);
-    cell.addEventListener('dragleave', dragLeave);
-    cell.addEventListener('drop', drop);
-  });
-}
+// Initialization of Human Player Board
+const playerBoard = new Board(10);
 
 // Initialization of AI Player Board and Ships
 const AIBoard     = new Board(10);
@@ -111,12 +30,59 @@ AIBoard.placeShip(destroyer2);
 AIBoard.placeShip(battleship2);
 AIBoard.placeShip(carrier2);
 
-// Render to the DOM the initial AI Player Board State
-render(boardComponent(AIBoard, 2), document.querySelector(".board-player-2"));
+// Render to the DOM the initial Human Player Board State for Menu
+render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
 
-// Render to the DOM initial state of the Ships of both players
-render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
+// Render to the DOM the initial AI Player Board and Ships State
+render(boardComponent(AIBoard, 2), document.querySelector(".board-player-2"));
 render(shipyardComponent(AIBoard.fleet), document.querySelector(".ships-2"));
+
+// Attach event listeners to the Human Player Fields for drag/drop functionality
+attachFieldListener();
+
+ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
+
+function drop(e) {
+  const id = e.dataTransfer.getData("text/plain");
+  const draggable = document.getElementById(id);
+
+  let shipCoords = [];
+  let coordX = parseInt(e.target.dataset.coordx);
+  let coordY = parseInt(e.target.dataset.coordy);
+  let shipLength = draggable.dataset.shiplength;
+
+  for (let i = 0; i < shipLength; i++) {
+    shipCoords.push(new Coordinate(coordX, coordY + i));
+  }
+  
+  const ship = new Ship(shipCoords, `${id}`);
+  
+  if (playerBoard.canPlaceShip(ship)) {
+    playerBoard.placeShip(ship);
+    draggable.style.display = "none";
+  } else return;
+
+  if (playerBoard.fleet.length === 5) {
+    menuContainer.style.display = "none";
+    gameContainer.style.display = "flex";
+  }
+
+  shipCoords = [];
+  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1-menu"));
+  render(boardComponent(playerBoard, 1), document.querySelector(".board-player-1"));
+  render(shipyardComponent(playerBoard.fleet), document.querySelector(".ships-1"));
+
+  attachFieldListener();
+}
+
+function attachFieldListener() {
+  document.querySelectorAll(".board-cell-1").forEach(cell => {
+    cell.addEventListener("dragenter", dragEnter)
+    cell.addEventListener("dragover", dragOver);
+    cell.addEventListener("dragleave", dragLeave);
+    cell.addEventListener("drop", drop);
+  });
+}
 
 // Human Player Game Controller
 function handlePlayerTurn() {
