@@ -12,7 +12,7 @@ This project is created for the sole purpose of learning and part of the "The Od
 - Add ability to change orientation of ships
 - Add warning when field is out of covered area
 - Fix issue that text when highlighted can be drag and change the color of the hovered field
-- Fix issue that board stretches on mobile
+- ~~Fix issue that board stretches on mobile~~
 - Fix issue that fields are changing in size when a ship is being hovered into it
 
 **Game**

@@ -487,7 +487,7 @@ body {
 /* Mobile Layout */
 @media screen and (max-width: 767px) {
   body {
-    display: block;
+    display: flex;
   }
 
   .primary-header {
@@ -496,10 +496,22 @@ body {
 
   .title {
     font-size: 0.75rem;
+    flex: 1;
   }
 
   .subtitle {
     font-size: 0.5rem;
+    text-align: right;
+    flex: 1;
+  }
+
+  .menu-container > .player > .shipyard {
+    gap: 0.4rem;
+  }
+
+  .menu-container > .player > .shipyard > .ships {
+    grid-template-columns: none;
+    gap: 5px;
   }
 
   .game {
@@ -534,15 +546,15 @@ body {
   .board-container {
     min-width: auto;
     min-height: auto;
+    flex: none;
   }
 
   .menu-container {
-    height: 100%;
+    width: 95%;
   }
 
   .menu-container > .player_1 {
     width: 100%;
-    flex: 1;
   }
 
   .menu-container > .primary-header > .container > .title {
