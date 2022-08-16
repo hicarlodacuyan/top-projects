@@ -19,6 +19,7 @@ This project is created for the sole purpose of learning and part of the "The Od
 - Add tablet device support
 - Add landscape support for mobile devices
 - Add current player turn indicator
+- ~~Fix game display issue on mobile~~
 - Fix wallpaper issue on mobile not stretching when page is scrollable
 - Fix fields and board unreasonable auto resizing on mobile 
 - Fix issue that double clicking on a field allows player to temporarily hide placed shots UI
