@@ -93,7 +93,7 @@ function handlePlayerTurn() {
       if (coords.length === 1) {
         coords.unshift(0);
       }
-
+      
       AIBoard.placeShot(new Coordinate(coords[0], coords[1]));
       AIBoard.getFleetStatus();
 
