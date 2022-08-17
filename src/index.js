@@ -16,6 +16,7 @@ const playerBoardContainer = document.querySelector(".board-player-1");
 const playerShipsContainer = document.querySelector(".ships-1");
 const aiBoardContainer = document.querySelector(".board-player-2");
 const aiShipsContainer = document.querySelector(".ships-2");
+const resultsContainer = document.querySelector(".results");
 
 // Initialization of Human Player Board
 const playerBoard = new Board(10);
@@ -101,7 +102,7 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), aiShipsContainer);
 
       if (AIBoard.isGameOver()) {
-        return setTimeout(() => alert(`Game Over! You won!`), 500);
+        setTimeout(() => resultsContainer.style.display = "flex", 500);
       } 
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
@@ -141,7 +142,7 @@ function handleOpponentTurn() {
   render(shipyardComponent(playerBoard.fleet), playerShipsContainer);
 
   if (playerBoard.isGameOver()) {
-    return setTimeout(() => alert(`Game Over! Opponent won!`), 500);
+    setTimeout(() => resultsContainer.style.display = "flex", 500);
   }
 
   // Pass the current turn to Human Player Game Controller

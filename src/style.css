@@ -629,4 +629,9 @@ body {
   .menu-container > .primary-header > .container > .subtitle {
     font-size: 0.5rem;
   }
+
+  .results > .results-container > .player-winner {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 }
