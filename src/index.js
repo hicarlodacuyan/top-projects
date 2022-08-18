@@ -31,11 +31,11 @@ let playerBoard = new Board(10);
 
 // Initialization of AI Player Board and Ships
 let AIBoard     = new Board(10);
-const cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
-const submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
-const destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
-const battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
-const carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
+let cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+let submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+let destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+let battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+let carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
 
 // Place initial Ships to AI Player Board
 AIBoard.placeShip(cruiser2);
@@ -113,6 +113,7 @@ function handlePlayerTurn() {
         winner.textContent = "YOU WON!";
         playerWinner.textContent = "Player 1 takes the round";
         setTimeout(() => resultsContainer.style.display = "flex", 500);
+        return;
       } 
 
       // Pass the current turn to AI Player Game Controller after 1 second delay
@@ -155,6 +156,7 @@ function handleOpponentTurn() {
     winner.textContent = "YOU LOSE!";
     playerWinner.textContent = "Computer takes the round";
     setTimeout(() => resultsContainer.style.display = "flex", 500);
+    return;
   }
 
   // Pass the current turn to Human Player Game Controller
@@ -172,12 +174,12 @@ quitBtn.addEventListener("click", () => {
   playerBoard = new Board(10);
 
   // Reinitialization of AI Player Board and Ships
-  AIBoard           = new Board(10);
-  const cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
-  const submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
-  const destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
-  const battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
-  const carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
+  AIBoard     = new Board(10);
+  cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+  submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+  destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+  battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+  carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
 
   // Place initial Ships to AI Player Board
   AIBoard.placeShip(cruiser2);
@@ -202,5 +204,6 @@ quitBtn.addEventListener("click", () => {
   // Attach event listeners to the Human Player Fields and Ships for drag/drop functionality
   fieldsAddEventListener();
   ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
+
   handlePlayerTurn();
 });
