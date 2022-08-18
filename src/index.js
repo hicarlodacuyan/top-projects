@@ -17,12 +17,20 @@ const playerShipsContainer = document.querySelector(".ships-1");
 const aiBoardContainer = document.querySelector(".board-player-2");
 const aiShipsContainer = document.querySelector(".ships-2");
 const resultsContainer = document.querySelector(".results");
+const winner = document.querySelector(".winner");
+const playerWinner = document.querySelector(".player-winner");
+const quitBtn = document.querySelector(".quit");
+const menuCarrier = document.getElementById("carrier");
+const menuBattleship = document.getElementById("battleship");
+const menuDestroyer = document.getElementById("destroyer");
+const menuSubmarine = document.getElementById("submarine");
+const menuCruiser = document.getElementById("cruiser");
 
 // Initialization of Human Player Board
-const playerBoard = new Board(10);
+let playerBoard = new Board(10);
 
 // Initialization of AI Player Board and Ships
-const AIBoard     = new Board(10);
+let AIBoard     = new Board(10);
 const cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
 const submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
 const destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
@@ -102,6 +110,8 @@ function handlePlayerTurn() {
       render(shipyardComponent(AIBoard.fleet), aiShipsContainer);
 
       if (AIBoard.isGameOver()) {
+        winner.textContent = "YOU WON!";
+        playerWinner.textContent = "Player 1 takes the round";
         setTimeout(() => resultsContainer.style.display = "flex", 500);
       } 
 
@@ -142,6 +152,8 @@ function handleOpponentTurn() {
   render(shipyardComponent(playerBoard.fleet), playerShipsContainer);
 
   if (playerBoard.isGameOver()) {
+    winner.textContent = "YOU LOSE!";
+    playerWinner.textContent = "Computer takes the round";
     setTimeout(() => resultsContainer.style.display = "flex", 500);
   }
 
@@ -150,3 +162,45 @@ function handleOpponentTurn() {
 }
 
 handlePlayerTurn();
+
+quitBtn.addEventListener("click", () => {
+  resultsContainer.style.display = "none";
+  gameContainer.style.display = "none";
+  menuContainer.style.display = "flex";
+
+  // Reinitialization of Human Player Board
+  playerBoard = new Board(10);
+
+  // Reinitialization of AI Player Board and Ships
+  AIBoard           = new Board(10);
+  const cruiser2    = new Ship([new Coordinate(3, 6), new Coordinate(3, 7)], "cruiser");
+  const submarine2  = new Ship([new Coordinate(6, 9), new Coordinate(7, 9), new Coordinate(8, 9)], "submarine");
+  const destroyer2  = new Ship([new Coordinate(5, 0), new Coordinate(5, 1), new Coordinate(5, 2)], "destroyer");
+  const battleship2 = new Ship([new Coordinate(1, 3), new Coordinate(1, 4), new Coordinate(1, 5), new Coordinate(1, 6)], "battleship");
+  const carrier2    = new Ship([new Coordinate(8, 1), new Coordinate(8, 2), new Coordinate(8, 3), new Coordinate(8, 4), new Coordinate(8, 5)], "carrier");
+
+  // Place initial Ships to AI Player Board
+  AIBoard.placeShip(cruiser2);
+  AIBoard.placeShip(submarine2);
+  AIBoard.placeShip(destroyer2);
+  AIBoard.placeShip(battleship2);
+  AIBoard.placeShip(carrier2);
+
+  menuCarrier.style.display = "flex";
+  menuBattleship.style.display = "flex";
+  menuDestroyer.style.display = "flex";
+  menuSubmarine.style.display = "flex";
+  menuCruiser.style.display = "flex";
+
+  // Render to the DOM the initial Human Player Board State for Menu
+  render(boardComponent(playerBoard, 1), playerMenuContainer);
+
+  // Render to the DOM the initial AI Player Board and Ships State
+  render(boardComponent(AIBoard, 2), aiBoardContainer);
+  render(shipyardComponent(AIBoard.fleet), aiShipsContainer);
+
+  // Attach event listeners to the Human Player Fields and Ships for drag/drop functionality
+  fieldsAddEventListener();
+  ships.forEach((ship) => ship.addEventListener("dragstart", dragStart));
+  handlePlayerTurn();
+});
