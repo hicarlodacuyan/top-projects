@@ -172,6 +172,7 @@ handlePlayerTurn();
 quitBtn.addEventListener("click", () => {
   resultsContainer.style.display = "none";
   gameContainer.style.display = "none";
+  gameAndQuitBtnContainer.style.display = "none";
   menuContainer.style.display = "flex";
 
   // Reinitialization of Human Player Board
