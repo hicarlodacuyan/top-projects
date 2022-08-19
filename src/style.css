@@ -510,6 +510,20 @@ body {
   width: 100%;
 }
 
+.game-container {
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container > .quit {
+  align-self: flex-end;
+}
+
 .quit {
   color: var(--clr-white);
   cursor: pointer;
@@ -520,6 +534,21 @@ body {
   padding: 1rem;
   box-shadow: 0 5px #D00045;
   font-weight: bold;
+}
+
+.restart {
+  color: var(--clr-white);
+  cursor: pointer;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--clr-red);
+  padding: 1rem;
+  box-shadow: 0 5px #D00045;
+  font-weight: bold;
+  align-self: flex-end;
+
+  display: none;
 }
 
 .next-round {
@@ -548,6 +577,7 @@ body {
 @media screen and (max-width: 767px) {
   body {
     display: flex;
+    overflow-y: auto;
   }
 
   .primary-header {
@@ -565,6 +595,11 @@ body {
     flex: 1;
   }
 
+  .game-container {
+    gap: 0.5rem;
+    height: 95%;
+  }
+
   .menu-container > .player > .shipyard {
     gap: 0.4rem;
   }
@@ -579,13 +614,15 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: auto;
 
-    height: 95%;
-    width: 90%;
+    height: 90%;
 
     border: 20px solid rgba(108, 122, 137, .5);
     border-radius: 20px;
+  }
+
+  .restart {
+    padding: 0.5rem;
   }
 
   .players {
