@@ -26,7 +26,7 @@ This project is created for the sole purpose of learning and part of the "The Od
 - Fix issue of shot indicator hiding placed shots from view when hovered
 
 **Game over**
-- Add game over UI
+- ~~Add game over UI~~
 
 ### What I learned?
 
