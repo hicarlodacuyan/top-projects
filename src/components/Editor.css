@@ -1,4 +1,180 @@
 .editor-container {
-    background-color: blue;
+    background-color: #FFFFFF;
+    flex: 2;
+    padding: calc(8px + 1.5625vw);
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.heading-container {
+    margin-bottom: 2rem;
+}
+
+.editor-title {
+    font-weight: bold;
+    font-size: calc(16px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.editor-para {
+    color: #A0A0A3;
+    font-size: calc(8px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.contact-details {
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .contact-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.experience {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.experience-inputs {
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: 1fr 0.5fr 0.5fr;
+    grid-template-areas: 
+        "position company company"
+        "location experience-from experience-to";
+}
+
+@media screen and (max-width: 1024px) {
+    .experience-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .experience-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.position {
+    grid-area: position;
+}
+
+.company {
+    grid-area: company;
+}
+
+.experience-location {
+    grid-area: location;
+}
+
+.experience-from {
+    grid-area: experience-from;
+}
+
+.experience-to {
+    grid-area: experience-to;
+}
+
+.education {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.education-inputs {
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: 1fr 0.5fr 0.5fr;
+    grid-template-areas: 
+        "institution field-of-study field-of-study"
+        "education-location education-from education-to";
+}
+
+@media screen and (max-width: 1024px) {
+    .education-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .education-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.institution {
+    grid-area: institution;
+}
+
+.field-of-study {
+    grid-area: field-of-study;
+}
+
+.education-location {
+    grid-area: education-location;
+}
+
+.education-from {
+    grid-area: education-from;
+}
+
+.education-to {
+    grid-area: education-to;
+}
+
+h3 {
+    color: #A0A0A3;
+    font-weight: bold;
+    font-size: calc(12px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.add-btn {
+    color: #FFFFFF;
+    align-self: flex-end;
+    padding: 0.25rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #15069C;
+}
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=date] {
+    text-indent: 5px;
 }
