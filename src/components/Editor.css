@@ -70,6 +70,13 @@
         "location experience-from experience-to";
 }
 
+.experience-btns {
+    align-self: flex-end;
+    
+    display: flex;
+    gap: 1rem;
+}
+
 @media screen and (max-width: 1024px) {
     .experience-inputs {
         display: flex;
@@ -122,6 +129,13 @@
         "education-location education-from education-to";
 }
 
+.education-btns {
+    align-self: flex-end;
+    
+    display: flex;
+    gap: 1rem;
+}
+
 @media screen and (max-width: 1024px) {
     .education-inputs {
         display: flex;
@@ -160,6 +174,16 @@ h3 {
     color: #A0A0A3;
     font-weight: bold;
     font-size: calc(12px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.submit-btn {
+    color: #FFFFFF;
+    align-self: flex-end;
+    padding: 0.25rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #15069C;
 }
 
 .add-btn {
