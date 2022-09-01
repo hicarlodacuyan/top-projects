@@ -68,4 +68,5 @@ html:focus-within {
 body {
     background-color: #F6F7F7;
     font-family: Arial, Helvetica, sans-serif;
+    overscroll-behavior: contain;
 }
