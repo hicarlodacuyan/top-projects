@@ -4,8 +4,8 @@ import ContactDetails from './ContactDetails';
 import ExperienceDetails from './ExperienceDetails';
 
 class Editor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             experiences: [<ExperienceDetails />]
@@ -27,12 +27,12 @@ class Editor extends Component {
                     <h2 className='editor-title'>Editor</h2>
                     <p className='editor-para'>Completely fill-out the fields for best results</p>
                 </div>
-                <form className='editor-forms'>
-                    <ContactDetails />
+                <form className='editor-forms' onSubmit={this.props.submitHandler}>
+                    <ContactDetails state={this.props.state} changeHandler={this.props.changeHandler} />
                     <div className='experience'>
                         <h3 className='experience-title'>Experience</h3>
                         <div className='experiences'>
-                            {this.state.experiences.map((experience, index) => <ExperienceDetails key={index} item={index + 1} />)}
+                            {this.state.experiences.map((experience, index) => <ExperienceDetails key={index} item={index + 1} state={this.props.state} changeHandler={this.props.changeHandler} />)}
                         </div>
                         <input className='add-btn' type="button" value="Add" onClick={this.addExperience} />
                     </div>
