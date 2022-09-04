@@ -6,18 +6,6 @@ import ExperienceDetails from './ExperienceDetails';
 class Editor extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            experiences: [<ExperienceDetails />]
-        };
-
-        this.addExperience = this.addExperience.bind(this);
-    }
-
-    addExperience() {
-        this.setState({
-            experiences: this.state.experiences.concat(<ExperienceDetails />)
-        })
     }
 
     render() {
@@ -32,24 +20,22 @@ class Editor extends Component {
                     <div className='experience'>
                         <h3 className='experience-title'>Experience</h3>
                         <div className='experiences'>
-                            {this.state.experiences.map((experience, index) => <ExperienceDetails key={index} item={index + 1} state={this.props.state} changeHandler={this.props.changeHandler} />)}
+                            {this.props.state.experiences.map((exp) => <ExperienceDetails state={exp} changeHandler={this.props.changeHandler} />)}
                         </div>
-                        <input className='add-btn' type="button" value="Add" onClick={this.addExperience} />
+                        <input className='add-btn' type="button" value="Add" onClick={this.props.experienceHandler} />
                     </div>
 
                     <div className='education'>
                         <h3 className='education-title'>Education</h3>
-                        <div className='education-inputs'>
+                        {/* <div className='education-inputs'>
                             <input className='institution' type="text" placeholder='Institution' />
                             <input className='field-of-study' type="text" placeholder='Field of Study' />
                             <input className='education-location' type="text" placeholder='Location' />
                             <input className='education-from' type="date" placeholder='From' />
                             <input className='education-to' type="date" placeholder='To' />
-                        </div>
+                        </div> */}
                         <input className='add-btn' type="button" value="Add" />
                     </div>
-
-                    <input className='submit-btn' type="submit" value="Submit" />
                 </form>
             </section>
         );

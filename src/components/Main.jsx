@@ -14,13 +14,11 @@ class Main extends Component {
             address: '', 
             phoneNumber: '', 
             email: '',
-            contactDetails: []
+            experiences: []
         };
 
-        this.experience = {};
-
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.addExperience = this.addExperience.bind(this);
     }
 
     handleChange(event) {
@@ -32,22 +30,22 @@ class Main extends Component {
         });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-
-        const { firstName, lastName, title, address, phoneNumber, email } = this.state;
-
+    addExperience() {
         this.setState({
-            contactDetails: [firstName, lastName, title, address, phoneNumber, email]
-        })
-
-        console.log(this.state);
+            experiences: [...this.state.experiences].concat({
+                position: '',
+                company: '',
+                experienceLocation: '',
+                experienceFrom: '',
+                experienceTo: ''
+            })
+        });
     }
 
     render() {
         return (
             <main className="main-container">
-                <Editor state={this.state} changeHandler={this.handleChange} submitHandler={this.handleSubmit} />
+                <Editor state={this.state} changeHandler={this.handleChange} experienceHandler={this.addExperience} />
                 <Preview state={this.state} />
             </main>
         );

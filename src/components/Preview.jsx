@@ -7,14 +7,19 @@ class Preview extends Component {
     }
 
     render() {
-        const { contactDetails } = this.props.state;
-
+        const { firstName, lastName, title, address, phoneNumber, email, experiences } = this.props.state;
+        
         return (
             <section className="preview-container">
                 <h2 className='preview-title'>Preview</h2>
                 <div className='output-preview'>
                     <div className='preview-contact-details'>
-                        {contactDetails.map((data) => <p key={data}>{data}</p>)}
+                        <p>{firstName}</p>
+                        <p>{lastName}</p>
+                        <p>{title}</p>
+                        <p>{address}</p>
+                        <p>{phoneNumber}</p>
+                        <p>{email}</p>
                     </div>
                 </div>
                 <button className='print-btn'>Print</button>
