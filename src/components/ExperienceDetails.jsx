@@ -8,7 +8,7 @@ class ExperienceDetails extends Component {
   render() {
     return (
       <div className='experience-inputs'>
-            <p className="experience-number">Experience</p>
+            <p className="experience-number">Job {this.props.index + 1}</p>
 
             <input 
               className='position' 
@@ -60,6 +60,7 @@ class ExperienceDetails extends Component {
               placeholder='To'
               required />
 
+            <button className="delete-btn">Delete</button>
       </div>
     );
   }

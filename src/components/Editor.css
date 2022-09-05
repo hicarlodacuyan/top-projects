@@ -32,13 +32,13 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    
+    gap: 1rem;
 }
 
 .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 .contact-inputs {
@@ -64,13 +64,13 @@
 .experience {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    
 }
 
 .experiences {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    
 }
 
 .experience-inputs {
@@ -81,7 +81,10 @@
     grid-template-areas: 
         "experience experience experience"
         "position company company"
-        "location experience-from experience-to";
+        "location experience-from experience-to"
+        "delete delete delete";
+
+        margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -96,6 +99,21 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.experience-number {
+    grid-area: experience;
+    text-align: end;
+}
+
+.delete-btn {
+    grid-area: delete;
+    color: #FFFFFF;
+    padding: 0.25rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #B00020;
 }
 
 .experience {
@@ -125,7 +143,6 @@
 .education {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 .education-inputs {
