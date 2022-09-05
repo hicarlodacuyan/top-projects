@@ -7,7 +7,7 @@ class Preview extends Component {
     }
 
     render() {
-        const { contactDetails, experiences } = this.props.state;
+        const { contactDetails, experiences, educations } = this.props.state;
         
         return (
             <section className="preview-container">
@@ -28,6 +28,15 @@ class Preview extends Component {
                             <p>{exp.experienceLocation}</p>
                             <p>{exp.experienceFrom}</p>
                             <p>{exp.experienceTo}</p>
+                        </div>
+                    )}
+                    {educations.map((exp, index) => 
+                        <div className='preview-education-details' key={index}>
+                            <p>{exp.institution}</p>
+                            <p>{exp.fieldOfStudy}</p>
+                            <p>{exp.educationLocation}</p>
+                            <p>{exp.educationFrom}</p>
+                            <p>{exp.educationTo}</p>
                         </div>
                     )}
                 </div>

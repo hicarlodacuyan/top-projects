@@ -84,7 +84,7 @@
         "location experience-from experience-to"
         "delete delete delete";
 
-        margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -150,9 +150,13 @@
     gap: 1rem;
 
     grid-template-columns: 1fr 0.5fr 0.5fr;
-    grid-template-areas: 
+    grid-template-areas:
+        "education education education" 
         "institution field-of-study field-of-study"
-        "education-location education-from education-to";
+        "education-location education-from education-to"
+        "educationDelete educationDelete educationDelete";
+
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -167,6 +171,21 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.education-number {
+    grid-area: education;
+    text-align: end;
+}
+
+.education-delete-btn {
+    grid-area: educationDelete;
+    color: #FFFFFF;
+    padding: 0.25rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #B00020;
 }
 
 .institution {

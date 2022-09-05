@@ -16,12 +16,16 @@ class Main extends Component {
                 phoneNumber: '', 
                 email: ''
             },
-            experiences: []
+            experiences: [],
+            educations: []
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.addExperience = this.addExperience.bind(this);
         this.handleExperienceChange = this.handleExperienceChange.bind(this);
+        this.addEducation = this.addEducation.bind(this);
+        this.handleEducationChange = this.handleEducationChange.bind(this);
     }
 
     handleChange(event) {
@@ -34,6 +38,10 @@ class Main extends Component {
                 [name]: value
             }
         }));
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
     }
 
     handleExperienceChange(event) {
@@ -51,6 +59,21 @@ class Main extends Component {
         }));
     }
 
+    handleEducationChange(event) {
+        const { value, name } = event.target;
+        const key = event.target.dataset.key;
+
+        let educations = [...this.state.educations];
+        let education = {...educations[key]};
+        education[name] = value;
+        educations[key] = education;
+
+        this.setState(prevState => ({
+            ...prevState,
+            educations
+        }))
+    }
+
     addExperience() {
         this.setState(prevState => ({
             ...prevState,
@@ -64,10 +87,30 @@ class Main extends Component {
         }));
     }
 
+    addEducation() {
+        this.setState(prevState => ({
+            ...prevState,
+            educations: [...prevState.educations].concat({
+                institution: '',
+                fieldOfStudy: '',
+                educationLocation: '',
+                educationFrom: '',
+                educationTo: ''
+            })
+        }));
+    }
+
     render() {
         return (
             <main className="main-container">
-                <Editor state={this.state} changeHandler={this.handleChange} experienceHandler={this.addExperience} changeExperienceHandler={this.handleExperienceChange} />
+                <Editor 
+                    state={this.state} 
+                    changeHandler={this.handleChange} 
+                    submitHandler={this.handleSubmit} 
+                    experienceHandler={this.addExperience} 
+                    changeExperienceHandler={this.handleExperienceChange} 
+                    educationHandler={this.addEducation}
+                    changeEducationHandler={this.handleEducationChange} />
                 <Preview state={this.state} />
             </main>
         );
