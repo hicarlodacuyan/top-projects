@@ -8,44 +8,66 @@ class Main extends Component {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: '',
-            title: '', 
-            address: '', 
-            phoneNumber: '', 
-            email: '',
+            contactDetails: {
+                firstName: '',
+                lastName: '',
+                title: '', 
+                address: '', 
+                phoneNumber: '', 
+                email: ''
+            },
             experiences: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.addExperience = this.addExperience.bind(this);
+        this.handleExperienceChange = this.handleExperienceChange.bind(this);
     }
 
     handleChange(event) {
-        const value = event.target.value;
+        const { value, name } = event.target;
 
-        this.setState({
-            ...this.state,
-            [event.target.name]: value
-        });
+        this.setState(prevState => ({
+            ...prevState,
+            contactDetails: {
+                ...prevState.contactDetails,
+                [name]: value
+            }
+        }));
+    }
+
+    handleExperienceChange(event) {
+        const { value, name } = event.target;
+        const key = event.target.dataset.key;
+
+        let experiences = [...this.state.experiences];
+        let experience = {...experiences[key]};
+        experience[name] = value;
+        experiences[key] = experience;
+        
+        this.setState(prevState => ({
+            ...prevState,
+            experiences
+        }));
     }
 
     addExperience() {
-        this.setState({
-            experiences: [...this.state.experiences].concat({
+        this.setState(prevState => ({
+            ...prevState,
+            experiences: [...prevState.experiences].concat({
                 position: '',
                 company: '',
                 experienceLocation: '',
                 experienceFrom: '',
                 experienceTo: ''
             })
-        });
+        }));
     }
 
     render() {
         return (
             <main className="main-container">
-                <Editor state={this.state} changeHandler={this.handleChange} experienceHandler={this.addExperience} />
+                <Editor state={this.state} changeHandler={this.handleChange} experienceHandler={this.addExperience} changeExperienceHandler={this.handleExperienceChange} />
                 <Preview state={this.state} />
             </main>
         );

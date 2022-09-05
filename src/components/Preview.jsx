@@ -7,20 +7,29 @@ class Preview extends Component {
     }
 
     render() {
-        const { firstName, lastName, title, address, phoneNumber, email, experiences } = this.props.state;
+        const { contactDetails, experiences } = this.props.state;
         
         return (
             <section className="preview-container">
                 <h2 className='preview-title'>Preview</h2>
                 <div className='output-preview'>
                     <div className='preview-contact-details'>
-                        <p>{firstName}</p>
-                        <p>{lastName}</p>
-                        <p>{title}</p>
-                        <p>{address}</p>
-                        <p>{phoneNumber}</p>
-                        <p>{email}</p>
+                        <p>{contactDetails.firstName}</p>
+                        <p>{contactDetails.lastName}</p>
+                        <p>{contactDetails.title}</p>
+                        <p>{contactDetails.address}</p>
+                        <p>{contactDetails.phoneNumber}</p>
+                        <p>{contactDetails.email}</p>
                     </div>
+                    {experiences.map((exp, index) => 
+                        <div className='preview-experience-details' key={index}>
+                            <p>{exp.position}</p>
+                            <p>{exp.company}</p>
+                            <p>{exp.experienceLocation}</p>
+                            <p>{exp.experienceFrom}</p>
+                            <p>{exp.experienceTo}</p>
+                        </div>
+                    )}
                 </div>
                 <button className='print-btn'>Print</button>
             </section>

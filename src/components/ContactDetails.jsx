@@ -14,7 +14,7 @@ class ContactDetails extends Component {
               type="text"
               name="firstName" 
               placeholder='First name'
-              value={this.props.state.firstName}
+              value={this.props.state.contactDetails.firstName}
               onChange={this.props.changeHandler}
               required />
 
@@ -22,7 +22,7 @@ class ContactDetails extends Component {
               type="text"
               name="lastName" 
               placeholder='Last name'
-              value={this.props.state.lastName}
+              value={this.props.state.contactDetails.lastName}
               onChange={this.props.changeHandler}
               required />
 
@@ -30,7 +30,7 @@ class ContactDetails extends Component {
               type="text" 
               name="title"
               placeholder='Title'
-              value={this.props.state.title}
+              value={this.props.state.contactDetails.title}
               onChange={this.props.changeHandler}
               required />
 
@@ -38,7 +38,7 @@ class ContactDetails extends Component {
               type="text"
               name="address" 
               placeholder='Address'
-              value={this.props.state.address}
+              value={this.props.state.contactDetails.address}
               onChange={this.props.changeHandler}
               required />
 
@@ -46,7 +46,7 @@ class ContactDetails extends Component {
               type="number"
               name="phoneNumber" 
               placeholder='Phone number'
-              value={this.props.state.phoneNumber}
+              value={this.props.state.contactDetails.phoneNumber}
               onChange={this.props.changeHandler}
               required />
 
@@ -54,7 +54,7 @@ class ContactDetails extends Component {
               type="email"
               name="email" 
               placeholder='Email'
-              value={this.props.state.email}
+              value={this.props.state.contactDetails.email}
               onChange={this.props.changeHandler}
               required />
 

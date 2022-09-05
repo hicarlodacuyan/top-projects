@@ -13,9 +13,10 @@ class ExperienceDetails extends Component {
             <input 
               className='position' 
               type="text"
-              name="experiences"
-              value={this.props.state.position}
-              onChange={this.props.changeHandler}
+              name="position"
+              data-key={this.props.index}
+              value={this.props.state.experiences[this.props.index].position}
+              onChange={this.props.changeExperienceHandler}
               placeholder='Position'
               required />
 
@@ -23,8 +24,9 @@ class ExperienceDetails extends Component {
               className='company' 
               type="text"
               name='company'
-              value={this.props.state.company}
-              onChange={this.props.changeHandler} 
+              data-key={this.props.index}
+              value={this.props.state.experiences[this.props.index].company}
+              onChange={this.props.changeExperienceHandler} 
               placeholder='Company'
               required />
               
@@ -32,8 +34,9 @@ class ExperienceDetails extends Component {
               className='experience-location' 
               type="text"
               name="experienceLocation"
-              value={this.props.state.experienceLocation}
-              onChange={this.props.changeHandler} 
+              data-key={this.props.index}
+              value={this.props.state.experiences[this.props.index].experienceLocation}
+              onChange={this.props.changeExperienceHandler} 
               placeholder='Location'
               required />
 
@@ -41,8 +44,9 @@ class ExperienceDetails extends Component {
               className='experience-from' 
               type="date"
               name="experienceFrom"
-              value={this.props.state.experienceFrom}
-              onChange={this.props.changeHandler}  
+              data-key={this.props.index}
+              value={this.props.state.experiences[this.props.index].experienceFrom}
+              onChange={this.props.changeExperienceHandler}  
               placeholder='From'
               required />
 
@@ -50,8 +54,9 @@ class ExperienceDetails extends Component {
               className='experience-to' 
               type="date"
               name="experienceTo"
-              value={this.props.state.experienceTo}
-              onChange={this.props.changeHandler} 
+              data-key={this.props.index}
+              value={this.props.state.experiences[this.props.index].experienceTo}
+              onChange={this.props.changeExperienceHandler} 
               placeholder='To'
               required />
 

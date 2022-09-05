@@ -20,7 +20,7 @@ class Editor extends Component {
                     <div className='experience'>
                         <h3 className='experience-title'>Experience</h3>
                         <div className='experiences'>
-                            {this.props.state.experiences.map((exp) => <ExperienceDetails state={exp} changeHandler={this.props.changeHandler} />)}
+                            {this.props.state.experiences.map((exp, index) => <ExperienceDetails key={index} state={this.props.state} index={index} changeExperienceHandler={this.props.changeExperienceHandler} />)}
                         </div>
                         <input className='add-btn' type="button" value="Add" onClick={this.props.experienceHandler} />
                     </div>
