@@ -8,4 +8,5 @@ This project is created for the sole purpose of learning and part of the "The Od
 
 - React
 - React State and Props
+- react-to-print library
 - Git Workflow

@@ -55,7 +55,7 @@ class Preview extends Component {
                 <ReactToPrint
                     trigger={() => <button className='print-btn'>Print</button>}
                     content={() => this.componentRef}
-                    documentTitle="New document"
+                    documentTitle="Print Resume"
                     pageStyle="print"
                 />
             </section>
