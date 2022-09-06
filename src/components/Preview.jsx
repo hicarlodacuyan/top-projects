@@ -1,5 +1,6 @@
 import './Preview.css';
 import React, { Component } from 'react';
+import ReactToPrint from 'react-to-print';
 
 class Preview extends Component {
     constructor(props) {
@@ -12,7 +13,10 @@ class Preview extends Component {
         return (
             <section className="preview-container">
                 <h2 className='preview-title'>Preview</h2>
-                <div className='output-preview'>
+                <div 
+                    className='output-preview'
+                    ref={el => (this.componentRef = el)}
+                >
                     <section className='preview-contact-container'>
                         <div className='preview-contact-details'>
                             <p className='firstName'>{contactDetails.firstName}</p>
@@ -48,10 +52,14 @@ class Preview extends Component {
                         )}
                     </section>
                 </div>
-                <button className='print-btn'>Print</button>
+                <ReactToPrint
+                    trigger={() => <button className='print-btn'>Print</button>}
+                    content={() => this.componentRef}
+                    documentTitle="New document"
+                    pageStyle="print"
+                />
             </section>
         );
-        
     }
 }
 
