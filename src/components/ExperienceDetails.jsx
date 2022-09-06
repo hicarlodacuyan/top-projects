@@ -60,7 +60,13 @@ class ExperienceDetails extends Component {
               placeholder='To'
               required />
 
-            <button className="delete-btn">Delete</button>
+            <button 
+              type="button"
+              className="delete-btn"
+              onClick={this.props.deleteExperienceHandler}
+              data-key={this.props.index}>
+                Delete
+            </button>
       </div>
     );
   }

@@ -60,7 +60,13 @@ class EducationDetails extends Component {
                     placeholder='To'
                     required />
 
-                <button className="education-delete-btn">Delete</button>
+                <button
+                    type="button"
+                    onClick={this.props.deleteEducationHandler} 
+                    className="education-delete-btn"
+                    data-key={this.props.index}>
+                        Delete
+                </button>
             </div> 
         );
     }

@@ -26,6 +26,8 @@ class Main extends Component {
         this.handleExperienceChange = this.handleExperienceChange.bind(this);
         this.addEducation = this.addEducation.bind(this);
         this.handleEducationChange = this.handleEducationChange.bind(this);
+        this.deleteExperience = this.deleteExperience.bind(this);
+        this.deleteEducation = this.deleteEducation.bind(this);
     }
 
     handleChange(event) {
@@ -100,6 +102,45 @@ class Main extends Component {
         }));
     }
 
+    // handleEducationChange(event) {
+    //     const { value, name } = event.target;
+    //     const key = event.target.dataset.key;
+
+    //     let educations = [...this.state.educations];
+    //     let education = {...educations[key]};
+    //     education[name] = value;
+    //     educations[key] = education;
+
+    //     this.setState(prevState => ({
+    //         ...prevState,
+    //         educations
+    //     }))
+    // }
+
+    deleteExperience(event) {
+        event.preventDefault();
+        const key = event.target.dataset.key;
+        let experiences = [...this.state.experiences];
+        experiences.splice(key, 1);
+
+        this.setState(prevState => ({
+            ...prevState,
+            experiences
+        }));
+    }
+
+    deleteEducation(event) {
+        event.preventDefault();
+        const key = event.target.dataset.key;
+        let educations = [...this.state.educations];
+        educations.splice(key, 1);
+
+        this.setState(prevState => ({
+            ...prevState,
+            educations
+        }));
+    }
+
     render() {
         return (
             <main className="main-container">
@@ -110,7 +151,9 @@ class Main extends Component {
                     experienceHandler={this.addExperience} 
                     changeExperienceHandler={this.handleExperienceChange} 
                     educationHandler={this.addEducation}
-                    changeEducationHandler={this.handleEducationChange} />
+                    changeEducationHandler={this.handleEducationChange}
+                    deleteExperienceHandler={this.deleteExperience}
+                    deleteEducationHandler={this.deleteEducation} />
                 <Preview state={this.state} />
             </main>
         );

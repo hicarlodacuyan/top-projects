@@ -24,7 +24,7 @@ class Editor extends Component {
                         <input className='add-btn' type="button" value="Add" onClick={this.props.experienceHandler} />
 
                         <div className='experiences'>
-                            {this.props.state.experiences.map((exp, index) => <ExperienceDetails key={index} state={this.props.state} index={index} changeExperienceHandler={this.props.changeExperienceHandler} />)}
+                            {this.props.state.experiences.map((exp, index) => <ExperienceDetails key={index} state={this.props.state} index={index} changeExperienceHandler={this.props.changeExperienceHandler} deleteExperienceHandler={this.props.deleteExperienceHandler} />)}
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@ class Editor extends Component {
                         <input className='add-btn' type="button" value="Add" onClick={this.props.educationHandler} />
 
                         <div className='educations'>
-                            {this.props.state.educations.map((edu, index) => <EducationDetails key={index} state={this.props.state} index={index} changeEducationHandler={this.props.changeEducationHandler} />)}
+                            {this.props.state.educations.map((edu, index) => <EducationDetails key={index} state={this.props.state} index={index} changeEducationHandler={this.props.changeEducationHandler} deleteEducationHandler={this.props.deleteEducationHandler} />)}
                         </div>
                     </div>
                 </form>
