@@ -24,24 +24,26 @@ class Preview extends Component {
                         </div>
                     </section>
                     <section className='preview-experience-container'>
+                        <h2 className='preview-experience-title'>Experience</h2>
                         {experiences.map((exp, index) => 
                             <div className='preview-experience-details' key={index}>
-                                <p>{exp.position}</p>
-                                <p>{exp.company}</p>
-                                <p>{exp.experienceLocation}</p>
-                                <p>{exp.experienceFrom}</p>
-                                <p>{exp.experienceTo}</p>
+                                <p className='position'>{exp.position}</p>
+                                <p className='experienceCompany'>{exp.company}</p>
+                                <p className='experienceLocation'>{exp.experienceLocation}</p>
+                                <p className='experienceFrom'>{exp.experienceFrom}</p>
+                                <p className='experienceTo'>{exp.experienceTo}</p>
                             </div>
                         )}
                     </section>
                     <section className='preview-education-container'>
+                        <h2 className='preview-education-title'>Education</h2>
                         {educations.map((exp, index) => 
                             <div className='preview-education-details' key={index}>
-                                <p>{exp.institution}</p>
-                                <p>{exp.fieldOfStudy}</p>
-                                <p>{exp.educationLocation}</p>
-                                <p>{exp.educationFrom}</p>
-                                <p>{exp.educationTo}</p>
+                                <p className='educationInstitution'>{exp.institution}</p>
+                                <p className='fieldOfStudy'>{exp.fieldOfStudy}</p>
+                                <p className='educationLocation'>{exp.educationLocation}</p>
+                                <p className='educationFrom'>{exp.educationFrom}</p>
+                                <p className='educationTo'>{exp.educationTo}</p>
                             </div>
                         )}
                     </section>
