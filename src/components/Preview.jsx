@@ -34,8 +34,10 @@ class Preview extends Component {
                                 <p className='position'>{exp.position}</p>
                                 <p className='experienceCompany'>{exp.company}</p>
                                 <p className='experienceLocation'>{exp.experienceLocation}</p>
-                                <p className='experienceFrom'>{exp.experienceFrom}</p>
-                                <p className='experienceTo'>{exp.experienceTo}</p>
+                                <div className='experienceDate'>
+                                    <p className='experienceFrom'>{exp.experienceFrom}—</p>
+                                    <p className='experienceTo'>{exp.experienceTo}</p>
+                                </div>
                             </div>
                         )}
                     </section>
@@ -46,8 +48,10 @@ class Preview extends Component {
                                 <p className='educationInstitution'>{exp.institution}</p>
                                 <p className='fieldOfStudy'>{exp.fieldOfStudy}</p>
                                 <p className='educationLocation'>{exp.educationLocation}</p>
-                                <p className='educationFrom'>{exp.educationFrom}</p>
-                                <p className='educationTo'>{exp.educationTo}</p>
+                                <div className='educationDate'>
+                                    <p className='educationFrom'>{exp.educationFrom}—</p>
+                                    <p className='educationTo'>{exp.educationTo}</p>
+                                </div>
                             </div>
                         )}
                     </section>

@@ -115,7 +115,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-        "position position position experienceFrom experienceTo"
+        "position position position experienceDate experienceDate"
         "experienceCompany experienceCompany experienceCompany experienceLocation experienceLocation";
 }
 
@@ -144,15 +144,12 @@
     font-style: italic;
 }
 
-.experienceFrom {
-    grid-area: experienceFrom;
-    text-align: right;
+.experienceDate {
+    display: flex;
+    justify-content: end;
+    align-items: center;
 
-    font-size: 0.75rem;
-}
-
-.experienceTo {
-    grid-area: experienceTo;
+    grid-area: experienceDate;
     text-align: right;
 
     font-size: 0.75rem;
@@ -164,7 +161,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-        "fieldOfStudy fieldOfStudy fieldOfStudy educationFrom educationTo"
+        "fieldOfStudy fieldOfStudy fieldOfStudy educationDate educationDate"
         "educationInstitution educationInstitution educationInstitution educationLocation educationLocation";
 }
 
@@ -175,6 +172,17 @@
     font-size: 0.8rem;
     color: #A0A0A3;
     font-style: italic;
+}
+
+.educationDate {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    grid-area: educationDate;
+    text-align: right;
+
+    font-size: 0.75rem;
 }
 
 .fieldOfStudy {
@@ -191,20 +199,6 @@
     font-size: 0.75rem;
     color: #A0A0A3;
     font-style: italic;
-}
-
-.educationFrom {
-    grid-area: educationFrom;
-    text-align: right;
-
-    font-size: 0.75rem;
-}
-
-.educationTo {
-    grid-area: educationTo;
-    text-align: right;
-
-    font-size: 0.75rem;
 }
 
 .preview-education-title {
