@@ -22,6 +22,15 @@
     flex: 1;
     background-color: #F6F7F7;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+
+    overflow-y: scroll;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .print-btn {
@@ -36,8 +45,67 @@
 
 .preview-contact-details {
     margin-bottom: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "firstName firstName lastName lastName"
+        "title title phoneNumber phoneNumber"
+        "address address email email";
+}
+
+.firstName {
+    grid-area: firstName;
+    text-align: right;
+
+    font-size: 2rem;
+    border-bottom: solid 1px #A0A0A3;
+}
+
+.firstName:after {
+    content: "\00a0";
+}
+
+.lastName {
+    grid-area: lastName;
+    text-align: left;
+
+    font-size: 2rem;
+    border-bottom: solid 1px #A0A0A3;
+}
+
+.title {
+    grid-area: title;
+    text-align: left;
+
+    font-size: 0.75rem;
+}
+
+.address {
+    grid-area: address;
+    text-align: left;
+
+    font-size: 0.75rem;
+}
+
+.phoneNumber {
+    grid-area: phoneNumber;
+    text-align: right;
+
+    font-size: 0.75rem;
+}
+
+.email {
+    grid-area: email;
+    text-align: right;
+
+    font-size: 0.7rem;
 }
 
 .preview-experience-details {
+    margin-bottom: 1rem;
+}
+
+.preview-education-details {
     margin-bottom: 1rem;
 }
