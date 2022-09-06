@@ -18,23 +18,21 @@ class Editor extends Component {
                 </div>
                 <form className='editor-forms' onSubmit={this.props.submitHandler}>
                     <ContactDetails state={this.props.state} changeHandler={this.props.changeHandler} />
-                    <div className='experience'>
+                    <div className='experience-inputs-container'>
                         <h3 className='experience-title'>Experience</h3>
-
-                        <input className='add-btn' type="button" value="Add" onClick={this.props.experienceHandler} />
-
+                        
                         <div className='experiences'>
                             {this.props.state.experiences.map((exp, index) => <ExperienceDetails key={index} state={this.props.state} index={index} changeExperienceHandler={this.props.changeExperienceHandler} deleteExperienceHandler={this.props.deleteExperienceHandler} />)}
+                            <input className='add-btn' type="button" value="Add" onClick={this.props.experienceHandler} />
                         </div>
                     </div>
 
                     <div className='education'>
                         <h3 className='education-title'>Education</h3>
 
-                        <input className='add-btn' type="button" value="Add" onClick={this.props.educationHandler} />
-
                         <div className='educations'>
                             {this.props.state.educations.map((edu, index) => <EducationDetails key={index} state={this.props.state} index={index} changeEducationHandler={this.props.changeEducationHandler} deleteEducationHandler={this.props.deleteEducationHandler} />)}
+                            <input className='add-btn' type="button" value="Add" onClick={this.props.educationHandler} />
                         </div>
                     </div>
                 </form>

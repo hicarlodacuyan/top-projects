@@ -61,21 +61,19 @@
     }
 }
 
-.experience {
+.experience-inputs-container {
     display: flex;
     flex-direction: column;
-    
 }
 
 .experiences {
     display: flex;
     flex-direction: column;
-    
 }
 
 .experience-inputs {
     display: grid;
-    gap: 1rem;
+    gap: 0.5rem;
 
     grid-template-columns: 1fr 0.5fr 0.5fr;
     grid-template-areas: 
@@ -84,7 +82,7 @@
         "location experience-from experience-to"
         "delete delete delete";
 
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -103,7 +101,7 @@
 
 .experience-number {
     grid-area: experience;
-    text-align: end;
+    text-align: start;
 }
 
 .delete-btn {
@@ -147,7 +145,7 @@
 
 .education-inputs {
     display: grid;
-    gap: 1rem;
+    gap: 0.5rem;
 
     grid-template-columns: 1fr 0.5fr 0.5fr;
     grid-template-areas:
@@ -156,7 +154,7 @@
         "education-location education-from education-to"
         "educationDelete educationDelete educationDelete";
 
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -175,7 +173,7 @@
 
 .education-number {
     grid-area: education;
-    text-align: end;
+    text-align: start;
 }
 
 .education-delete-btn {
@@ -222,6 +220,7 @@ h3 {
     cursor: pointer;
     border-radius: 4px;
     background-color: #15069C;
+    width: 100%;
 }
 
 .submit-btn {
