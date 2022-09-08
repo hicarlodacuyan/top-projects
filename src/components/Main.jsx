@@ -1,83 +1,68 @@
 import './Main.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Editor from './Editor';
 import Preview from './Preview';
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
+const Main = () => {
+    const [state, setState] = useState({
+        contactDetails: {
+            firstName: '',
+            lastName: '',
+            title: '', 
+            address: '', 
+            phoneNumber: '', 
+            email: ''
+        },
+        experiences: [],
+        educations: []
+    });
 
-        this.state = {
-            contactDetails: {
-                firstName: '',
-                lastName: '',
-                title: '', 
-                address: '', 
-                phoneNumber: '', 
-                email: ''
-            },
-            experiences: [],
-            educations: []
-        };
+    const handleSubmit = (event) => event.preventDefault();
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.addExperience = this.addExperience.bind(this);
-        this.handleExperienceChange = this.handleExperienceChange.bind(this);
-        this.addEducation = this.addEducation.bind(this);
-        this.handleEducationChange = this.handleEducationChange.bind(this);
-        this.deleteExperience = this.deleteExperience.bind(this);
-        this.deleteEducation = this.deleteEducation.bind(this);
-    }
-
-    handleChange(event) {
+    const handleChange = (event) => {
         const { value, name } = event.target;
 
-        this.setState(prevState => ({
+        setState((prevState) => ({
             ...prevState,
             contactDetails: {
                 ...prevState.contactDetails,
                 [name]: value
             }
-        }));
-    }
+        }))
+    };
 
-    handleSubmit(event) {
-        event.preventDefault();
-    }
-
-    handleExperienceChange(event) {
+    const handleExperienceChange = (event) => {
         const { value, name } = event.target;
         const key = event.target.dataset.key;
-
-        let experiences = [...this.state.experiences];
+        let experiences = [...state.experiences];
         let experience = {...experiences[key]};
+
         experience[name] = value;
         experiences[key] = experience;
-        
-        this.setState(prevState => ({
+
+        setState((prevState) => ({
             ...prevState,
             experiences
         }));
-    }
+    };
 
-    handleEducationChange(event) {
+    const handleEducationChange = (event) => {
         const { value, name } = event.target;
         const key = event.target.dataset.key;
 
-        let educations = [...this.state.educations];
+        let educations = [...state.educations];
         let education = {...educations[key]};
         education[name] = value;
         educations[key] = education;
 
-        this.setState(prevState => ({
+        setState((prevState) => ({
             ...prevState,
             educations
-        }))
-    }
+        }));
+    };
 
-    addExperience() {
-        this.setState(prevState => ({
+    const addExperience = () => {
+        setState((prevState) => ({
             ...prevState,
             experiences: [...prevState.experiences].concat({
                 position: '',
@@ -87,10 +72,10 @@ class Main extends Component {
                 experienceTo: ''
             })
         }));
-    }
+    };
 
-    addEducation() {
-        this.setState(prevState => ({
+    const addEducation = () => {
+        setState((prevState) => ({
             ...prevState,
             educations: [...prevState.educations].concat({
                 institution: '',
@@ -100,64 +85,48 @@ class Main extends Component {
                 educationTo: ''
             })
         }));
-    }
+    };
 
-    // handleEducationChange(event) {
-    //     const { value, name } = event.target;
-    //     const key = event.target.dataset.key;
-
-    //     let educations = [...this.state.educations];
-    //     let education = {...educations[key]};
-    //     education[name] = value;
-    //     educations[key] = education;
-
-    //     this.setState(prevState => ({
-    //         ...prevState,
-    //         educations
-    //     }))
-    // }
-
-    deleteExperience(event) {
+    const deleteExperience = (event) => {
         event.preventDefault();
         const key = event.target.dataset.key;
-        let experiences = [...this.state.experiences];
+        let experiences = [...state.experiences];
         experiences.splice(key, 1);
 
-        this.setState(prevState => ({
+        setState((prevState) => ({
             ...prevState,
             experiences
         }));
-    }
+    };
 
-    deleteEducation(event) {
+    const deleteEducation = (event) => {
         event.preventDefault();
         const key = event.target.dataset.key;
-        let educations = [...this.state.educations];
+        let educations = [...state.educations];
         educations.splice(key, 1);
 
-        this.setState(prevState => ({
+        setState((prevState) => ({
             ...prevState,
             educations
         }));
-    }
+    };
 
-    render() {
-        return (
-            <main className="main-container">
-                <Editor 
-                    state={this.state} 
-                    changeHandler={this.handleChange} 
-                    submitHandler={this.handleSubmit} 
-                    experienceHandler={this.addExperience} 
-                    changeExperienceHandler={this.handleExperienceChange} 
-                    educationHandler={this.addEducation}
-                    changeEducationHandler={this.handleEducationChange}
-                    deleteExperienceHandler={this.deleteExperience}
-                    deleteEducationHandler={this.deleteEducation} />
-                <Preview state={this.state} />
-            </main>
-        );
-    }
-}
+    return (
+        <main className="main-container">
+            <Editor 
+                state={state} 
+                changeHandler={handleChange} 
+                submitHandler={handleSubmit} 
+                experienceHandler={addExperience}
+                educationHandler={addEducation} 
+                changeExperienceHandler={handleExperienceChange} 
+                changeEducationHandler={handleEducationChange}
+                deleteExperienceHandler={deleteExperience}
+                deleteEducationHandler={deleteEducation} 
+            />
+            <Preview state={state} />
+        </main>
+    );
+};
 
 export default Main;

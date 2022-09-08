@@ -1,76 +1,69 @@
-import React, { Component } from "react"; 
+import React from "react"; 
 
-class ExperienceDetails extends Component {
-  constructor(props) {
-    super(props);
-  }
+const ExperienceDetails = (props) => {
+  return (
+    <div className='experience-inputs'>
+      <p className="experience-number">Job {props.index + 1}</p>
 
-  render() {
-    return (
-      <div className='experience-inputs'>
-            <p className="experience-number">Job {this.props.index + 1}</p>
+      <input 
+        className='position' 
+        type="text"
+        name="position"
+        data-key={props.index}
+        value={props.state.experiences[props.index].position}
+        onChange={props.changeExperienceHandler}
+        placeholder='Position'
+        required />
 
-            <input 
-              className='position' 
-              type="text"
-              name="position"
-              data-key={this.props.index}
-              value={this.props.state.experiences[this.props.index].position}
-              onChange={this.props.changeExperienceHandler}
-              placeholder='Position'
-              required />
+      <input 
+        className='company' 
+        type="text"
+        name='company'
+        data-key={props.index}
+        value={props.state.experiences[props.index].company}
+        onChange={props.changeExperienceHandler} 
+        placeholder='Company'
+        required />
+        
+      <input 
+        className='experience-location' 
+        type="text"
+        name="experienceLocation"
+        data-key={props.index}
+        value={props.state.experiences[props.index].experienceLocation}
+        onChange={props.changeExperienceHandler} 
+        placeholder='Location'
+        required />
 
-            <input 
-              className='company' 
-              type="text"
-              name='company'
-              data-key={this.props.index}
-              value={this.props.state.experiences[this.props.index].company}
-              onChange={this.props.changeExperienceHandler} 
-              placeholder='Company'
-              required />
-              
-            <input 
-              className='experience-location' 
-              type="text"
-              name="experienceLocation"
-              data-key={this.props.index}
-              value={this.props.state.experiences[this.props.index].experienceLocation}
-              onChange={this.props.changeExperienceHandler} 
-              placeholder='Location'
-              required />
+      <input 
+        className='experience-from' 
+        type="date"
+        name="experienceFrom"
+        data-key={props.index}
+        value={props.state.experiences[props.index].experienceFrom}
+        onChange={props.changeExperienceHandler}  
+        placeholder='From'
+        required />
 
-            <input 
-              className='experience-from' 
-              type="date"
-              name="experienceFrom"
-              data-key={this.props.index}
-              value={this.props.state.experiences[this.props.index].experienceFrom}
-              onChange={this.props.changeExperienceHandler}  
-              placeholder='From'
-              required />
+      <input 
+        className='experience-to' 
+        type="date"
+        name="experienceTo"
+        data-key={props.index}
+        value={props.state.experiences[props.index].experienceTo}
+        onChange={props.changeExperienceHandler} 
+        placeholder='To'
+        required />
 
-            <input 
-              className='experience-to' 
-              type="date"
-              name="experienceTo"
-              data-key={this.props.index}
-              value={this.props.state.experiences[this.props.index].experienceTo}
-              onChange={this.props.changeExperienceHandler} 
-              placeholder='To'
-              required />
-
-            <button 
-              type="button"
-              className="delete-btn"
-              onClick={this.props.deleteExperienceHandler}
-              data-key={this.props.index}>
-                Delete
-            </button>
-      </div>
-    );
-  }
-}
+      <button 
+        type="button"
+        className="delete-btn"
+        onClick={props.deleteExperienceHandler}
+        data-key={props.index}>
+          Delete
+      </button>
+    </div>
+  );
+};
 
 export default ExperienceDetails;
-
