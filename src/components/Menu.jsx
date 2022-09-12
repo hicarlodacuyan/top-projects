@@ -1,11 +1,13 @@
 import React from "react";
 
+const menuStyle = {
+  border: "5px solid purple" 
+};
+
 const Menu = () => {
   return (
     <div 
-      style={{ 
-        border: "5px solid purple" 
-      }}
+      style={menuStyle}
     >
         Menu
     </div>
