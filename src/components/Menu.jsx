@@ -10,8 +10,8 @@ const Menu = () => {
   return (
     <>
       <nav ref={navRef}>
-        <button className="score-btn restart-btn">Restart</button>
-        <button className="score-btn newgame-btn">New Game</button>
+        <button className="action-btn restart-btn">Restart</button>
+        <button className="action-btn newgame-btn">New Game</button>
         <button 
           className="nav-btn nav-close-btn"
           onClick={showNavbar}>

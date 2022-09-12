@@ -19,7 +19,7 @@ nav {
   font-size: var(--font-size--default);
 }
 
-.score-btn {
+.action-btn {
   padding: 1rem 2rem;
   cursor: pointer;
   background-color: #FCA217;
@@ -37,7 +37,6 @@ nav {
 }
 
 @media only screen and (max-width: 1024px) {
-  
   nav {
     position: fixed;
     top: 0;
@@ -75,7 +74,7 @@ nav {
     padding: 1rem;
   }
 
-  .score-btn {
+  .action-btn {
     width: 90%;
   }
 }
