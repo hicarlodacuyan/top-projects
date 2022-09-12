@@ -1,16 +1,21 @@
 import React from "react";
 import Card from "./Card";
-
-const mainStyle = {
-  flex: "1", 
-  border: "5px solid green"
-};
+import "../styles/Main.css";
 
 const Main = () => {
   return (
-    <main 
-      style={mainStyle}
-    >
+    <main>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
       <Card />
     </main>
   );
