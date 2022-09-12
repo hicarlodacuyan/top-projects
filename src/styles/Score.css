@@ -1,0 +1,21 @@
+.scores-container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.scores-container div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #DFE6EC;
+  font-size: var(--font-size--large);
+  color: #31485A;
+}
+
+.current-score-points {
+  font-weight: bold;
+}
