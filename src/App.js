@@ -3,19 +3,9 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Score from './components/Score';
 
-const appStyle = {
-  display: "flex",
-  flexDirection: "column",
-  height: "100vh",
-  border: "5px solid red"
-};
-
 const App = () => {
   return (
-    <div 
-      className="App"
-      style={appStyle}  
-    >
+    <div className="App">
       <Header />
       <Main />
       <Score />
