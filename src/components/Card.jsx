@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/Card.css";
 
-const Card = () => {
+const Card = (props) => {
   return (
-    <div className="card-container">
-      <img src="https://comicvine.gamespot.com/a/uploads/square_small/5/55786/1069244-untitled.jpg"></img>
-      <p>Gon</p>
+    <div className="card-container" onClick={props.handleClick}>
+      <img src={props.character.image} alt="A HunterXHunter Character"></img>
+      <p>{props.character.name}</p>
     </div>
   );
 };
