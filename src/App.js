@@ -83,6 +83,7 @@ const App = () => {
       <Header handleRestart={handleRestart} />
       <Main 
         characters={randomHunterCharacters} 
+        scores={scores}
         isGameOver={isGameOver}
         handleClick={generateRandomHunterCharacters}
         handleRestart={handleRestart}
