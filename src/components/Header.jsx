@@ -2,11 +2,11 @@ import React from "react";
 import Menu from "./Menu";
 import "../styles/Header.css";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
       <h1>memoryXmemory</h1>
-      <Menu />
+      <Menu handleRestart={props.handleRestart} />
     </header>
   );
 };

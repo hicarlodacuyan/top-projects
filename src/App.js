@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
 import Score from './components/Score';
@@ -36,12 +36,61 @@ const App = () => {
     {name: "Welfin", image: welfin},
     {name: "Zeno", image: zeno}
   ];
+  const [randomHunterCharacters, setRandomHunterCharacters] = useState([
+    {name: HUNTER_CHARACTERS[0].name, image: HUNTER_CHARACTERS[0].image},
+    {name: HUNTER_CHARACTERS[1].name, image: HUNTER_CHARACTERS[1].image},
+    {name: HUNTER_CHARACTERS[2].name, image: HUNTER_CHARACTERS[2].image},
+    {name: HUNTER_CHARACTERS[3].name, image: HUNTER_CHARACTERS[3].image},
+    {name: HUNTER_CHARACTERS[4].name, image: HUNTER_CHARACTERS[4].image},
+    {name: HUNTER_CHARACTERS[5].name, image: HUNTER_CHARACTERS[5].image},
+    {name: HUNTER_CHARACTERS[6].name, image: HUNTER_CHARACTERS[6].image},
+    {name: HUNTER_CHARACTERS[7].name, image: HUNTER_CHARACTERS[7].image},
+    {name: HUNTER_CHARACTERS[8].name, image: HUNTER_CHARACTERS[8].image},
+    {name: HUNTER_CHARACTERS[9].name, image: HUNTER_CHARACTERS[9].image},
+    {name: HUNTER_CHARACTERS[10].name, image: HUNTER_CHARACTERS[10].image},
+    {name: HUNTER_CHARACTERS[11].name, image: HUNTER_CHARACTERS[11].image}
+  ]);
+  const [chosenHunterCharacters, setChosenHunterCharacters] = useState([]);
+  const [scores, setScores] = useState({
+    score: 0,
+    highScore: 0
+  })
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  useEffect(() => {
+    const chosenHunterCharactersName = chosenHunterCharacters.map((character) => character.name);
+    const isThereDuplicate = chosenHunterCharactersName.some((name, index) => chosenHunterCharactersName.indexOf(name) !== index);
+
+    if (isThereDuplicate) {
+      setIsGameOver(true);
+    } 
+  }, [chosenHunterCharacters]);
+
+  const generateRandomHunterCharacters = (character) => {
+    const characters = HUNTER_CHARACTERS.sort(() => Math.random() - 0.5).slice(0, 12);
+    
+    setChosenHunterCharacters([...chosenHunterCharacters].concat(character));
+    setRandomHunterCharacters([...characters]);
+  };
+
+  const handleRestart = () => {
+    setIsGameOver(false);
+    setChosenHunterCharacters([]);
+  };
   
   return (
     <div className="App">
-      <Header />
-      <Main characters={HUNTER_CHARACTERS} />
-      <Score />
+      <Header handleRestart={handleRestart} />
+      <Main 
+        characters={randomHunterCharacters} 
+        isGameOver={isGameOver}
+        handleClick={generateRandomHunterCharacters}
+        handleRestart={handleRestart}
+      />
+      <Score 
+        state={scores}
+        isGameOver={isGameOver} 
+      />
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import React from "react";
 import "../styles/Score.css";
 
-const Score = () => {
+const Score = (props) => {
   return (
     <section className="scores-container">
       <div>
-        Score:&nbsp; <span className="current-score-points">26</span>
+        Score:&nbsp; <span className="current-score-points">{props.state.score}</span>
       </div>
 
       <div>
-        High Score:&nbsp; <span className="current-score-points">30</span>
+        High Score:&nbsp; <span className="current-score-points">{props.state.highScore}</span>
       </div>
     </section>
   );
