@@ -8,11 +8,11 @@ const GameOver = (props) => {
       <div className="game-over-scores-container">
         <div className="game-over-scores-label">
           <p className="game-over-scores-labels">Your score</p>
-          <p className="game-over-scores">{props.scores.score}&nbsp; Points</p>
+          <p className="game-over-scores">{props.scores.score}&nbsp; {props.scores.score > 1 ? "Points" : "Point"}</p>
         </div>
         <div className="game-over-scores-label">
           <p className="game-over-scores-labels">High score</p>
-          <p className="game-over-scores">{props.scores.highScore}&nbsp; Points</p>
+          <p className="game-over-scores">{props.scores.highScore}&nbsp; {props.scores.highScore > 1 ? "Points" : "Point"}</p>
         </div>
       </div>
       <button className="action-btn restart-btn" onClick={props.handleRestart}>Restart</button>

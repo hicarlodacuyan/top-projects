@@ -53,7 +53,7 @@ const App = () => {
   const [chosenHunterCharacters, setChosenHunterCharacters] = useState([]);
   const [scores, setScores] = useState({
     score: -1,
-    highScore: -1
+    highScore: 0
   })
   const [isGameOver, setIsGameOver] = useState(false);
   const isMounted = useRef(false);
@@ -66,13 +66,19 @@ const App = () => {
       if (isThereDuplicate) {
         setIsGameOver(true);
         return;
+      } else {
+        if (scores.score < scores.highScore) {
+          setScores((prev) => ({
+            ...prev,
+            score: prev.score + 1
+          }));
+        } else {
+          setScores((prev) => ({
+            score: prev.score + 1,
+            highScore: prev.score + 1
+          }));
+        }
       }
-
-      setScores((prev) => ({
-        score: prev.score + 1,
-        highScore: prev.highScore + 1
-      }));
-
     } else {
       isMounted.current = true;
     }
@@ -88,9 +94,9 @@ const App = () => {
   const handleRestart = () => {
     setIsGameOver(false);
     setChosenHunterCharacters([]);
-    setScores(() => ({
+    setScores((prev) => ({
       score: -1,
-      highScore: -1
+      highScore: prev.highScore
     }));
   };
 
