@@ -52,7 +52,7 @@ const App = () => {
   ]);
   const [chosenHunterCharacters, setChosenHunterCharacters] = useState([]);
   const [scores, setScores] = useState({
-    score: -1,
+    score: 0,
     highScore: 0
   })
   const [isGameOver, setIsGameOver] = useState(false);
