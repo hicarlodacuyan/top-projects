@@ -16,7 +16,8 @@ const GameOver = (props) => {
         </div>
       </div>
       <button className="action-btn restart-btn" onClick={props.handleRestart}>Restart</button>
-      <button className="action-btn newgame-btn">New Game</button>
+      <button className="action-btn newgame-btn" onClick={props.handleNewGame}>New Game</button>
+      <p className="menu-note">Note: New Game resets both Score and High score while Restart only reset Score.</p>
     </div>
   );
 };

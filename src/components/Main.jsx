@@ -7,7 +7,7 @@ const Main = (props) => {
   return (
     <main>
       {props.isGameOver ? 
-        <GameOver handleRestart={props.handleRestart} scores={props.scores} /> :
+        <GameOver handleRestart={props.handleRestart} handleNewGame={props.handleNewGame} scores={props.scores} /> :
         props.characters.map((character, index) => {
           return (
             <Card 

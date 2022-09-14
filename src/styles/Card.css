@@ -18,13 +18,12 @@
 }
 
 .card-container img {
-  max-height: 175px;
-  max-width: 100%;
+  width: 100%;
   vertical-align: middle;
 }
 
 .card-container p {
-  font-size: var(--font-size--large);
+  font-size: var(--font-size--default);
   font-weight: bold;
   color: #31485A;
 }

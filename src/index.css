@@ -66,3 +66,13 @@ body {
   --font-size--default: 1.6rem; /* 16px */
   --font-size--large: 2.4rem; /* 24px */
 }
+
+#root {
+	width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  #root {
+		width: 100%;
+	}
+}

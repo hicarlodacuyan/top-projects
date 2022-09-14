@@ -99,16 +99,26 @@ const App = () => {
       highScore: prev.highScore
     }));
   };
+  
+  const handleNewGame = () => {
+    setIsGameOver(false);
+    setChosenHunterCharacters([]);
+    setScores((prev) => ({
+      score: -1,
+      highScore: 0
+    }));
+  };
 
   return (
     <div className="App">
-      <Header handleRestart={handleRestart} />
+      <Header handleRestart={handleRestart} handleNewGame={handleNewGame} />
       <Main 
         characters={randomHunterCharacters} 
         scores={scores}
         isGameOver={isGameOver}
         handleClick={generateRandomHunterCharacters}
         handleRestart={handleRestart}
+        handleNewGame={handleNewGame}
       />
       <Score 
         state={scores}
