@@ -8,5 +8,5 @@ This project is created for the sole purpose of learning and part of the "The Od
 
 - React
 - React State and Props
-- React useRef
+- React useRef and useEffect
 - Git Workflow
