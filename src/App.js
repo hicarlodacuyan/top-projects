@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
 import Score from './components/Score';
@@ -52,18 +52,30 @@ const App = () => {
   ]);
   const [chosenHunterCharacters, setChosenHunterCharacters] = useState([]);
   const [scores, setScores] = useState({
-    score: 0,
-    highScore: 0
+    score: -1,
+    highScore: -1
   })
   const [isGameOver, setIsGameOver] = useState(false);
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    const chosenHunterCharactersName = chosenHunterCharacters.map((character) => character.name);
-    const isThereDuplicate = chosenHunterCharactersName.some((name, index) => chosenHunterCharactersName.indexOf(name) !== index);
+    if (isMounted.current) {
+      const chosenHunterCharactersName = chosenHunterCharacters.map((character) => character.name);
+      const isThereDuplicate = chosenHunterCharactersName.some((name, index) => chosenHunterCharactersName.indexOf(name) !== index);
 
-    if (isThereDuplicate) {
-      setIsGameOver(true);
-    } 
+      if (isThereDuplicate) {
+        setIsGameOver(true);
+        return;
+      }
+
+      setScores((prev) => ({
+        score: prev.score + 1,
+        highScore: prev.highScore + 1
+      }));
+
+    } else {
+      isMounted.current = true;
+    }
   }, [chosenHunterCharacters]);
 
   const generateRandomHunterCharacters = (character) => {
@@ -76,8 +88,12 @@ const App = () => {
   const handleRestart = () => {
     setIsGameOver(false);
     setChosenHunterCharacters([]);
+    setScores(() => ({
+      score: -1,
+      highScore: -1
+    }));
   };
-  
+
   return (
     <div className="App">
       <Header handleRestart={handleRestart} />
