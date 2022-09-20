@@ -7,8 +7,9 @@ const Nav = () => {
   const showMobileNav = () => mobileNavRef.current.classList.toggle("hidden");
 
   return (
+    <>
     <nav className="py-4">
-      <div className="max-w-6xl mx-auto px-4 mb-4">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
           
           <div className="flex items-center md:gap-4 gap-2 text-slate-700 md:text-2xl text-xl">
@@ -39,15 +40,15 @@ const Nav = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      <div ref={mobileNavRef} className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200">
-        <Link to="/shop" className="hover:text-slate-700">Shop</Link>
-        <Link to="/contact" className="hover:text-slate-700">Contact</Link>
-        <Link to="/about" className="hover:text-slate-700">About</Link>
-      </div>
-
     </nav>
+    
+    {/* Mobile Menu */}
+    <div ref={mobileNavRef} className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200">
+      <Link to="/shop" className="hover:text-slate-700">Shop</Link>
+      <Link to="/contact" className="hover:text-slate-700">Contact</Link>
+      <Link to="/about" className="hover:text-slate-700">About</Link>
+    </div>
+  </>
   );
 };
 
