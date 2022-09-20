@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineShoppingCart, MdOutlineAccountCircle, MdMenu, MdClose } from "react-icons/md";
+import { MdOutlineShoppingCart, MdOutlineAccountCircle, MdMenu } from "react-icons/md";
 
 const Nav = () => {
   const mobileNavRef = useRef();
@@ -8,7 +8,7 @@ const Nav = () => {
 
   return (
     <>
-    <nav className="py-4">
+    <nav className="py-4 border-b-[1px] border-slate-300">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
           
@@ -25,7 +25,7 @@ const Nav = () => {
           </div>
 
           {/* Primary Nav */}
-          <div className="hidden md:flex gap-4 text-slate-400">
+          <div className="hidden md:flex gap-4 text-slate-400 font-semibold">
             <Link to="/shop" className="hover:text-slate-700">Shop</Link>
             <Link to="/contact" className="hover:text-slate-700">Contact</Link>
             <Link to="/about" className="hover:text-slate-700">About</Link>
@@ -43,7 +43,7 @@ const Nav = () => {
     </nav>
     
     {/* Mobile Menu */}
-    <div ref={mobileNavRef} className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200">
+    <div ref={mobileNavRef} className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200 font-semibold">
       <Link to="/shop" className="hover:text-slate-700">Shop</Link>
       <Link to="/contact" className="hover:text-slate-700">Contact</Link>
       <Link to="/about" className="hover:text-slate-700">About</Link>
