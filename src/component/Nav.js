@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../CartContext";
 import { MdOutlineShoppingCart, MdOutlineAccountCircle, MdMenu } from "react-icons/md";
 
 const Nav = () => {
   const mobileNavRef = useRef();
   const showMobileNav = () => mobileNavRef.current.classList.toggle("hidden");
+  const { cartItems } = useContext(CartContext);
+  const numberOfCartItems = cartItems.length;
 
   return (
     <>
@@ -33,8 +36,12 @@ const Nav = () => {
           
           {/* Secondary Nav */}
           <div className="flex md:gap-4 gap-2 text-slate-700 md:text-2xl text-xl">
-            <Link to="/cart">
+            <Link to="/cart" className="relative flex justify-center items-center">
               <MdOutlineShoppingCart className="hover:text-amber-400 transition duration-300" />
+              {numberOfCartItems === 0 ?
+                "" :
+                <span className="flex justify-center items-center text-xs absolute rounded-full w-4 h-4 left-3 bottom-3 bg-red-400 text-white">{numberOfCartItems}</span>
+              }
             </Link>
             <MdOutlineAccountCircle />
           </div>

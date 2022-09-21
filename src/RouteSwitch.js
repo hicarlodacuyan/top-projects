@@ -13,8 +13,8 @@ const RouteSwitch = () => {
 
   return (
     <BrowserRouter>
-      <Nav />
       <CartContext.Provider value={{ cartItems, setCartItems }}>
+      <Nav />
         <Routes>
             <Route path='/shopping-cart' element={<App />} />
             <Route path='/about' element={<About />} />

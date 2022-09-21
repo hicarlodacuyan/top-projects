@@ -3,7 +3,6 @@ import { CartContext } from "../CartContext";
 
 const Cart = () => {
     const { cartItems } = useContext(CartContext);
-    console.log(cartItems);
 
     return (
       <div className="flex justify-center">
