@@ -1,15 +1,15 @@
-import { useRef, useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../CartContext";
+import { useRef, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../CartContext';
 import {
   MdOutlineShoppingCart,
   MdOutlineAccountCircle,
   MdMenu,
-} from "react-icons/md";
+} from 'react-icons/md';
 
 const Nav = () => {
   const mobileNavRef = useRef();
-  const showMobileNav = () => mobileNavRef.current.classList.toggle("hidden");
+  const showMobileNav = () => mobileNavRef.current.classList.toggle('hidden');
   const { cartItems } = useContext(CartContext);
   const numberOfCartItems = cartItems.length;
 
@@ -51,7 +51,7 @@ const Nav = () => {
               >
                 <MdOutlineShoppingCart className="hover:text-amber-400 transition duration-300" />
                 {numberOfCartItems === 0 ? (
-                  ""
+                  ''
                 ) : (
                   <span className="flex justify-center items-center text-xs absolute rounded-full w-4 h-4 left-3 bottom-3 bg-red-400 text-white">
                     {numberOfCartItems}

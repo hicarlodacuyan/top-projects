@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import { CartContext } from "../CartContext";
-import ShopItem from "../component/ShopItem";
+import React, { useState, useEffect } from 'react';
+import ShopItem from '../component/ShopItem';
 
 const Shop = () => {
-  const PRODUCTS_KEY = "https://fakestoreapi.com/products";
+  const PRODUCTS_KEY = 'https://fakestoreapi.com/products';
   const [shopItems, setShopItems] = useState([]);
 
   const getProducts = async () => {
@@ -22,20 +21,19 @@ const Shop = () => {
         <ul className="grid gap-4 lg:grid-cols-6 md:grid-cols-5 grid-cols-2">
           {shopItems.map((shopItem) => {
             const { id, image, category, price, title } = shopItem;
-            
             return (
-              <ShopItem 
+              <ShopItem
                 key={id}
-                id={id} 
-                image={image} 
-                category={category} 
-                price={price} 
-                title={title} 
+                id={id}
+                image={image}
+                category={category}
+                price={price}
+                title={title}
               />
             );
           })}
-        </ul>  
-      </div>  
+        </ul>
+      </div>
     </div>
   );
 };
