@@ -11,6 +11,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 #truncate {
   overflow: hidden;
   text-overflow: ellipsis;

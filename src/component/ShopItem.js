@@ -27,7 +27,7 @@ const ShopItem = ({ id, image, category, price, title }) => {
         <p className="text-center font-bold">${price}</p>
       </div>
 
-      <div className="flex-1 flex flex-col gap-4 p-2 bg-slate-100">
+      <div className="flex-1 flex flex-col gap-4 p-2">
         <h2 id="truncate" className="flex-1 text-xs text-center">
           {title}
         </h2>
