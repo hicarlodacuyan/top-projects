@@ -15,7 +15,7 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="py-4 border-b-[1px] border-slate-300 bg-slate-50">
+      <nav className="py-4 border-b-[1px] border-slate-200 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center md:gap-4 gap-2 text-slate-700 md:text-2xl text-xl">
