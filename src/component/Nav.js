@@ -32,13 +32,16 @@ const Nav = () => {
 
             {/* Primary Nav */}
             <div className="hidden md:flex gap-4 text-slate-400 font-semibold">
-              <Link to="/shop" className="hover:text-slate-700">
+              <Link to="/shopping-cart/shop" className="hover:text-slate-700">
                 Shop
               </Link>
-              <Link to="/contact" className="hover:text-slate-700">
+              <Link
+                to="/shopping-cart/contact"
+                className="hover:text-slate-700"
+              >
                 Contact
               </Link>
-              <Link to="/about" className="hover:text-slate-700">
+              <Link to="/shopping-cart/about" className="hover:text-slate-700">
                 About
               </Link>
             </div>
@@ -46,7 +49,7 @@ const Nav = () => {
             {/* Secondary Nav */}
             <div className="flex md:gap-4 gap-2 text-slate-700 md:text-2xl text-xl">
               <Link
-                to="/cart"
+                to="/shopping-cart/cart"
                 className="relative flex justify-center items-center"
               >
                 <MdOutlineShoppingCart className="hover:text-amber-400 transition duration-300" />
@@ -69,13 +72,13 @@ const Nav = () => {
         ref={mobileNavRef}
         className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200 font-semibold"
       >
-        <Link to="/shop" className="hover:text-slate-700">
+        <Link to="/shopping-cart/shop" className="hover:text-slate-700">
           Shop
         </Link>
-        <Link to="/contact" className="hover:text-slate-700">
+        <Link to="/shopping-cart/contact" className="hover:text-slate-700">
           Contact
         </Link>
-        <Link to="/about" className="hover:text-slate-700">
+        <Link to="/shopping-cart/about" className="hover:text-slate-700">
           About
         </Link>
       </div>

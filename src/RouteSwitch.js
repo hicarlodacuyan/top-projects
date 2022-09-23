@@ -17,10 +17,10 @@ const RouteSwitch = () => {
         <Nav />
         <Routes>
           <Route path="/shopping-cart" element={<App />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/shopping-cart/about" element={<About />} />
+          <Route path="/shopping-cart/contact" element={<Contact />} />
+          <Route path="/shopping-cart/shop" element={<Shop />} />
+          <Route path="/shopping-cart/cart" element={<Cart />} />
         </Routes>
       </CartContext.Provider>
     </BrowserRouter>
