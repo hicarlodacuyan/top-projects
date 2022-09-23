@@ -12,7 +12,7 @@ const ShopItem = ({ id, image, category, price, title }) => {
         return prev;
       }
 
-      return prev.concat({ id, image, category, price, title });
+      return prev.concat({ id, image, category, price, title, quantity: 1 });
     });
   };
 

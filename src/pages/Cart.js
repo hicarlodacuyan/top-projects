@@ -1,9 +1,29 @@
 import { useContext } from 'react';
 import { CartContext } from '../CartContext';
-import { MdClear } from 'react-icons/md';
+import { MdClear, MdAdd, MdRemove } from 'react-icons/md';
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
+
+  const incrementItemQuantity = (id) => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === id) return { ...item, quantity: item.quantity + 1 };
+
+      return item;
+    });
+
+    setCartItems(updatedCartItems);
+  };
+
+  const decrementItemQuantity = (id) => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === id) return { ...item, quantity: item.quantity - 1 };
+
+      return item;
+    });
+
+    setCartItems(updatedCartItems);
+  };
 
   return (
     <div className="h-full overflow-hidden bg-slate-50">
@@ -36,11 +56,19 @@ const Cart = () => {
                   <p id="truncate" className="text-xs">
                     {item.title}
                   </p>
-                  <p>1</p>
+                  <div className="flex gap-2">
+                    <button onClick={() => incrementItemQuantity(item.id)}>
+                      <MdAdd />
+                    </button>
+                    <p>{item.quantity}</p>
+                    <button onClick={() => decrementItemQuantity(item.id)}>
+                      <MdRemove />
+                    </button>
+                  </div>
                   <span>
                     <MdClear />
                   </span>
-                  <p>${item.price}</p>
+                  <p>${item.price * item.quantity}</p>
                 </li>
               );
             })}
@@ -56,7 +84,12 @@ const Cart = () => {
               <p></p>
               <p></p>
               <p className="justify-self-end mr-4 text-lg">Total</p>
-              <p className="text-lg">$100</p>
+              <p className="text-lg">
+                $
+                {cartItems.reduce((sum, item) => {
+                  return sum + item.price * item.quantity;
+                }, 0)}
+              </p>
             </div>
           )}
         </div>
