@@ -25,6 +25,13 @@ const Cart = () => {
     setCartItems(updatedCartItems);
   };
 
+  const clearCartItem = (index) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems.splice(index, 1);
+
+    setCartItems(updatedCartItems);
+  };
+
   return (
     <div className="h-full overflow-hidden bg-slate-50">
       <div className="flex flex-col p-4 gap-4 max-w-6xl mx-auto h-full">
@@ -42,7 +49,7 @@ const Cart = () => {
           </div>
 
           <ul className="flex flex-col overflow-auto">
-            {cartItems.map((item) => {
+            {cartItems.map((item, index) => {
               return (
                 <li
                   className="grid items-center grid-cols-5 w-full md:p-8 p-2 md:text-base text-xs gap-4 border-b-[1px] border-slate-100"
@@ -65,9 +72,9 @@ const Cart = () => {
                       <MdRemove />
                     </button>
                   </div>
-                  <span>
+                  <button onClick={() => clearCartItem(index)}>
                     <MdClear />
-                  </span>
+                  </button>
                   <p>${item.price * item.quantity}</p>
                 </li>
               );

@@ -19,8 +19,8 @@ const Shop = () => {
 
   return (
     <div className="flex justify-center bg-slate-50 h-full">
-      <div className="max-w-6xl p-4">
-        <ul className="grid gap-4 lg:grid-cols-6 md:grid-cols-5 grid-cols-2 overflow-auto">
+      <div className="max-w-6xl">
+        <ul className="grid gap-4 lg:grid-cols-6 md:grid-cols-5 grid-cols-2 gap-4 overflow-auto p-4">
           {shopItems.map((shopItem) => {
             const { id, images, category, price, title } = shopItem;
             return (

@@ -22,7 +22,7 @@ const ShopItem = ({ id, image, category, price, title }) => {
         <img
           src={image}
           alt={category}
-          className="w-full h-24 object-scale-down"
+          className="w-full h-24 object-cover"
         ></img>
         <p className="text-center font-bold">${price}</p>
       </div>
