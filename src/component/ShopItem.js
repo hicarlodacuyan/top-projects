@@ -1,19 +1,28 @@
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { useContext } from 'react';
 import { CartContext } from '../CartContext';
+import { toast } from 'react-toastify';
 
 const ShopItem = ({ id, image, category, price, title }) => {
-  const { setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
 
   const addToCart = () => {
-    setCartItems((prev) => {
-      if (prev.some((item) => item.id === id)) {
-        alert('Item is already in the cart.');
-        return prev;
-      }
+    if (cartItems.find((item) => item.id === id)) {
+      toast.error('Item is already in the cart!', {
+        toastId: id,
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
-      return prev.concat({ id, image, category, price, title, quantity: 1 });
-    });
+      return;
+    }
+
+    setCartItems((prev) => prev.concat({ id, image, category, price, title, quantity: 1 }));
   };
 
   return (

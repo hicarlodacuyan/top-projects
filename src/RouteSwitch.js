@@ -7,6 +7,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RouteSwitch = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -23,6 +25,18 @@ const RouteSwitch = () => {
           <Route path="/shopping-cart/cart" element={<Cart />} />
         </Routes>
       </CartContext.Provider>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover 
+        limit={3} 
+      />
     </BrowserRouter>
   );
 };
