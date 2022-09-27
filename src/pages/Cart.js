@@ -37,7 +37,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="h-full overflow-hidden bg-slate-50">
+    <div className="h-full overflow-hidden">
       <div className="flex flex-col p-4 gap-4 max-w-6xl mx-auto h-full">
         <h1 className="md:text-3xl text-2xl font-semibold text-slate-700 text-center">
           My Shopping Cart

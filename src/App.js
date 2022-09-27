@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Woman from './images/cheerful-happy-woman.jpg';
+import Woman from './images/landing-page-bg.jpg';
 
 const App = () => {
   return (
