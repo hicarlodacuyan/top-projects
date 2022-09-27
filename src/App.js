@@ -4,7 +4,7 @@ import Woman from './images/landing-page-bg.jpg';
 const App = () => {
   return (
     <div
-      className="w-full h-full bg-cover flex justify-center"
+      className="w-full h-full lg:bg-top md:bg-right bg-[top_right_-7rem] bg-cover bg-auto  bg-no-repeat flex justify-center"
       style={{ backgroundImage: `url(${Woman})` }}
     >
       <div className="max-w-6xl w-full p-4 flex flex-col justify-center gap-8 text-slate-100">
