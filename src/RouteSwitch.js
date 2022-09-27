@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import Nav from './component/Nav';
 import App from './App';
-import About from './pages/About';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
@@ -19,7 +18,6 @@ const RouteSwitch = () => {
         <Nav />
         <Routes>
           <Route path="/shopping-cart" element={<App />} />
-          <Route path="/shopping-cart/about" element={<About />} />
           <Route path="/shopping-cart/contact" element={<Contact />} />
           <Route path="/shopping-cart/shop" element={<Shop />} />
           <Route path="/shopping-cart/cart" element={<Cart />} />
@@ -34,8 +32,8 @@ const RouteSwitch = () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover 
-        limit={3} 
+        pauseOnHover
+        limit={3}
       />
     </BrowserRouter>
   );

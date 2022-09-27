@@ -32,6 +32,9 @@ const Nav = () => {
 
             {/* Primary Nav */}
             <div className="hidden md:flex gap-4 text-slate-400 font-semibold">
+              <Link to="/shopping-cart" className="hover:text-slate-700">
+                Home
+              </Link>
               <Link to="/shopping-cart/shop" className="hover:text-slate-700">
                 Shop
               </Link>
@@ -40,9 +43,6 @@ const Nav = () => {
                 className="hover:text-slate-700"
               >
                 Contact
-              </Link>
-              <Link to="/shopping-cart/about" className="hover:text-slate-700">
-                About
               </Link>
             </div>
 
@@ -72,14 +72,14 @@ const Nav = () => {
         ref={mobileNavRef}
         className="hidden md:hidden md:gap-4 flex flex-col gap-2 p-4 text-md text-slate-400 bg-slate-200 font-semibold"
       >
+        <Link to="/shopping-cart" className="hover:text-slate-700">
+          Home
+        </Link>
         <Link to="/shopping-cart/shop" className="hover:text-slate-700">
           Shop
         </Link>
         <Link to="/shopping-cart/contact" className="hover:text-slate-700">
           Contact
-        </Link>
-        <Link to="/shopping-cart/about" className="hover:text-slate-700">
-          About
         </Link>
       </div>
     </>
