@@ -7,10 +7,8 @@ const Cart = () => {
 
   const incrementItemQuantity = (id) => {
     const updatedCartItems = cartItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-
+      if (item.id === id) return { ...item, quantity: item.quantity + 1 };
+      
       return item;
     });
 
