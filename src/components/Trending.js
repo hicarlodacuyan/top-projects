@@ -5,7 +5,7 @@ const Trending = ({ posterSize }) => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl">Trending</h1>
-      <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x">
+      <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
         <li className="inline-block snap-start">
           <Movie posterSize={posterSize} />
         </li>
