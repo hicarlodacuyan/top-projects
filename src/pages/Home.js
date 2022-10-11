@@ -6,13 +6,13 @@ import Recommended from "../components/Recommended";
 
 const Home = () => {
   return (
-    <div className="md:flex h-screen p-4 gap-4">
+    <div className="lg:flex lg:p-4 gap-4 flex lg:flex-row flex-col">
       <Nav />
-      <div className="flex flex-col bg-blue-300 flex-1">
+      <main className="flex flex-col flex-1 gap-4 p-4">
         <Search />
-        <Trending />
-        <Recommended />
-      </div>
+        <Trending posterSize="300x150" />
+        <Recommended posterSize="200" />
+      </main>
     </div>
   );
 };
