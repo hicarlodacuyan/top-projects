@@ -14,7 +14,7 @@ const secondaryIcon = { color: "#586488", fontSize: "1.25em" };
 
 const Nav = () => {
   return (
-    <nav className="flex lg:flex-col flex-row items-center justify-between bg-slate-800 md:max-h-96 md:rounded-md p-4">
+    <nav className="flex lg:flex-col flex-row items-center justify-between bg-slate-800 md:max-h-96 lg:rounded-md p-4 sticky lg:top-4 top-0 z-50">
       <div>
         <MdMovieCreation style={primaryIcon} />
       </div>
