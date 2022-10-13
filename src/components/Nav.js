@@ -31,11 +31,7 @@ const Nav = () => {
         <MdOutlineBookmark style={secondaryIcon} />
       </div>
       <div>
-        {user ? (
-          <SignOut auth={auth} user={user} />
-        ) : (
-          <SignIn auth={auth} user={user} />
-        )}
+        {user ? <SignOut auth={auth} user={user} /> : <SignIn auth={auth} />}
       </div>
     </nav>
   );

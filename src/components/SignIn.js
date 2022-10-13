@@ -1,16 +1,13 @@
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-const SignIn = ({ auth, user }) => {
+const SignIn = ({ auth }) => {
   const provider = new GoogleAuthProvider();
 
-  const signInWithGoogle = async () => {
-    signInWithPopup(auth, provider)
-      .then((result) => console.log(result.user))
-      .catch((err) => console.log(err));
-  };
-
   return (
-    <button className="text-slate-300 text-xs" onClick={signInWithGoogle}>
+    <button
+      className="text-slate-300 text-xs"
+      onClick={() => signInWithPopup(auth, provider)}
+    >
       Sign In
     </button>
   );
