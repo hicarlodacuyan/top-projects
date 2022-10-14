@@ -11,5 +11,5 @@ This project is created for the sole purpose of learning and part of the "The Od
 - TailwindCSS
 - React Query
 - Firebase
-- RapidAPI
+- The Movie Database API
 - Git Workflow
