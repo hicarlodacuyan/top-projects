@@ -1,7 +1,7 @@
 {
   "name": "codev-project",
   "version": "0.1.0",
-  "homepage": "https://hicarlodacuyan.github.io/codev-project",
+  "homepage": "https://hicarlodacuyan.github.io/entertainment-webapp",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^4.10.3",
