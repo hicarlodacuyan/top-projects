@@ -11,7 +11,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
             src={`https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`}
             alt="placeholder"
           />
-          <div className="flex gap-1 text-xs absolute left-4 md:top-40 top-32">
+          <div className="flex justify-center items-center gap-1 text-xs absolute left-4 md:top-40 top-32">
             <p>{trendingMovie.release_date}</p>
             <span>•</span>
             <p className="flex justify-center items-center gap-1">

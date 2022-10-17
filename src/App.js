@@ -1,9 +1,9 @@
-import Home from "./pages/Home";
+import RouteSwitch from "./RouteSwitch";
 
 const App = () => {
   return (
     <div className="bg-slate-900 text-white">
-      <Home />
+      <RouteSwitch />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { app } from "../firebase-config";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -25,10 +26,18 @@ const Nav = () => {
         <MdMovieCreation style={primaryIcon} />
       </div>
       <div className="flex lg:flex-col gap-4">
-        <MdViewQuilt style={secondaryIcon} />
-        <MdLocalMovies style={secondaryIcon} />
-        <MdTv style={secondaryIcon} />
-        <MdOutlineBookmark style={secondaryIcon} />
+        <Link to="/entertainment-webapp">
+          <MdViewQuilt style={secondaryIcon} />
+        </Link>
+        <Link to="/entertainment-webapp/movies">
+          <MdLocalMovies style={secondaryIcon} />
+        </Link>
+        <Link to="/entertainment-webapp/shows">
+          <MdTv style={secondaryIcon} />
+        </Link>
+        <Link to="/entertainment-webapp/bookmarked">
+          <MdOutlineBookmark style={secondaryIcon} />
+        </Link>
       </div>
       <div>
         {user ? <SignOut auth={auth} user={user} /> : <SignIn auth={auth} />}
