@@ -1,7 +1,12 @@
 import React from "react";
+import Nav from "../components/Nav";
 
 const Bookmarked = () => {
-  return <div>Bookmarked</div>;
+  return (
+    <div>
+      <Nav />
+    </div>
+  );
 };
 
 export default Bookmarked;
