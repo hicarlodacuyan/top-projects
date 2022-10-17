@@ -26,36 +26,40 @@ const Nav = () => {
         <NavLink
           to="/entertainment-webapp/home"
           className={({ isActive }) =>
-            isActive ? "text-red-500 text-xl" : "text-slate-300 text-xl"
+            isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
         >
           <MdViewQuilt />
         </NavLink>
+
         <NavLink
           to="/entertainment-webapp/movies"
           className={({ isActive }) =>
-            isActive ? "text-red-500 text-xl" : "text-slate-300 text-xl"
+            isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
         >
           <MdLocalMovies />
         </NavLink>
+
         <NavLink
           to="/entertainment-webapp/shows"
           className={({ isActive }) =>
-            isActive ? "text-red-500 text-xl" : "text-slate-300 text-xl"
+            isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
         >
           <MdTv />
         </NavLink>
+
         <NavLink
           to="/entertainment-webapp/bookmarked"
           className={({ isActive }) =>
-            isActive ? "text-red-500 text-xl" : "text-slate-300 text-xl"
+            isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
         >
           <MdOutlineBookmark />
         </NavLink>
       </div>
+
       <div>
         {user ? <SignOut auth={auth} user={user} /> : <SignIn auth={auth} />}
       </div>

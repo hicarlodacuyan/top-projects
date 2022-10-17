@@ -2,13 +2,17 @@ import React from "react";
 import Movie from "./Movie";
 import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
+import shuffle from "../utils/shuffle";
 
 const Trending = ({ posterSize }) => {
-  const { data } = useQuery(["trendingMovie"], async () => {
-    const requestTrendingMovies = await fetch(request.trending);
+  const { data } = useQuery(["trending"], async () => {
+    const requestTrendingMovies = await fetch(request.trendingMovies);
     const trendingMovies = await requestTrendingMovies.json();
 
-    return trendingMovies.results;
+    const requestTrendingShows = await fetch(request.trendingShows);
+    const trendingShows = await requestTrendingShows.json();
+
+    return shuffle([...trendingMovies.results, ...trendingShows.results]);
   });
 
   return (

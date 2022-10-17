@@ -8,41 +8,53 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         <div className="mr-4 relative">
           <img
             className="rounded-md md:w-96 w-80 h-auto"
-            src={`https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`}
+            src={`${
+              trendingMovie.backdrop_path
+                ? `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`
+                : "https://via.placeholder.com/384x216"
+            }`}
             alt="placeholder"
           />
           <div className="flex justify-center items-center gap-1 text-xs absolute left-4 md:top-40 top-32">
-            <p>{trendingMovie.release_date}</p>
+            <p>{trendingMovie.release_date || trendingMovie.first_air_date}</p>
             <span>•</span>
             <p className="flex justify-center items-center gap-1">
               <MdLocalMovies />
-              <span>Movie</span>
+              <span>{trendingMovie.release_date ? "Movie" : "Series"}</span>
             </p>
             <span>•</span>
             <p>{trendingMovie.adult ? "18+" : "PG"}</p>
           </div>
           <h2 className="font-bold absolute left-4 w-11/12 truncate md:top-44 top-36">
-            {trendingMovie.title}
+            {trendingMovie.title || trendingMovie.name}
           </h2>
         </div>
       ) : (
         <div className="flex flex-col gap-1">
           <img
             className="rounded-md"
-            src={`https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`}
+            src={`${
+              recommendedMovie.poster_path
+                ? `https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`
+                : "https://via.placeholder.com/384x216"
+            }`}
             alt="placeholder"
           />
           <div className="flex gap-1 text-xs text-slate-300">
-            <p>{recommendedMovie.release_date}</p>
+            <p>
+              {recommendedMovie.release_date || recommendedMovie.first_air_date}
+            </p>
             <span>•</span>
             <p className="flex justify-center items-center gap-1">
               <MdLocalMovies />
-              <span>Movie</span>
+              <span>{recommendedMovie.release_date ? "Movie" : "Series"}</span>
             </p>
             <span>•</span>
             <p>{recommendedMovie.adult ? "18+" : "PG"}</p>
           </div>
-          <h2 className="text-sm font-bold">{recommendedMovie.title}</h2>
+          <h2 className="text-sm font-bold">
+            {recommendedMovie.title || recommendedMovie.name}
+          </h2>
         </div>
       )}
     </>

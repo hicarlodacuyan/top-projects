@@ -2,13 +2,17 @@ import React from "react";
 import Movie from "./Movie";
 import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
+import shuffle from "../utils/shuffle";
 
 const Recommended = ({ posterSize }) => {
-  const { data } = useQuery(["recommendedMovie"], async () => {
-    const requestRecommendedMovies = await fetch(request.recommended);
+  const { data } = useQuery(["recommended"], async () => {
+    const requestRecommendedMovies = await fetch(request.recommendedMovies);
     const recommendedMovies = await requestRecommendedMovies.json();
 
-    return recommendedMovies.results;
+    const requestRecommendedShows = await fetch(request.recommendedShows);
+    const recommendedShows = await requestRecommendedShows.json();
+
+    return shuffle([...recommendedMovies.results, ...recommendedShows.results]);
   });
 
   return (
