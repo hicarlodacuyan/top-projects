@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
 import shuffle from "../utils/shuffle";
 
-const Trending = ({ posterSize }) => {
+const Trending = ({ posterSize, page }) => {
   const { data } = useQuery(["trending"], async () => {
     const requestTrendingMovies = await fetch(request.trendingMovies);
     const trendingMovies = await requestTrendingMovies.json();
@@ -12,7 +12,14 @@ const Trending = ({ posterSize }) => {
     const requestTrendingShows = await fetch(request.trendingShows);
     const trendingShows = await requestTrendingShows.json();
 
-    return shuffle([...trendingMovies.results, ...trendingShows.results]);
+    switch (page) {
+      case "Movies":
+        return trendingMovies.results;
+      case "Shows":
+        return trendingShows.results;
+      default:
+        return shuffle([...trendingMovies.results, ...trendingShows.results]);
+    }
   });
 
   return (

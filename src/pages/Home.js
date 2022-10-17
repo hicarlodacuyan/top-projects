@@ -14,8 +14,8 @@ const Home = () => {
       <main className="flex flex-col flex-1 gap-4 p-4">
         <QueryClientProvider client={queryClient}>
           <Search />
-          <Trending posterSize="300x150" />
-          <Recommended posterSize="200" />
+          <Trending posterSize="300x150" page="Home" />
+          <Recommended posterSize="200" page="Home" />
         </QueryClientProvider>
       </main>
     </div>

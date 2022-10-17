@@ -7,7 +7,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       {posterSize === "300x150" ? (
         <div className="mr-4 relative">
           <img
-            className="rounded-md md:w-96 w-80 h-auto"
+            className="rounded-md md:w-96 w-80 h-auto brightness-50"
             src={`${
               trendingMovie.backdrop_path
                 ? `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`
