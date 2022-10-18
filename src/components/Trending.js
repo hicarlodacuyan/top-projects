@@ -26,13 +26,15 @@ const Trending = ({ posterSize, page }) => {
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl">Trending</h1>
       <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
-        {data?.map((trendingMovie, index) => {
-          return (
-            <li className="inline-block snap-start" key={index}>
-              <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
-            </li>
-          );
-        })}
+        {data
+          ?.sort(() => Math.random() - 0.5)
+          .map((trendingMovie, index) => {
+            return (
+              <li className="inline-block snap-start" key={index}>
+                <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
