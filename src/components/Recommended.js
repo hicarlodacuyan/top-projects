@@ -18,10 +18,7 @@ const Recommended = ({ posterSize, page }) => {
       case "Shows":
         return recommendedShows.results;
       default:
-        return shuffle([
-          ...recommendedMovies.results,
-          ...recommendedShows.results,
-        ]);
+        return [...recommendedMovies.results, ...recommendedShows.results];
     }
   });
 

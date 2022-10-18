@@ -18,7 +18,7 @@ const Trending = ({ posterSize, page }) => {
       case "Shows":
         return trendingShows.results;
       default:
-        return shuffle([...trendingMovies.results, ...trendingShows.results]);
+        return [...trendingMovies.results, ...trendingShows.results];
     }
   });
 

@@ -1,11 +1,15 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
 
-const Search = () => {
+const Search = ({ setQuery }) => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex justify-center items-center gap-4">
       <MdSearch fontSize="1.5em" color="#586488" />
-      <span className="text-slate-300">Search for Movies or TV Series</span>
+      <input
+        placeholder="Search for Movies or TV Series"
+        className="text-slate-300 text-xl w-full bg-transparent border-none"
+        onChange={(event) => setQuery(event.target.value)}
+      />
     </div>
   );
 };
