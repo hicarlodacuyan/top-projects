@@ -2,7 +2,6 @@ import React from "react";
 import Movie from "./Movie";
 import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
-import shuffle from "../utils/shuffle";
 
 const Trending = ({ posterSize, page }) => {
   const { data } = useQuery(["trending"], async () => {

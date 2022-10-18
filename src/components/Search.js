@@ -7,7 +7,7 @@ const Search = ({ setQuery }) => {
       <MdSearch fontSize="1.5em" color="#586488" />
       <input
         placeholder="Search for Movies or TV Series"
-        className="text-slate-300 text-xl w-full bg-transparent border-none"
+        className="text-slate-300 md:text-xl w-full bg-transparent border-none"
         onChange={(event) => setQuery(event.target.value)}
       />
     </div>

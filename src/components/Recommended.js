@@ -2,7 +2,6 @@ import React from "react";
 import Movie from "./Movie";
 import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
-import shuffle from "../utils/shuffle";
 
 const Recommended = ({ posterSize, page }) => {
   const { data } = useQuery(["recommended"], async () => {
