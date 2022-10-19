@@ -1,20 +1,25 @@
 import React from "react";
-import { MdLocalMovies } from "react-icons/md";
+import { MdLocalMovies, MdOutlineBookmarkAdd } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
   return (
     <>
       {posterSize === "300x150" ? (
         <div className="mr-4 relative">
-          <img
-            className="rounded-md md:w-96 w-80 h-auto brightness-50"
-            src={`${
-              trendingMovie.backdrop_path
-                ? `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`
-                : "https://via.placeholder.com/384x216"
-            }`}
-            alt="placeholder"
-          />
+          <div className="relative">
+            <img
+              className="rounded-md md:w-96 w-80 h-auto brightness-50"
+              src={`${
+                trendingMovie.backdrop_path
+                  ? `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`
+                  : "https://via.placeholder.com/384x216"
+              }`}
+              alt="placeholder"
+            />
+            <button className="flex items-center justify-center absolute md:right-4 right-2 bottom-36 md:bottom-44 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7">
+              <MdOutlineBookmarkAdd />
+            </button>
+          </div>
           <div className="flex justify-center items-center gap-1 text-xs absolute left-4 md:top-40 top-32">
             <p>{trendingMovie.release_date || trendingMovie.first_air_date}</p>
             <span>•</span>
