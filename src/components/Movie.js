@@ -1,5 +1,5 @@
 import React from "react";
-import { MdLocalMovies, MdOutlineBookmarkAdd } from "react-icons/md";
+import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
   return (
@@ -16,8 +16,8 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               }`}
               alt="placeholder"
             />
-            <button className="flex items-center justify-center absolute md:right-4 right-2 bottom-36 md:bottom-44 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7">
-              <MdOutlineBookmarkAdd />
+            <button className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl">
+              <MdBookmarkBorder />
             </button>
           </div>
           <div className="flex justify-center items-center gap-1 text-xs absolute left-4 md:top-40 top-32">
@@ -36,15 +36,20 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         </div>
       ) : (
         <div className="flex flex-col gap-1">
-          <img
-            className="rounded-md"
-            src={`${
-              recommendedMovie.poster_path
-                ? `https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`
-                : "https://via.placeholder.com/384x216"
-            }`}
-            alt="placeholder"
-          />
+          <div className="relative">
+            <img
+              className="rounded-md"
+              src={`${
+                recommendedMovie.poster_path
+                  ? `https://image.tmdb.org/t/p/original${recommendedMovie.poster_path}`
+                  : "https://via.placeholder.com/384x216"
+              }`}
+              alt="placeholder"
+            />
+            <button className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl">
+              <MdBookmarkBorder />
+            </button>
+          </div>
           <div className="flex gap-1 text-xs text-slate-300">
             <p>
               {recommendedMovie.release_date || recommendedMovie.first_air_date}
