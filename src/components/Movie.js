@@ -1,7 +1,60 @@
 import React from "react";
+import { app } from "../firebase-config";
+import { db } from "../firebase-config";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, collection, addDoc } from "firebase/firestore";
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+
+  const handleBookmarkTrendingMovie = async () => {
+    const userRef = await doc(db, "users", user.uid);
+    const bookmarkedRef = collection(userRef, "bookmarked_movies");
+
+    const trendingMovieData = {
+      title:
+        "title" in trendingMovie ? trendingMovie.title : trendingMovie.name,
+      release_date:
+        "release_date" in trendingMovie
+          ? trendingMovie.release_date
+          : trendingMovie.first_air_date,
+      backdrop_path: `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`,
+      adult: trendingMovie.adult ? "18+" : "PG",
+    };
+
+    // This is how we read data from Firestore
+    // setTimeout(async () => {
+    //   const bookmarkedData = await getDocs(bookmarkedRef);
+
+    //   bookmarkedData.docs.forEach((doc) => console.log(doc.data()));
+    // }, 5000);
+
+    addDoc(bookmarkedRef, trendingMovieData);
+  };
+
+  const handleBookmarkRecommendedMovie = async () => {
+    const userRef = await doc(db, "users", user.uid);
+    const bookmarkedRef = collection(userRef, "bookmarked_movies");
+
+    const recommendedMovieData = {
+      title:
+        "title" in recommendedMovie
+          ? recommendedMovie.title
+          : recommendedMovie.name,
+      release_date:
+        "release_date" in recommendedMovie
+          ? recommendedMovie.release_date
+          : recommendedMovie.first_air_date,
+      backdrop_path: `https://image.tmdb.org/t/p/original${recommendedMovie.backdrop_path}`,
+      adult: recommendedMovie.adult ? "18+" : "PG",
+    };
+
+    addDoc(bookmarkedRef, recommendedMovieData);
+  };
+
   return (
     <>
       {posterSize === "300x150" ? (
@@ -16,7 +69,10 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               }`}
               alt="placeholder"
             />
-            <button className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl">
+            <button
+              onClick={handleBookmarkTrendingMovie}
+              className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
+            >
               <MdBookmarkBorder />
             </button>
           </div>
@@ -46,7 +102,10 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               }`}
               alt="placeholder"
             />
-            <button className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl">
+            <button
+              onClick={handleBookmarkRecommendedMovie}
+              className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
+            >
               <MdBookmarkBorder />
             </button>
           </div>
