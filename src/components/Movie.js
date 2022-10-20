@@ -21,16 +21,9 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         "release_date" in trendingMovie
           ? trendingMovie.release_date
           : trendingMovie.first_air_date,
-      backdrop_path: `https://image.tmdb.org/t/p/original${trendingMovie.backdrop_path}`,
+      poster_path: trendingMovie.poster_path,
       adult: trendingMovie.adult ? "18+" : "PG",
     };
-
-    // This is how we read data from Firestore
-    // setTimeout(async () => {
-    //   const bookmarkedData = await getDocs(bookmarkedRef);
-
-    //   bookmarkedData.docs.forEach((doc) => console.log(doc.data()));
-    // }, 5000);
 
     addDoc(bookmarkedRef, trendingMovieData);
   };
@@ -48,7 +41,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         "release_date" in recommendedMovie
           ? recommendedMovie.release_date
           : recommendedMovie.first_air_date,
-      backdrop_path: `https://image.tmdb.org/t/p/original${recommendedMovie.backdrop_path}`,
+      poster_path: recommendedMovie.poster_path,
       adult: recommendedMovie.adult ? "18+" : "PG",
     };
 
