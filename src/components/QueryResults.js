@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BookmarkedContext } from "../BookmarkedContext";
 import request from "../utils/Request";
 import { useQuery } from "@tanstack/react-query";
 import Movie from "./Movie";
 
 const QueryResults = ({ posterSize, query, page }) => {
+  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
+
   const { data } = useQuery(["queryMoviesAndShows"], async () => {
     const requestTrendingMovies = await fetch(request.trendingMovies);
     const trendingMovies = await requestTrendingMovies.json();
@@ -22,6 +25,8 @@ const QueryResults = ({ posterSize, query, page }) => {
         return [...trendingMovies.results, ...recommendedMovies.results];
       case "Shows":
         return [...trendingShows.results, ...recommendedShows.results];
+      case "Bookmarked":
+        return [...bookmarks];
       default:
         return [
           ...trendingMovies.results,

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { BookmarkedContext } from "../BookmarkedContext";
 import Movie from "./Movie";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
@@ -7,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDocs, collection } from "firebase/firestore";
 
 const BookmarkedQueryResults = ({ posterSize }) => {
-  const [bookmarks, setBookmarks] = useState([]);
+  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
 
@@ -26,7 +27,7 @@ const BookmarkedQueryResults = ({ posterSize }) => {
 
   return (
     <div className="flex-1 flex flex-col gap-2 min-h-screen">
-      <h1 className="text-2xl">Bookmarked</h1>
+      <h1 className="text-2xl">Bookmarked Movies & TV Shows</h1>
       <ul className="flex-1 grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
         {bookmarks.map((movie, index) => {
           return (
