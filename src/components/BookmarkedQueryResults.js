@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { BookmarkedContext } from "../BookmarkedContext";
 import Movie from "./Movie";
 import { app } from "../firebase-config";
@@ -18,7 +18,14 @@ const BookmarkedQueryResults = ({ posterSize }) => {
       const bookmarkedRef = collection(userRef, "bookmarked_movies");
       const bookmarkedData = await getDocs(bookmarkedRef);
 
-      const bookmarkDataArray = bookmarkedData.docs.map((doc) => doc.data());
+      const bookmarkDataArray = bookmarkedData.docs.map((doc) => {
+        return {
+          id: doc.id,
+          isBookmarked: false,
+          ...doc.data()
+        };
+      });
+      
       setBookmarks(bookmarkDataArray);
     };
 

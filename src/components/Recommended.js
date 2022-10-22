@@ -26,8 +26,7 @@ const Recommended = ({ posterSize, page }) => {
       <h1 className="text-2xl">Recommended {page === "Home" ? "" : page}</h1>
       <ul className="grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
         {data
-          ?.sort(() => Math.random() - 0.5)
-          .map((recommendedMovie, index) => {
+          ?.map((recommendedMovie, index) => {
             return (
               <Movie
                 key={index}

@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { BookmarkedContext } from "../BookmarkedContext";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, collection, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, addDoc, deleteDoc } from "firebase/firestore";
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
 
@@ -25,7 +28,17 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       adult: trendingMovie.adult ? "18+" : "PG",
     };
 
-    addDoc(bookmarkedRef, trendingMovieData);
+    const indexOfCurrentRef = bookmarks.findIndex(bookmark => bookmark.title === trendingMovieData.title);
+
+    if (indexOfCurrentRef !== -1) {
+      setIsBookmarked(false);
+      await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
+      console.log(`${trendingMovieData.title} has been removed from bookmarks!`);
+    } else {
+      setIsBookmarked(true);
+      await addDoc(bookmarkedRef, trendingMovieData);
+      console.log(`${trendingMovieData.title} has been added to bookmarks!`);
+    }
   };
 
   const handleBookmarkRecommendedMovie = async () => {
@@ -45,8 +58,36 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       adult: recommendedMovie.adult ? "18+" : "PG",
     };
 
-    addDoc(bookmarkedRef, recommendedMovieData);
+    if (bookmarks.some((bookmark) => bookmark.title === recommendedMovieData.title)) {
+      const indexOfCurrentRef = bookmarks.findIndex(bookmark => bookmark.title === recommendedMovieData.title);
+      setIsBookmarked(false);
+      await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
+      console.log(`${recommendedMovieData.title} has been removed from bookmarks!`);
+    } else {
+      setIsBookmarked(true);
+      addDoc(bookmarkedRef, recommendedMovieData);
+      console.log(`${recommendedMovieData.title} has been added to bookmarks!`);
+    }
   };
+
+  useEffect(() => {
+    const fetchBookmarkedData = async () => {
+      const userRef = await doc(db, "users", user.uid);
+      const bookmarkedRef = collection(userRef, "bookmarked_movies");
+      const bookmarkedData = await getDocs(bookmarkedRef);
+
+      const bookmarkDataArray = bookmarkedData.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+      
+      setBookmarks(bookmarkDataArray);
+    };
+
+    fetchBookmarkedData();
+  }, [isBookmarked]);
 
   return (
     <>
@@ -66,7 +107,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               onClick={handleBookmarkTrendingMovie}
               className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
             >
-              <MdBookmarkBorder />
+              {isBookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
             </button>
           </div>
           <div className="flex justify-center items-center gap-1 text-xs absolute left-4 md:top-40 top-32">
@@ -99,7 +140,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               onClick={handleBookmarkRecommendedMovie}
               className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
             >
-              <MdBookmarkBorder />
+              {isBookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
             </button>
           </div>
           <div className="flex gap-1 text-xs text-slate-300">

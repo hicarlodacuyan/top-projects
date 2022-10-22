@@ -26,8 +26,7 @@ const Trending = ({ posterSize, page }) => {
       <h1 className="text-2xl">Trending {page === "Home" ? "" : page}</h1>
       <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
         {data
-          ?.sort(() => Math.random() - 0.5)
-          .map((trendingMovie, index) => {
+          ?.map((trendingMovie, index) => {
             return (
               <li className="inline-block snap-start" key={index}>
                 <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
