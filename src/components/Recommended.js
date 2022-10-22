@@ -23,7 +23,7 @@ const Recommended = ({ posterSize, page }) => {
 
   return (
     <div className="flex-1 flex flex-col gap-2">
-      <h1 className="text-2xl">Recommended</h1>
+      <h1 className="text-2xl">Recommended {page}</h1>
       <ul className="grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
         {data
           ?.sort(() => Math.random() - 0.5)

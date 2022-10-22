@@ -23,7 +23,7 @@ const Trending = ({ posterSize, page }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-2xl">Trending</h1>
+      <h1 className="text-2xl">Trending {page}</h1>
       <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
         {data
           ?.sort(() => Math.random() - 0.5)
