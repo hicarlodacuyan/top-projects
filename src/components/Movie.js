@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { BookmarkedContext, isBookmarkedContext } from "../BookmarkedContext";
+import { BookmarkedContext } from "../BookmarkedContext";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
 import { getAuth } from "firebase/auth";
@@ -14,102 +14,45 @@ import {
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
-  const { isBookmarked, setIsBookmarked } = useContext(isBookmarkedContext);
+  const [ isBookmarked, setIsBookmarked ] = useState(false);
   const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
 
-  const handleBookmarkTrendingMovie = async () => {
-    const userRef = await doc(db, "users", user.uid);
-    const bookmarkedRef = collection(userRef, "bookmarked_movies");
-
-    const trendingMovieData = {
-      title:
-        "title" in trendingMovie ? trendingMovie.title : trendingMovie.name,
-      release_date:
-        "release_date" in trendingMovie
-          ? trendingMovie.release_date
-          : trendingMovie.first_air_date,
-      poster_path: trendingMovie.poster_path,
-      adult: trendingMovie.adult ? "18+" : "PG",
-    };
-
-    const indexOfCurrentRef = bookmarks.findIndex(
-      (bookmark) => bookmark.title === trendingMovieData.title
-    );
-
-    if (indexOfCurrentRef !== -1) {
-      setIsBookmarked(false);
-      await deleteDoc(
-        doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id)
-      );
-      console.log(
-        `${trendingMovieData.title} has been removed from bookmarks!`
-      );
-    } else {
-      setIsBookmarked(true);
-      await addDoc(bookmarkedRef, trendingMovieData);
-      console.log(`${trendingMovieData.title} has been added to bookmarks!`);
+  const handleBookmarkData = async (movie) => {
+    if (!user) {
+      alert("You must be login to add bookmark");
+      return;
     }
-  };
 
-  const handleBookmarkRecommendedMovie = async () => {
-    const userRef = await doc(db, "users", user.uid);
-    const bookmarkedRef = collection(userRef, "bookmarked_movies");
-
-    const recommendedMovieData = {
-      title:
-        "title" in recommendedMovie
-          ? recommendedMovie.title
-          : recommendedMovie.name,
-      release_date:
-        "release_date" in recommendedMovie
-          ? recommendedMovie.release_date
-          : recommendedMovie.first_air_date,
-      poster_path: recommendedMovie.poster_path,
-      adult: recommendedMovie.adult ? "18+" : "PG",
-    };
-
-    if (
-      bookmarks.some(
-        (bookmark) => bookmark.title === recommendedMovieData.title
-      )
-    ) {
-      const indexOfCurrentRef = bookmarks.findIndex(
-        (bookmark) => bookmark.title === recommendedMovieData.title
-      );
-      setIsBookmarked(false);
-      await deleteDoc(
-        doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id)
-      );
-      console.log(
-        `${recommendedMovieData.title} has been removed from bookmarks!`
-      );
-    } else {
-      setIsBookmarked(true);
-      addDoc(bookmarkedRef, recommendedMovieData);
-      console.log(`${recommendedMovieData.title} has been added to bookmarks!`);
-    }
-  };
-
-  useEffect(() => {
-    const fetchBookmarkedData = async () => {
-      const userRef = await doc(db, "users", user.uid);
+    try {
+      const userRef = await doc(db, "users", user?.uid);
       const bookmarkedRef = collection(userRef, "bookmarked_movies");
-      const bookmarkedData = await getDocs(bookmarkedRef);
 
-      const bookmarkDataArray = bookmarkedData.docs.map((doc) => {
-        return {
-          id: doc.id,
-          ...doc.data(),
-        };
-      });
+      const trendingMovieData = {
+        title:
+          "title" in movie ? movie.title : movie.name,
+        release_date:
+          "release_date" in movie
+            ? movie.release_date
+            : movie.first_air_date,
+        poster_path: movie.poster_path,
+        adult: movie.adult ? "18+" : "PG"
+      };
 
-      setBookmarks(bookmarkDataArray);
-    };
+      const indexOfCurrentRef = bookmarks ? bookmarks.findIndex((bookmark) => bookmark.title === movie.title) : -1;
 
-    fetchBookmarkedData();
-  }, [isBookmarked]);
+      if (indexOfCurrentRef !== -1) {
+        setIsBookmarked(false);
+        await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
+      } else {
+        setIsBookmarked(true);
+        await addDoc(bookmarkedRef, trendingMovieData);
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -126,7 +69,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               alt="placeholder"
             />
             <button
-              onClick={handleBookmarkTrendingMovie}
+              onClick={() => handleBookmarkData(trendingMovie)}
               className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
             >
               {isBookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
@@ -159,7 +102,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
               alt="placeholder"
             />
             <button
-              onClick={handleBookmarkRecommendedMovie}
+              onClick={() => handleBookmarkData(recommendedMovie)}
               className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
             >
               {isBookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
