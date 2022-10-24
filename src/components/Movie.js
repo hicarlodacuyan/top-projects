@@ -1,14 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
-import { BookmarkedContext } from "../BookmarkedContext";
+import { BookmarkedContext, isBookmarkedContext } from "../BookmarkedContext";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDocs, collection, addDoc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  getDocs,
+  collection,
+  addDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { isBookmarked, setIsBookmarked } = useContext(isBookmarkedContext);
   const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
@@ -28,12 +34,18 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       adult: trendingMovie.adult ? "18+" : "PG",
     };
 
-    const indexOfCurrentRef = bookmarks.findIndex(bookmark => bookmark.title === trendingMovieData.title);
+    const indexOfCurrentRef = bookmarks.findIndex(
+      (bookmark) => bookmark.title === trendingMovieData.title
+    );
 
     if (indexOfCurrentRef !== -1) {
       setIsBookmarked(false);
-      await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
-      console.log(`${trendingMovieData.title} has been removed from bookmarks!`);
+      await deleteDoc(
+        doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id)
+      );
+      console.log(
+        `${trendingMovieData.title} has been removed from bookmarks!`
+      );
     } else {
       setIsBookmarked(true);
       await addDoc(bookmarkedRef, trendingMovieData);
@@ -58,11 +70,21 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       adult: recommendedMovie.adult ? "18+" : "PG",
     };
 
-    if (bookmarks.some((bookmark) => bookmark.title === recommendedMovieData.title)) {
-      const indexOfCurrentRef = bookmarks.findIndex(bookmark => bookmark.title === recommendedMovieData.title);
+    if (
+      bookmarks.some(
+        (bookmark) => bookmark.title === recommendedMovieData.title
+      )
+    ) {
+      const indexOfCurrentRef = bookmarks.findIndex(
+        (bookmark) => bookmark.title === recommendedMovieData.title
+      );
       setIsBookmarked(false);
-      await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
-      console.log(`${recommendedMovieData.title} has been removed from bookmarks!`);
+      await deleteDoc(
+        doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id)
+      );
+      console.log(
+        `${recommendedMovieData.title} has been removed from bookmarks!`
+      );
     } else {
       setIsBookmarked(true);
       addDoc(bookmarkedRef, recommendedMovieData);
@@ -79,10 +101,10 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       const bookmarkDataArray = bookmarkedData.docs.map((doc) => {
         return {
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         };
       });
-      
+
       setBookmarks(bookmarkDataArray);
     };
 

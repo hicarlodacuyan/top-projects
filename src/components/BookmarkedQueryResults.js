@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { BookmarkedContext } from "../BookmarkedContext";
+import { BookmarkedContext, isBookmarkedContext } from "../BookmarkedContext";
 import Movie from "./Movie";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDocs, collection } from "firebase/firestore";
 
 const BookmarkedQueryResults = ({ posterSize }) => {
+  const { isBookmarked, setIsBookmarked } = useContext(isBookmarkedContext);
   const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
@@ -22,15 +23,15 @@ const BookmarkedQueryResults = ({ posterSize }) => {
         return {
           id: doc.id,
           isBookmarked: false,
-          ...doc.data()
+          ...doc.data(),
         };
       });
-      
+
       setBookmarks(bookmarkDataArray);
     };
 
     fetchBookmarkedData();
-  }, []);
+  }, [isBookmarked]);
 
   return (
     <div className="flex-1 flex flex-col gap-2 min-h-screen">
