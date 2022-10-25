@@ -1,59 +1,42 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BookmarkedContext } from "../BookmarkedContext";
 import Movie from "./Movie";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDocs, collection, onSnapshot } from "firebase/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { doc, collection } from "firebase/firestore";
 
 const BookmarkedQueryResults = ({ posterSize }) => {
-  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
+  const { setBookmarksTemp } = useContext(BookmarkedContext);
+
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
+  const userRef = doc(db, "users", user?.uid);
+  const bookmarkedMoviesRef = collection(userRef, "bookmarked_movies");
+  const [bookmarks] = useCollectionData(bookmarkedMoviesRef);
 
-  // useEffect(() => {
-  //   const fetchBookmarkedData = async () => {
-  //     const userRef = await doc(db, "users", user?.uid);
-  //     const bookmarkedRef = collection(userRef, "bookmarked_movies");
-  //     const bookmarkedData = await getDocs(bookmarkedRef);
-
-  //     const bookmarkDataArray = bookmarkedData.docs.map((doc) => {
-  //       return {
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       };
-  //     });
-
-  //     setBookmarks(bookmarkDataArray);
-  //   };
-
-  //   fetchBookmarkedData();
-  // }, []);
-
-  // useEffect(() => {
-  //   const userRef = doc(db, "users", user?.uid);
-
-  //   onSnapshot(collection(userRef, "bookmarked_movies"), (doc) => {
-  //     console.log(doc);
-  //   });
-  // }, [user?.uid]);
+  useEffect(() => setBookmarksTemp(bookmarks), [bookmarks]);
 
   return (
     <div className="flex-1 flex flex-col gap-2 min-h-screen">
       <h1 className="text-2xl">Bookmarked Movies & TV Shows</h1>
       <ul className="flex-1 grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
-        {
-          user ? bookmarks.map((movie, index) => {
+        {user ? (
+          bookmarks?.map((movie, index) => {
             return (
               <Movie
                 key={index}
                 posterSize={posterSize}
                 recommendedMovie={movie}
+                bookmarkedMovies={bookmarks}
               />
             );
-          }) : <p>Please login to see your bookmarks!</p>
-        }
+          })
+        ) : (
+          <p>Please login to see your bookmarks!</p>
+        )}
       </ul>
     </div>
   );

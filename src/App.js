@@ -3,11 +3,11 @@ import RouteSwitch from "./RouteSwitch";
 import { BookmarkedContext } from "./BookmarkedContext";
 
 const App = () => {
-  const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarksTemp, setBookmarksTemp] = useState([]);
 
   return (
     <div className="bg-slate-900 text-white">
-      <BookmarkedContext.Provider value={{ bookmarks, setBookmarks }}>
+      <BookmarkedContext.Provider value={{ bookmarksTemp, setBookmarksTemp }}>
         <RouteSwitch />
       </BookmarkedContext.Provider>
     </div>

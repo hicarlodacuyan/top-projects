@@ -6,16 +6,17 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   doc,
-  getDocs,
   collection,
   addDoc,
   deleteDoc,
+  getDocs,
 } from "firebase/firestore";
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
-const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
-  const [ isBookmarked, setIsBookmarked ] = useState(false);
-  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
+const Movie = ({ posterSize, trendingMovie, recommendedMovie, bookmarks }) => {
+  const { bookmarksTemp, setBookmarksTemp } = useContext(BookmarkedContext);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
 
@@ -28,28 +29,38 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
     try {
       const userRef = await doc(db, "users", user?.uid);
       const bookmarkedRef = collection(userRef, "bookmarked_movies");
+      const docSnapshot = await getDocs(bookmarkedRef);
+
+      const docSnapshotData = docSnapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
 
       const trendingMovieData = {
-        title:
-          "title" in movie ? movie.title : movie.name,
+        title: "title" in movie ? movie.title : movie.name,
         release_date:
-          "release_date" in movie
-            ? movie.release_date
-            : movie.first_air_date,
+          "release_date" in movie ? movie.release_date : movie.first_air_date,
         poster_path: movie.poster_path,
-        adult: movie.adult ? "18+" : "PG"
+        adult: movie.adult ? "18+" : "PG",
       };
 
-      const indexOfCurrentRef = bookmarks ? bookmarks.findIndex((bookmark) => bookmark.title === movie.title) : -1;
+      const currentMovieRefIdx = bookmarksTemp.findIndex(
+        (bookmark) => bookmark.title === movie.title
+      );
 
-      if (indexOfCurrentRef !== -1) {
-        setIsBookmarked(false);
-        await deleteDoc(doc(userRef, "bookmarked_movies", bookmarks[indexOfCurrentRef].id));
+      if (currentMovieRefIdx !== -1) {
+        deleteDoc(
+          doc(
+            userRef,
+            "bookmarked_movies",
+            docSnapshotData[currentMovieRefIdx].id
+          )
+        );
+        console.log(`${movie.title} has been removed from bookmarked!`);
       } else {
-        setIsBookmarked(true);
-        await addDoc(bookmarkedRef, trendingMovieData);
+        addDoc(bookmarkedRef, trendingMovieData);
+        console.log(`${movie.title} has been added to bookmarked!`);
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   };
