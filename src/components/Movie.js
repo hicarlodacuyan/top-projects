@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { BookmarkedContext } from "../BookmarkedContext";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
@@ -60,7 +60,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         addDoc(bookmarkedRef, trendingMovieData);
         console.log(`${movie.title} has been added to bookmarked!`);
       }
-      
+
     } catch (error) {
       console.log(error);
     }

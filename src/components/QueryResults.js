@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Movie from "./Movie";
 
 const QueryResults = ({ posterSize, query, page }) => {
-  const { bookmarks, setBookmarks } = useContext(BookmarkedContext);
+  const { bookmarksTemp } = useContext(BookmarkedContext);
 
   const { data } = useQuery(["queryMoviesAndShows"], async () => {
     const requestTrendingMovies = await fetch(request.trendingMovies);
@@ -26,7 +26,7 @@ const QueryResults = ({ posterSize, query, page }) => {
       case "Shows":
         return [...trendingShows.results, ...recommendedShows.results];
       case "Bookmarked":
-        return [...bookmarks];
+        return [...bookmarksTemp];
       default:
         return [
           ...trendingMovies.results,
