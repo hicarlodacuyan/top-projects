@@ -30,7 +30,6 @@ const BookmarkedQueryResults = ({ posterSize }) => {
                 key={index}
                 posterSize={posterSize}
                 recommendedMovie={movie}
-                bookmarkedMovies={bookmarks}
               />
             );
           })
