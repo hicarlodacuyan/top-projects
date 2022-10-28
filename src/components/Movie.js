@@ -13,12 +13,43 @@ import {
 } from "firebase/firestore";
 import MoviePosterLarge from "./MoviePosterLarge";
 import MoviePosterSmall from "./MoviePosterSmall";
+import { toast } from "react-toastify";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
   const { bookmarksTemp } = useContext(BookmarkedContext);
+  const [inBookmark, setInBookmark] = useState(false);
 
   const auth = getAuth(app);
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const bookmarkedRef = collection(userRef, "bookmarked_movies");
+        const docSnapshot = await getDocs(bookmarkedRef);
+
+        const docSnapshotData = docSnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+        const currMovie = trendingMovie ? trendingMovie : recommendedMovie;
+
+        const isInDB = docSnapshotData.find(
+          (data) => data.title === currMovie.title
+        );
+
+        if (isInDB) {
+          setInBookmark(true);
+        } else {
+          setInBookmark(false);
+        }
+      }
+    };
+
+    fetchData();
+  }, [loading]);
 
   const handleBookmarkData = async (movie) => {
     if (!user) {
@@ -47,7 +78,6 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
             docSnapshotData[currentMovieRefIdx].id
           )
         );
-        console.log(`${movie.title} has been removed from bookmarked!`);
       } else {
         addDoc(bookmarkedRef, {
           title: "title" in movie ? movie.title : movie.name,
@@ -57,7 +87,16 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           adult: movie.adult ? "18+" : "PG",
           isBookmark: true,
         });
-        console.log(`${movie.title} has been added to bookmarked!`);
+
+        toast.success(`${movie.title} has been added to bookmarked!`, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -69,11 +108,13 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
       {posterSize === "300x150" ? (
         <MoviePosterLarge
           movie={trendingMovie}
+          inBookmark={inBookmark}
           handleBookmarkData={handleBookmarkData}
         />
       ) : (
         <MoviePosterSmall
           movie={recommendedMovie}
+          inBookmark={inBookmark}
           handleBookmarkData={handleBookmarkData}
         />
       )}

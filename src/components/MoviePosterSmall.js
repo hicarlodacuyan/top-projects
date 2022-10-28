@@ -1,6 +1,6 @@
 import { MdLocalMovies, MdBookmarkBorder, MdBookmark } from "react-icons/md";
 
-const MoviePosterSmall = ({ movie, handleBookmarkData }) => {
+const MoviePosterSmall = ({ movie, handleBookmarkData, inBookmark }) => {
   return (
     <div className="flex flex-col gap-1">
       <div className="relative">
@@ -17,7 +17,7 @@ const MoviePosterSmall = ({ movie, handleBookmarkData }) => {
           onClick={() => handleBookmarkData(movie)}
           className="flex items-center justify-center absolute right-4 top-4 bg-gray-900 bg-opacity-50 rounded-full w-7 h-7 text-xl"
         >
-          {movie.isBookmark ? <MdBookmark /> : <MdBookmarkBorder />}
+          {inBookmark ? <MdBookmark /> : <MdBookmarkBorder />}
         </button>
       </div>
       <div className="flex gap-1 text-xs text-slate-300">
