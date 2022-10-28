@@ -13,11 +13,19 @@ const Trending = ({ posterSize, page }) => {
 
     switch (page) {
       case "Movies":
-        return trendingMovies.results;
+        return trendingMovies.results.map((trendingMovie) => ({
+          ...trendingMovie,
+          isBookmark: false,
+        }));
       case "Shows":
-        return trendingShows.results;
+        return trendingShows.results.map((trendingShow) => ({
+          ...trendingShow,
+          isBookmark: false,
+        }));
       default:
-        return [...trendingMovies.results, ...trendingShows.results];
+        return [...trendingMovies.results, ...trendingShows.results].map(
+          (movie) => ({ ...movie, isBookmark: false })
+        );
     }
   });
 
@@ -25,14 +33,13 @@ const Trending = ({ posterSize, page }) => {
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl">Trending {page === "Home" ? "" : page}</h1>
       <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
-        {data
-          ?.map((trendingMovie, index) => {
-            return (
-              <li className="inline-block snap-start" key={index}>
-                <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
-              </li>
-            );
-          })}
+        {data?.map((trendingMovie, index) => {
+          return (
+            <li className="inline-block snap-start" key={index}>
+              <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

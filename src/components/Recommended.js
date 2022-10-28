@@ -13,11 +13,19 @@ const Recommended = ({ posterSize, page }) => {
 
     switch (page) {
       case "Movies":
-        return recommendedMovies.results;
+        return recommendedMovies.results.map((recommendedMovie) => ({
+          ...recommendedMovie,
+          isBookmark: false,
+        }));
       case "Shows":
-        return recommendedShows.results;
+        return recommendedShows.results.map((recommendedShow) => ({
+          ...recommendedShow,
+          isBookmark: false,
+        }));
       default:
-        return [...recommendedMovies.results, ...recommendedShows.results];
+        return [...recommendedMovies.results, ...recommendedShows.results].map(
+          (movie) => ({ ...movie, isBookmark: false })
+        );
     }
   });
 
@@ -25,16 +33,15 @@ const Recommended = ({ posterSize, page }) => {
     <div className="flex-1 flex flex-col gap-2">
       <h1 className="text-2xl">Recommended {page === "Home" ? "" : page}</h1>
       <ul className="grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
-        {data
-          ?.map((recommendedMovie, index) => {
-            return (
-              <Movie
-                key={index}
-                posterSize={posterSize}
-                recommendedMovie={recommendedMovie}
-              />
-            );
-          })}
+        {data?.map((recommendedMovie, index) => {
+          return (
+            <Movie
+              key={index}
+              posterSize={posterSize}
+              recommendedMovie={recommendedMovie}
+            />
+          );
+        })}
       </ul>
     </div>
   );

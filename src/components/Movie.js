@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BookmarkedContext } from "../BookmarkedContext";
 import { app } from "../firebase-config";
 import { db } from "../firebase-config";
@@ -27,21 +27,13 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
     }
 
     try {
-      const userRef = await doc(db, "users", user?.uid);
+      const userRef = doc(db, "users", user?.uid);
       const bookmarkedRef = collection(userRef, "bookmarked_movies");
       const docSnapshot = await getDocs(bookmarkedRef);
 
       const docSnapshotData = docSnapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-
-      const trendingMovieData = {
-        title: "title" in movie ? movie.title : movie.name,
-        release_date:
-          "release_date" in movie ? movie.release_date : movie.first_air_date,
-        poster_path: movie.poster_path,
-        adult: movie.adult ? "18+" : "PG",
-      };
 
       const currentMovieRefIdx = bookmarksTemp.findIndex(
         (bookmark) => bookmark.title === movie.title
@@ -57,10 +49,16 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         );
         console.log(`${movie.title} has been removed from bookmarked!`);
       } else {
-        addDoc(bookmarkedRef, trendingMovieData);
+        addDoc(bookmarkedRef, {
+          title: "title" in movie ? movie.title : movie.name,
+          release_date:
+            "release_date" in movie ? movie.release_date : movie.first_air_date,
+          poster_path: movie.poster_path,
+          adult: movie.adult ? "18+" : "PG",
+          isBookmark: true,
+        });
         console.log(`${movie.title} has been added to bookmarked!`);
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -69,9 +67,15 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
   return (
     <>
       {posterSize === "300x150" ? (
-        <MoviePosterLarge movie={trendingMovie} handleBookmarkData={handleBookmarkData} />
+        <MoviePosterLarge
+          movie={trendingMovie}
+          handleBookmarkData={handleBookmarkData}
+        />
       ) : (
-        <MoviePosterSmall movie={recommendedMovie} handleBookmarkData={handleBookmarkData} />
+        <MoviePosterSmall
+          movie={recommendedMovie}
+          handleBookmarkData={handleBookmarkData}
+        />
       )}
     </>
   );
