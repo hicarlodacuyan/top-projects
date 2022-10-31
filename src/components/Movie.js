@@ -16,7 +16,7 @@ import MoviePosterSmall from "./MoviePosterSmall";
 import { toast } from "react-toastify";
 
 const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
-  const { bookmarksTemp } = useContext(BookmarkedContext);
+  const { bookmarksTemp, setBookmarksTemp } = useContext(BookmarkedContext);
   const [inBookmark, setInBookmark] = useState(false);
 
   const auth = getAuth(app);
@@ -78,6 +78,25 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
             docSnapshotData[currentMovieRefIdx].id
           )
         );
+
+        setInBookmark(false);
+
+        toast.error(`${movie.title} has been removed from bookmarked!`, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        const newDocSnapshot = await getDocs(bookmarkedRef);
+        const newDocSnapshotData = newDocSnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+        setBookmarksTemp(newDocSnapshotData);
       } else {
         addDoc(bookmarkedRef, {
           title: "title" in movie ? movie.title : movie.name,
@@ -88,6 +107,8 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           isBookmark: true,
         });
 
+        setInBookmark(true);
+
         toast.success(`${movie.title} has been added to bookmarked!`, {
           position: "top-center",
           autoClose: 1000,
@@ -97,6 +118,13 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           draggable: true,
           progress: undefined,
         });
+
+        const newDocSnapshot = await getDocs(bookmarkedRef);
+        const newDocSnapshotData = newDocSnapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+        setBookmarksTemp(newDocSnapshotData);
       }
     } catch (error) {
       console.log(error);
