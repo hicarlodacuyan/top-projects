@@ -37,8 +37,10 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         const currMovie = trendingMovie ? trendingMovie : recommendedMovie;
 
         const isInDB = docSnapshotData.find(
-          (data) => data.title === currMovie.title
-        );
+          (data) => {
+            const title = currMovie.hasOwnProperty("title") ? currMovie.title : currMovie.name
+            return data.title === title
+          });
 
         if (isInDB) {
           setInBookmark(true);
@@ -79,8 +81,6 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           )
         );
 
-        setInBookmark(false);
-
         toast.error(`${movie.title} has been removed from bookmarked!`, {
           position: "top-center",
           autoClose: 1000,
@@ -97,6 +97,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         });
 
         setBookmarksTemp(newDocSnapshotData);
+        setInBookmark(false);
       } else {
         addDoc(bookmarkedRef, {
           title: "title" in movie ? movie.title : movie.name,
@@ -106,8 +107,6 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           adult: movie.adult ? "18+" : "PG",
           isBookmark: true,
         });
-
-        setInBookmark(true);
 
         toast.success(`${movie.title} has been added to bookmarked!`, {
           position: "top-center",
@@ -125,6 +124,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
         });
 
         setBookmarksTemp(newDocSnapshotData);
+        setInBookmark(true);
       }
     } catch (error) {
       console.log(error);
