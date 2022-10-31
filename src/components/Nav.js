@@ -50,14 +50,17 @@ const Nav = () => {
           <MdTv />
         </NavLink>
 
-        <NavLink
-          to="/entertainment-webapp/bookmarked"
-          className={({ isActive }) =>
-            isActive ? "text-white text-xl" : "text-slate-500 text-xl"
-          }
-        >
-          <MdOutlineBookmark />
-        </NavLink>
+        
+        {user ? (
+          <NavLink
+            to="/entertainment-webapp/bookmarked"
+            className={({ isActive }) =>
+              isActive ? "text-white text-xl" : "text-slate-500 text-xl"
+            }
+          >
+            <MdOutlineBookmark />
+          </NavLink>
+        ) : ""}
       </div>
 
       <div>
