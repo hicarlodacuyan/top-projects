@@ -45,9 +45,9 @@ const Trending = ({ posterSize, page }) => {
           loadingComponent.map((img, index) => {
             return (
               <li className="inline-block snap-start" key={index}>
-                <div className="mr-4 relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10">
+                <div className="mr-4 relative rounded-md blur-sm bg-gray-300">
                   <img
-                    className="rounded-md md:w-96 w-80 h-auto blur-xl"
+                    className="rounded-md md:w-96 w-80 h-auto opacity-0"
                     src="https://via.placeholder.com/384x216"
                     alt="placeholder"
                   />

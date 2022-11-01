@@ -44,7 +44,7 @@ const Recommended = ({ posterSize, page }) => {
         {isLoading ? (
           loadingComponent.map((img, index) => {
             return (
-              <li className="inline-block snap-start rounded-md w-auto h-72 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 blur-sm" key={index}></li>
+              <li className="inline-block snap-start rounded-md w-auto h-72 bg-gray-300 blur-sm" key={index}></li>
             );
           })
         ) : (
