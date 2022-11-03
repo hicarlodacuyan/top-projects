@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Movie from "./Movie";
 import { useQuery } from "@tanstack/react-query";
 import request from "../utils/Request";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const Trending = ({ posterSize, page }) => {
-  const [loadingComponent, setLoadingComponent] = useState([
-    "", "", "",
-    "", "", "",
-    "", "", "",
-    "", "", "",
-    "", "", "",
-    "", "", "",
-  ]);
+  const [loadingComponent, setLoadingComponent] = useState([...Array(30)]);
   const { data, isLoading } = useQuery(["trending"], async () => {
     const requestTrendingMovies = await fetch(request.trendingMovies);
     const trendingMovies = await requestTrendingMovies.json();
@@ -37,33 +31,39 @@ const Trending = ({ posterSize, page }) => {
     }
   });
 
+  const [listRef] = useAutoAnimate();
+
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl">Trending {page === "Home" ? "" : page}</h1>
-      <ul className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar">
-        {isLoading ? (
-          loadingComponent.map((img, index) => {
-            return (
-              <li className="inline-block snap-start" key={index}>
-                <div className="mr-4 relative rounded-md blur-sm bg-gray-300">
-                  <img
-                    className="rounded-md md:w-96 w-80 h-auto opacity-0"
-                    src="https://via.placeholder.com/384x216"
-                    alt="placeholder"
+      <ul
+        className="gap-4 overflow-x-auto w-full whitespace-nowrap snap-x scrollbar"
+        ref={listRef}
+      >
+        {isLoading
+          ? loadingComponent.map((img, index) => {
+              return (
+                <li className="inline-block snap-start" key={index}>
+                  <div className="mr-4 relative rounded-md blur-sm bg-gray-300">
+                    <img
+                      className="rounded-md md:w-96 w-80 h-auto opacity-0"
+                      src="https://via.placeholder.com/384x216"
+                      alt="placeholder"
+                    />
+                  </div>
+                </li>
+              );
+            })
+          : data?.map((trendingMovie, index) => {
+              return (
+                <li className="inline-block snap-start" key={index}>
+                  <Movie
+                    posterSize={posterSize}
+                    trendingMovie={trendingMovie}
                   />
-                </div>
-              </li>
-            );
-          })
-        ) : (
-          data?.map((trendingMovie, index) => {
-            return (
-              <li className="inline-block snap-start" key={index}>
-                <Movie posterSize={posterSize} trendingMovie={trendingMovie} />
-              </li>
-            );
-          })
-        )}
+                </li>
+              );
+            })}
       </ul>
     </div>
   );

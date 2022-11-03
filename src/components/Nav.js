@@ -24,43 +24,44 @@ const Nav = () => {
       </div>
       <div className="flex lg:flex-col gap-4">
         <NavLink
-          to="/entertainment-webapp/home"
           className={({ isActive }) =>
             isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
+          to="/entertainment-webapp/home"
         >
           <MdViewQuilt />
         </NavLink>
 
         <NavLink
-          to="/entertainment-webapp/movies"
           className={({ isActive }) =>
             isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
+          to="/entertainment-webapp/movies"
         >
           <MdLocalMovies />
         </NavLink>
 
         <NavLink
-          to="/entertainment-webapp/shows"
           className={({ isActive }) =>
             isActive ? "text-white text-xl" : "text-slate-500 text-xl"
           }
+          to="/entertainment-webapp/shows"
         >
           <MdTv />
         </NavLink>
 
-        
         {user ? (
           <NavLink
-            to="/entertainment-webapp/bookmarked"
             className={({ isActive }) =>
               isActive ? "text-white text-xl" : "text-slate-500 text-xl"
             }
+            to="/entertainment-webapp/bookmarked"
           >
             <MdOutlineBookmark />
           </NavLink>
-        ) : ""}
+        ) : (
+          ""
+        )}
       </div>
 
       <div>
