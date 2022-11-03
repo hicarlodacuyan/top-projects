@@ -3,6 +3,7 @@ import { BookmarkedContext } from "../BookmarkedContext";
 import request from "../utils/Request";
 import { useQuery } from "@tanstack/react-query";
 import Movie from "./Movie";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const QueryResults = ({ posterSize, query, page }) => {
   const { bookmarksTemp } = useContext(BookmarkedContext);
@@ -37,10 +38,15 @@ const QueryResults = ({ posterSize, query, page }) => {
     }
   });
 
+  const [listRef] = useAutoAnimate();
+
   return (
     <div className="flex-1 flex flex-col gap-2 min-h-screen">
       <h1 className="text-2xl">Search Results</h1>
-      <ul className="flex-1 grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
+      <ul
+        className="flex-1 grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4"
+        ref={listRef}
+      >
         {data
           ?.filter((movie) => {
             if (query === "") return movie;

@@ -32,15 +32,19 @@ const BookmarkedQueryResults = ({ posterSize }) => {
         {loading ? (
           <p>Loading...</p>
         ) : user ? (
-          bookmarks?.map((movie, index) => {
-            return (
-              <Movie
-                key={index}
-                posterSize={posterSize}
-                recommendedMovie={movie}
-              />
-            );
-          })
+          bookmarks?.length > 0 ? (
+            bookmarks?.map((movie, index) => {
+              return (
+                <Movie
+                  key={index}
+                  posterSize={posterSize}
+                  recommendedMovie={movie}
+                />
+              );
+            })
+          ) : (
+            <p>Bookmarks is empty!</p>
+          )
         ) : (
           <p>Please login to see your bookmarks!</p>
         )}
