@@ -81,7 +81,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           )
         );
 
-        toast.error(`${movie.title} has been removed from bookmarked!`, {
+        toast.error(`${"title" in movie ? movie.title : movie.name} has been removed from bookmarked!`, {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
@@ -108,7 +108,7 @@ const Movie = ({ posterSize, trendingMovie, recommendedMovie }) => {
           isBookmark: true,
         });
 
-        toast.success(`${movie.title} has been added to bookmarked!`, {
+        toast.success(`${"title" in movie ? movie.title : movie.name} has been added to bookmarked!`, {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
