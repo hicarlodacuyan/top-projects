@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this project, we'll create a simple rock paper scissors game using HTML, CSS, and JavaScript. The goal of this project is to introduce the concept of the Document Object Model (DOM) and events to our students, and to give them some practice using these concepts in a real-world project.
+In this project, we'll create a simple rock paper scissors game using HTML, CSS, and JavaScript. The goal of this project is to introduce the concept of the Document Object Model (DOM) and events to my students, and to give them some practice using these concepts in a real-world project.
 
 ## Getting Started
 
