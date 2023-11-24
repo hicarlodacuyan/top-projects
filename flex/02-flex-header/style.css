@@ -1,0 +1,45 @@
+.header  {
+  font-family: monospace;
+  background: papayawhip;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: 900;
+  color: tomato;
+  background: white;
+  padding: 4px 32px;
+}
+
+ul {
+  /* this removes the dots on the list items*/
+  list-style-type: none;
+}
+
+a {
+  font-size: 22px;
+  background: white;
+  padding: 8px;
+  /* this removes the line under the links */
+  text-decoration: none;
+}
+
+/* MY SOLUTION */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+ul {
+  display: flex;
+  gap: 8px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* 
+I had a hard time center the listed items inside the unordered list using flexbox. Little did I know that the problem was because of the padding. I took a look at the solution and was able to figure out what went wrong.
+*/
