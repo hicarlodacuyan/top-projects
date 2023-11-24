@@ -1,0 +1,33 @@
+.scores-container {
+  display: flex;
+  padding: 0 2rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+.scores-container div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #DFE6EC;
+  font-size: var(--font-size--large);
+  color: #31485A;
+}
+
+.current-score-points {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .scores-container {
+    gap: 1rem;
+  }
+
+  .scores-container div {
+    font-size: var(--font-size--default);
+    padding: 1rem;
+  }
+}
