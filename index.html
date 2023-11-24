@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+          <h1>Libro</h1>
+          <p>A simple library tracking app</p>
+        </div>
+        <div class="main">
+        </div>
+    </div>
+    <div class="bg-modal">
+        <div class="modal-content">
+          <div class="dialog-title">
+            <span class="close" id="close">&times;</span>
+            Add Book
+          </div>
+          <form action="#">
+            <label for="title">Book Title</label>
+            <input type="text" name="title" id="title" required>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+            <label for="page">Number of Pages</label>
+            <input type="text" name="page" id="page" required>
+            <hr />
+            <button class="addBook" id="addBook">ADD</button>
+          </form>
+        </div>
+    </div>
+    <button class="material-icons floating-btn" id="add">add</button>
+    <script src="./js/script.js"></script>
+</body>
+</html>

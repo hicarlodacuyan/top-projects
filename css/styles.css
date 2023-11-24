@@ -1,0 +1,175 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #eee;
+  font-family: -apple-system, BlinkMacSystemFont, "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.container {
+  padding: 1rem;
+  
+  display: flex;
+  flex-direction: column;
+}
+  
+.header {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+p {
+  font-size: 0.9rem;
+  padding: 0;
+  margin-top: 0;
+}
+
+.main {
+  flex: 1;
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, clamp(125px, 50%, 150px));
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.book {
+  background: yellow;
+  height: 200px;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book > span {
+  cursor: pointer;
+}
+
+.remove-book {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.pages {
+  font-size: 0.75rem;
+  font-style: italic;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 300px;
+  height: auto;
+  background: #eee;
+  border-radius: 4px;
+  
+  display: flex;
+  flex-direction: column;
+  
+  padding: 1rem;
+}
+
+input {
+  margin-bottom: 1rem;
+  height: 1.5rem;
+}
+
+label {
+  font-size: 0.9rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  height: 1px;
+  border: 0; 
+  border-top: 1px solid #ccc;
+  margin: 1em 0; 
+  padding: 0;
+}
+
+.close {
+  align-self: flex-end;
+  font-size: 1.5rem;
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.dialog-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.floating-btn {
+  width: 60px;
+  height: 60px;
+  background: black;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 40px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  transition: background 0.25s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.floating-btn:active {
+  background: gray;
+}
+
+.addBook {
+  align-self: flex-end;
+  color: black;
+  outline: none;
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: background 0.25s;
+  padding-right: 0px;
+}
+
+.toggle {
+  height: auto;
+}
