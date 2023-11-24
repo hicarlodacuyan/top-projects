@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen w-screen bg-neutral-200">
+    <div id="root" class="h-full flex justify-center items-center">
+      <main class="flex flex-col gap-10 w-1/4">
+        <header class="flex justify-center">
+          <h1 class="text-2xl text-slate-600">
+            Right now in
+            <span
+              id="weatherLocation"
+              class="w-min font-bold text-zinc-900 border-solid border-b-2 border-gray-400"
+              contenteditable
+              >Manila</span
+            >, <span id="weatherInfo"></span>.
+          </h1>
+        </header>
+
+        <section class="flex">
+          <div>
+            <img
+              id="weatherIcon"
+              class="h-32 w-32"
+              src="https://openweathermap.org/img/wn/10d@2x.png"
+              alt="weather icon"
+            />
+          </div>
+
+          <div class="flex flex-1 flex-col justify-center items-center">
+            <h2 id="weatherTemp" class="text-7xl font-light"></h2>
+            <p id="weatherMinMax" class="text-sm text-slate-600"></p>
+          </div>
+
+          <div class="flex flex-col justify-center items-center">
+            <div
+              class="text-sm text-slate-600 flex justify-center items-center"
+            >
+              <img
+                class="h-8 w-8"
+                src="https://raw.githubusercontent.com/erikflowers/weather-icons/bb80982bf1f43f2d57f9dd753e7413bf88beb9ed/svg/wi-windy.svg"
+                alt="wind icon"
+              />
+              <span id="windSpeed" class="text-2xl block"></span> mph
+            </div>
+            <div
+              class="text-sm text-slate-600 flex justify-center items-center"
+            >
+              <img
+                class="h-8 w-8"
+                src="https://raw.githubusercontent.com/erikflowers/weather-icons/bb80982bf1f43f2d57f9dd753e7413bf88beb9ed/svg/wi-humidity.svg"
+                alt="humidity icon"
+              />
+              <span id="humidity" class="text-2xl block"></span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
