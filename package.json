@@ -1,0 +1,28 @@
+{
+  "name": "todo_app",
+  "version": "1.0.0",
+  "description": "This project is created for the sole purpose of learning and part of the \"The Odin Project\" [curriculum](https://theodinproject.com/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hicarlodacuyan/todo_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hicarlodacuyan/todo_app/issues"
+  },
+  "homepage": "https://github.com/hicarlodacuyan/todo_app#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "sass": "^1.52.2",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
