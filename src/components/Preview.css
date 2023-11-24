@@ -1,0 +1,209 @@
+.preview-container {
+    background-color: #FFFFFF;
+    flex: 1;
+    padding: calc(8px + 1.5625vw);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+    height: 85vh;
+}
+
+.preview-title {
+    font-weight: bold;
+    font-size: calc(16px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.output-preview {
+    flex: 1;
+    background-color: #F6F7F7;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+
+    overflow-y: auto;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.print-btn {
+    color: #FFFFFF;
+    align-self: flex-end;
+    padding: 0.25rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #39346A;
+}
+
+.preview-contact-details {
+    margin-bottom: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "firstName firstName lastName lastName"
+        "title title phoneNumber phoneNumber"
+        "address address email email";
+}
+
+.firstName {
+    grid-area: firstName;
+    text-align: right;
+
+    font-size: 2rem;
+    border-bottom: solid 1px #A0A0A3;
+}
+
+.firstName:after {
+    content: "\00a0";
+}
+
+.lastName {
+    grid-area: lastName;
+    text-align: left;
+
+    font-size: 2rem;
+    border-bottom: solid 1px #A0A0A3;
+}
+
+.title {
+    grid-area: title;
+    text-align: left;
+
+    font-size: 0.75rem;
+}
+
+.address {
+    grid-area: address;
+    text-align: left;
+
+    font-size: 0.75rem;
+}
+
+.phoneNumber {
+    grid-area: phoneNumber;
+    text-align: right;
+
+    font-size: 0.75rem;
+}
+
+.email {
+    grid-area: email;
+    text-align: right;
+
+    font-size: 0.7rem;
+}
+
+.preview-experience-title {
+    border-bottom: solid 1px #A0A0A3;
+    font-size: 1rem;
+    color: #A0A0A3;
+    font-weight: bold;
+}
+
+.preview-experience-details {
+    margin-bottom: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "position position position experienceDate experienceDate"
+        "experienceCompany experienceCompany experienceCompany experienceLocation experienceLocation";
+}
+
+.position {
+    grid-area: position;
+    text-align: left;
+
+    font-size: 1rem;
+}
+
+.experienceCompany {
+    grid-area: experienceCompany;
+    text-align: left;
+
+    font-size: 0.8rem;
+    color: #A0A0A3;
+    font-style: italic;
+}
+
+.experienceLocation {
+    grid-area: experienceLocation;
+    text-align: right;
+
+    font-size: 0.75rem;
+    color: #A0A0A3;
+    font-style: italic;
+}
+
+.experienceDate {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    grid-area: experienceDate;
+    text-align: right;
+
+    font-size: 0.75rem;
+}
+
+.preview-education-details {
+    margin-bottom: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "fieldOfStudy fieldOfStudy fieldOfStudy educationDate educationDate"
+        "educationInstitution educationInstitution educationInstitution educationLocation educationLocation";
+}
+
+.educationInstitution {
+    grid-area: educationInstitution;
+    text-align: left;
+
+    font-size: 0.8rem;
+    color: #A0A0A3;
+    font-style: italic;
+}
+
+.educationDate {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    grid-area: educationDate;
+    text-align: right;
+
+    font-size: 0.75rem;
+}
+
+.fieldOfStudy {
+    grid-area: fieldOfStudy;
+    text-align: left;
+
+    font-size: 1rem;
+}
+
+.educationLocation {
+    grid-area: educationLocation;
+    text-align: right;
+
+    font-size: 0.75rem;
+    color: #A0A0A3;
+    font-style: italic;
+}
+
+.preview-education-title {
+    border-bottom: solid 1px #A0A0A3;
+    font-size: 1rem;
+    color: #A0A0A3;
+    font-weight: bold;
+}

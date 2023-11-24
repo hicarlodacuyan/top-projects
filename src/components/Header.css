@@ -1,0 +1,22 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 2rem;
+
+    color: #F6F7F7;
+}
+
+.header-title {
+    font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.header-title > span {
+    font-weight: bold;
+}
+
+.header-para {
+    font-size: calc(8px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    text-align: right;
+}
