@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Library App</title>
+  </head>
+  <body>
+    <div id="root">
+      <section class="header">
+        <h1>Library Webapp</h1>
+        <p>A simple library webapp built with HTML, CSS, and JavaScript</p>
+      </section>
+
+      <hr />
+
+      <section id="main" class="main"></section>
+
+      <div id="modal" class="modal">
+        <form class="modal-container">
+          <h2>Add new book</h2>
+          <input id="title" type="text" placeholder="Title" required />
+          <input id="author" type="text" placeholder="Author" required />
+          <input id="pages" type="text" placeholder="Pages" required />
+          <button type="submit" id="add-book-btn" class="add-book-btn">
+            Add
+          </button>
+          <button type="button" id="close-modal" class="cancel-btn">
+            Cancel
+          </button>
+        </form>
+      </div>
+
+      <div class="add-btn-container">
+        <button id="open-modal" class="add-btn">+</button>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
